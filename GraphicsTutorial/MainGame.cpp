@@ -1,5 +1,5 @@
-#include "MainGame.h"
 #include <iostream>
+#include "MainGame.h"
 
 void FatalError(std::string errorString) {
 	std::cout << errorString << '\n';
@@ -21,6 +21,9 @@ MainGame::~MainGame() {
 
 void MainGame::Run() {
 	InitSystems();
+
+	_sprite.Init(-1.0f, -1.0f, 1.0f, 1.0f);
+
 	
 	GameLoop();
 
@@ -75,13 +78,7 @@ void MainGame::DrawGame() {
 	glClearDepth(1.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	glEnableClientState(GL_COLOR_ARRAY);
-	glBegin(GL_TRIANGLES);
-		glColor3f(1.0f, 1.0f, 1.0f);
-		glVertex2f(0.0f, 0.0f);
-		glVertex2f(0.0f, 100.0f);
-		glVertex2f(200.0f, 100.0f);
-	glEnd();
+	_sprite.Draw();
 
 	SDL_GL_SwapWindow(_window);
 }
