@@ -1,5 +1,10 @@
-﻿  main.cpp
+﻿  Errors.cpp
+  GLSLProgram.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\GraphicsTutorial\GLSLProgram.cpp(60,23): warning C4474: 'printf' : 서식 문자열에 전달된 인수가 너무 많습니다.
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\GraphicsTutorial\GLSLProgram.cpp(60,23): message : 자리 표시자 및 해당 매개 변수에는 variadic 인수가 0개 필요하지만 1개가 제공되었습니다.
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\GraphicsTutorial\GLSLProgram.cpp(125,23): warning C4474: 'printf' : 서식 문자열에 전달된 인수가 너무 많습니다.
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\GraphicsTutorial\GLSLProgram.cpp(125,23): message : 자리 표시자 및 해당 매개 변수에는 variadic 인수가 0개 필요하지만 1개가 제공되었습니다.
+  main.cpp
   MainGame.cpp
-  Sprite.cpp
   코드를 생성하고 있습니다...
-  GraphicsTutorial.vcxproj -> C:\Users\신건호\Documents\GitHub\GraphicsTutorial\Debug\GraphicsTutorial.exe
+  GraphicsTutorial.vcxproj -> C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\Debug\GraphicsTutorial.exe

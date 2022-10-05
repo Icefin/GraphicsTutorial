@@ -24,12 +24,24 @@
     <ClCompile Include="Sprite.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="GLSLProgram.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Errors.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainGame.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Sprite.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="GLSLProgram.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Errors.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
