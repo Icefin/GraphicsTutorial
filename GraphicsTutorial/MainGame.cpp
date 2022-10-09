@@ -3,11 +3,13 @@
 #include "MainGame.h"
 #include "Errors.h"
 
-MainGame::MainGame() {
-	_window = nullptr;
-	_screenWidth = 1024;
-	_screenHeight = 768;
-	_gameState = GameState::PLAY;
+MainGame::MainGame() :
+	_window(nullptr),
+	_screenWidth(1024),
+	_screenHeight(768),
+	_gameState(GameState::PLAY),
+	_time(0.0f) {
+
 }
 MainGame::~MainGame() {
 
@@ -16,7 +18,7 @@ MainGame::~MainGame() {
 void MainGame::Run() {
 	InitSystems();
 
-	_sprite.Init(-1.0f, -1.0f, 1.0f, 1.0f);
+	_sprite.Init(-1.0f, -1.0f, 2.0f, 2.0f);
 
 	
 	GameLoop();
@@ -52,12 +54,14 @@ void MainGame::InitSystems() {
 void MainGame::InitShaders() {
 	_colorShaderProgram.CompileShaders("Shaders/colorShading.vert", "Shaders/colorShading.frag");
 	_colorShaderProgram.AddAttribute("vertexPosition");
+	_colorShaderProgram.AddAttribute("vertexColor");
 	_colorShaderProgram.LinkShaders();
 }
 
 void MainGame::GameLoop() {
 	while (_gameState != GameState::EXIT){
 		ProcessInput();
+		_time += 0.01f;
 		DrawGame();
 	}
 }
@@ -81,6 +85,9 @@ void MainGame::DrawGame() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	_colorShaderProgram.Use();
+
+	GLuint timeLocation = _colorShaderProgram.GetUniformLocation("time");
+	glUniform1f(timeLocation, _time);
 
 	_sprite.Draw();
 

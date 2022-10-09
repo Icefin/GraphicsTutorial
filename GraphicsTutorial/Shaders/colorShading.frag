@@ -1,7 +1,15 @@
 #version 130
 
-out vec3 color;
+in vec2 fragmentPosition;
+in vec4 fragmentColor;
+
+out vec4 color;
+
+uniform float time;
 
 void main(){
-	color = vec3(1.0, 0.0, 1.0);
+	color = vec4(fragmentColor.r * (cos(fragmentPosition.x * 16.0 + time) + 1.0),
+				 fragmentColor.g * (cos(fragmentPosition.y * 8.0 + time) + 1.0),
+				 fragmentColor.b * (cos(fragmentPosition.x * 2.0 + time) + 1.0),
+				 fragmentColor.a);
 }

@@ -28,4 +28,6 @@ private :
 	Sprite _sprite;
 
 	GLSLProgram _colorShaderProgram;
+
+	float _time;
 };
