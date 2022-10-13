@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "MainGame.h"
+#include "ImageLoader.h"
 #include "Errors.h"
 
 MainGame::MainGame() :
@@ -19,8 +20,8 @@ void MainGame::Run() {
 	InitSystems();
 
 	_sprite.Init(-1.0f, -1.0f, 2.0f, 2.0f);
+	_playerTexture = ImageLoader::LoadPNG("Textures/jimmyJump_pack/PNG/CharacterRight_Standing.png");
 
-	
 	GameLoop();
 
 }
@@ -55,13 +56,14 @@ void MainGame::InitShaders() {
 	_colorShaderProgram.CompileShaders("Shaders/colorShading.vert", "Shaders/colorShading.frag");
 	_colorShaderProgram.AddAttribute("vertexPosition");
 	_colorShaderProgram.AddAttribute("vertexColor");
+	_colorShaderProgram.AddAttribute("vertexUV");
 	_colorShaderProgram.LinkShaders();
 }
 
 void MainGame::GameLoop() {
 	while (_gameState != GameState::EXIT){
 		ProcessInput();
-		_time += 0.01f;
+		_time += 0.1f;
 		DrawGame();
 	}
 }
@@ -86,11 +88,17 @@ void MainGame::DrawGame() {
 
 	_colorShaderProgram.Use();
 
-	GLuint timeLocation = _colorShaderProgram.GetUniformLocation("time");
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, _playerTexture.id);
+	GLint textureLocation = _colorShaderProgram.GetUniformLocation("mySampler");
+	glUniform1i(textureLocation, 0);
+
+	GLint timeLocation = _colorShaderProgram.GetUniformLocation("time");
 	glUniform1f(timeLocation, _time);
 
 	_sprite.Draw();
 
+	glBindTexture(GL_TEXTURE_2D, 0);
 	_colorShaderProgram.Unuse();
 
 	SDL_GL_SwapWindow(_window);
