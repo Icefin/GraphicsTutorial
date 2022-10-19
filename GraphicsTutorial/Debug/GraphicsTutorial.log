@@ -1,6 +1,8 @@
-﻿  MainGame.cpp
+﻿  main.cpp
+  MainGame.cpp
 C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\GraphicsTutorial\MainGame.cpp(79,20): warning C4244: '초기화 중': 'Uint32'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\GraphicsTutorial\MainGame.cpp(97,32): warning C4244: '인수': 'float'에서 'Uint32'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\GraphicsTutorial\MainGame.cpp(143,25): warning C4244: '초기화 중': 'Uint32'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\GraphicsTutorial\MainGame.cpp(145,18): warning C4244: '초기화 중': 'Uint32'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
   GraphicsTutorial.vcxproj -> C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\Debug\GraphicsTutorial.exe
