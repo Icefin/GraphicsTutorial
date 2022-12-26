@@ -11,7 +11,7 @@ MainGame::MainGame() :
 	_gameState(GameState::PLAY),
 	_time(0.0f),
 	_maxFPS(60.0f){
-
+	_camera2D.Init(_screenWidth, _screenHeight);
 }
 MainGame::~MainGame() {
 
@@ -20,7 +20,7 @@ MainGame::~MainGame() {
 void MainGame::Run() {
 	InitSystems();
 
-	_sprite.Init(-1.0f, -1.0f, 2.0f, 2.0f);
+	_sprite.Init(0.0f, 0.0f, _screenWidth / 2, _screenHeight / 2);
 	_playerTexture = Gengine::ImageLoader::LoadPNG("Textures/jimmyJump_pack/PNG/CharacterRight_Standing.png");
 
 	GameLoop();
@@ -49,6 +49,9 @@ void MainGame::GameLoop() {
 
 		ProcessInput();
 		_time += 0.01f;
+
+		_camera2D.Update();
+
 		DrawGame();
 		CalculateFPS();
 
@@ -70,6 +73,9 @@ void MainGame::GameLoop() {
 void MainGame::ProcessInput() {
 	SDL_Event evnt;
 
+	const float CAMERA_SPEED = 20.0f;
+	const float SCALE_SPEED = 0.1f;
+
 	while (SDL_PollEvent(&evnt)) {
 		switch (evnt.type) {
 			case SDL_QUIT :
@@ -77,6 +83,28 @@ void MainGame::ProcessInput() {
 				break;
 			case SDL_MOUSEMOTION :
 				std::cout << evnt.motion.x << " " << evnt.motion.y << '\n';
+				break;
+			case SDL_KEYDOWN :
+				switch (evnt.key.keysym.sym) {
+					case SDLK_w :
+						_camera2D.SetPosition(_camera2D.GetPosition() + glm::vec2(0.0f, CAMERA_SPEED));
+						break;
+					case SDLK_s:
+						_camera2D.SetPosition(_camera2D.GetPosition() + glm::vec2(0.0f, -CAMERA_SPEED));
+						break;
+					case SDLK_a:
+						_camera2D.SetPosition(_camera2D.GetPosition() + glm::vec2(CAMERA_SPEED, 0.0f));
+						break;
+					case SDLK_d:
+						_camera2D.SetPosition(_camera2D.GetPosition() + glm::vec2(-CAMERA_SPEED, 0.0f));
+						break;
+					case SDLK_q :
+						_camera2D.SetScale(_camera2D.GetScale() + SCALE_SPEED);
+						break;
+					case SDLK_e :
+						_camera2D.SetScale(_camera2D.GetScale() - SCALE_SPEED);
+						break;
+				}
 				break;
 		}
 	}
@@ -95,6 +123,11 @@ void MainGame::DrawGame() {
 
 	GLint timeLocation = _colorShaderProgram.GetUniformLocation("time");
 	glUniform1f(timeLocation, _time);
+
+	GLint pLocation = _colorShaderProgram.GetUniformLocation("P");
+	glm::mat4 cameraMatrix = _camera2D.GetCameraMatrix();
+
+	glUniformMatrix4fv(pLocation, 1, GL_FALSE, &(cameraMatrix[0][0]));
 
 	_sprite.Draw();
 

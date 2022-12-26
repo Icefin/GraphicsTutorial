@@ -9,6 +9,8 @@
 #include <Window.h>
 #include <Gengine.h>
 
+#include <Camera2D.h>
+
 enum class GameState { PLAY, EXIT };
 
 class MainGame
@@ -35,6 +37,7 @@ private :
 
 	Gengine::GLSLProgram _colorShaderProgram;
 	Gengine::GLTexture _playerTexture;
+	Gengine::Camera2D _camera2D;
 
 	float _fps;
 	float _maxFPS;
