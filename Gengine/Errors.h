@@ -2,4 +2,6 @@
 
 #include <string>
 
-extern void FatalError(std::string errorString);
+namespace Gengine {
+	extern void FatalError(std::string errorString);
+}

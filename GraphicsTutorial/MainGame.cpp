@@ -1,11 +1,11 @@
 #include <iostream>
 #include <string>
+
 #include "MainGame.h"
 #include "ImageLoader.h"
-#include "Errors.h"
+#include <Errors.h>
 
 MainGame::MainGame() :
-	_window(nullptr),
 	_screenWidth(1024),
 	_screenHeight(768),
 	_gameState(GameState::PLAY),
@@ -21,46 +21,15 @@ void MainGame::Run() {
 	InitSystems();
 
 	_sprite.Init(-1.0f, -1.0f, 2.0f, 2.0f);
-	_playerTexture = ImageLoader::LoadPNG("Textures/jimmyJump_pack/PNG/CharacterRight_Standing.png");
+	_playerTexture = Gengine::ImageLoader::LoadPNG("Textures/jimmyJump_pack/PNG/CharacterRight_Standing.png");
 
 	GameLoop();
-
 }
 
 void MainGame::InitSystems() {
-	//Initialize SDL
-	SDL_Init(SDL_INIT_EVERYTHING);
+	Gengine::Init();
 
-	//Tell SDL that we want a double buffered window so we don't get any flickering
-	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-	
-	//Open an SDL window
-	_window = SDL_CreateWindow("Game Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 
-								_screenWidth, _screenHeight, SDL_WINDOW_OPENGL);
-	if (_window == nullptr) {
-		FatalError("SDL Window could not be created");
-	}
-
-	//Set up OpenGL context
-	SDL_GLContext glContext = SDL_GL_CreateContext(_window);
-	if (glContext == nullptr) {
-		FatalError("SDL_GLContext could not be created");
-	}
-
-	//Set up glew
-	GLenum error = glewInit();
-	if (error != GLEW_OK) {
-		FatalError("Could not initialize glew");
-	}
-
-	//Check the OpenGL version
-	std::printf("***	OpenGL Version : %s		***", glGetString(GL_VERSION));
-
-	//Set the background color to black
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-
-	//Set VSYNC
-	SDL_GL_SetSwapInterval(0);
+	_window.Create("Game Engine", _screenWidth, _screenHeight, 0);
 
 	InitShaders();
 }
@@ -132,7 +101,7 @@ void MainGame::DrawGame() {
 	glBindTexture(GL_TEXTURE_2D, 0);
 	_colorShaderProgram.Unuse();
 
-	SDL_GL_SwapWindow(_window);
+	_window.SwapBuffer();
 }
 
 void MainGame::CalculateFPS() {

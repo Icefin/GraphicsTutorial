@@ -1,9 +1,13 @@
 #pragma once
 #include <SDL/SDL.h>
 #include <GL/glew.h>
-#include "GLSLProgram.h"
-#include "GLTexture.h"
-#include "Sprite.h"
+
+#include <GLSLProgram.h>
+#include <GLTexture.h>
+#include <Sprite.h>
+
+#include <Window.h>
+#include <Gengine.h>
 
 enum class GameState { PLAY, EXIT };
 
@@ -22,15 +26,15 @@ private :
 	void DrawGame();
 	void CalculateFPS();
 
-	SDL_Window* _window;
+	Gengine::Window _window;
 	int _screenWidth;
 	int _screenHeight;
 	GameState _gameState;
 
-	Sprite _sprite;
+	Gengine::Sprite _sprite;
 
-	GLSLProgram _colorShaderProgram;
-	GLTexture _playerTexture;
+	Gengine::GLSLProgram _colorShaderProgram;
+	Gengine::GLTexture _playerTexture;
 
 	float _fps;
 	float _maxFPS;

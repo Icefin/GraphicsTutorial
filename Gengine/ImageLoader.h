@@ -2,8 +2,10 @@
 #include "GLTexture.h"
 #include <string>
 
-class ImageLoader
-{
-public :
-	static GLTexture LoadPNG(std::string filePath);
-};
+namespace Gengine {
+	class ImageLoader
+	{
+	public:
+		static GLTexture LoadPNG(std::string filePath);
+	};
+}

@@ -1,20 +1,22 @@
 #pragma once
 #include <GL/glew.h>
 
-class Sprite
-{
-public :
-	Sprite();
-	~Sprite();
+namespace Gengine {
+	class Sprite
+	{
+	public:
+		Sprite();
+		~Sprite();
 
-	void Init(float x, float y, float width, float height);
-	void Draw();
+		void Init(float x, float y, float width, float height);
+		void Draw();
 
-private :
-	float _x;
-	float _y;
-	float _width;
-	float _height;
+	private:
+		float _x;
+		float _y;
+		float _width;
+		float _height;
 
-	GLuint _vboID;
-};
+		GLuint _vboID;
+	};
+}
