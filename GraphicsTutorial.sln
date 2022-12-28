@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GraphicsTutorial", "GraphicsTutorial\GraphicsTutorial.vcxproj", "{D12D9680-5D24-4CAA-AF09-B09B5E5835BE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B071EDF0-2536-4AC1-AAD8-9C1CDD87A9FC} = {B071EDF0-2536-4AC1-AAD8-9C1CDD87A9FC}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Gengine", "Gengine\Gengine.vcxproj", "{B071EDF0-2536-4AC1-AAD8-9C1CDD87A9FC}"
 EndProject

@@ -5,6 +5,7 @@
 #include <GLSLProgram.h>
 #include <GLTexture.h>
 #include <Sprite.h>
+#include <SpriteBatch.h>
 
 #include <Window.h>
 #include <Gengine.h>
@@ -33,11 +34,11 @@ private :
 	int _screenHeight;
 	GameState _gameState;
 
-	Gengine::Sprite _sprite;
 
 	Gengine::GLSLProgram _colorShaderProgram;
-	Gengine::GLTexture _playerTexture;
 	Gengine::Camera2D _camera2D;
+
+	Gengine::SpriteBatch _spriteBatch;
 
 	float _fps;
 	float _maxFPS;

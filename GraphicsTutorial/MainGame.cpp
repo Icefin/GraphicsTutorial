@@ -2,8 +2,8 @@
 #include <string>
 
 #include "MainGame.h"
-#include "ImageLoader.h"
 #include <Errors.h>
+#include <ResourceManager.h>
 
 MainGame::MainGame() :
 	_screenWidth(1024),
@@ -19,10 +19,6 @@ MainGame::~MainGame() {
 
 void MainGame::Run() {
 	InitSystems();
-
-	_sprite.Init(0.0f, 0.0f, _screenWidth / 2, _screenHeight / 2);
-	_playerTexture = Gengine::ImageLoader::LoadPNG("Textures/jimmyJump_pack/PNG/CharacterRight_Standing.png");
-
 	GameLoop();
 }
 
@@ -32,6 +28,8 @@ void MainGame::InitSystems() {
 	_window.Create("Game Engine", _screenWidth, _screenHeight, 0);
 
 	InitShaders();
+
+	_spriteBatch.Init();
 }
 
 void MainGame::InitShaders() {
@@ -82,7 +80,7 @@ void MainGame::ProcessInput() {
 				_gameState = GameState::EXIT;
 				break;
 			case SDL_MOUSEMOTION :
-				std::cout << evnt.motion.x << " " << evnt.motion.y << '\n';
+				//std::cout << evnt.motion.x << " " << evnt.motion.y << '\n';
 				break;
 			case SDL_KEYDOWN :
 				switch (evnt.key.keysym.sym) {
@@ -93,10 +91,10 @@ void MainGame::ProcessInput() {
 						_camera2D.SetPosition(_camera2D.GetPosition() + glm::vec2(0.0f, -CAMERA_SPEED));
 						break;
 					case SDLK_a:
-						_camera2D.SetPosition(_camera2D.GetPosition() + glm::vec2(CAMERA_SPEED, 0.0f));
+						_camera2D.SetPosition(_camera2D.GetPosition() + glm::vec2(-CAMERA_SPEED, 0.0f));
 						break;
 					case SDLK_d:
-						_camera2D.SetPosition(_camera2D.GetPosition() + glm::vec2(-CAMERA_SPEED, 0.0f));
+						_camera2D.SetPosition(_camera2D.GetPosition() + glm::vec2(CAMERA_SPEED, 0.0f));
 						break;
 					case SDLK_q :
 						_camera2D.SetScale(_camera2D.GetScale() + SCALE_SPEED);
@@ -117,7 +115,6 @@ void MainGame::DrawGame() {
 	_colorShaderProgram.Use();
 
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, _playerTexture.id);
 	GLint textureLocation = _colorShaderProgram.GetUniformLocation("mySampler");
 	glUniform1i(textureLocation, 0);
 
@@ -129,7 +126,18 @@ void MainGame::DrawGame() {
 
 	glUniformMatrix4fv(pLocation, 1, GL_FALSE, &(cameraMatrix[0][0]));
 
-	_sprite.Draw();
+	_spriteBatch.Begin();
+	
+	glm::vec4 position(0.0f, 0.0f, 50.0f, 50.0f);
+	glm::vec4 uv(0.0f, 0.0f, 1.0f, 1.0f);
+	static Gengine::GLTexture texture = Gengine::ResourceManager::GetTexture("Textures/jimmyJump_pack/PNG/CharacterRight_Standing.png");
+	Gengine::Color color;
+	color.r = 255; color.g = 255; color.b = 255; color.a = 255;
+	_spriteBatch.Draw(position, uv, texture.id, 0.0f, color);
+
+	_spriteBatch.End();
+	
+	_spriteBatch.RenderBatchs();
 
 	glBindTexture(GL_TEXTURE_2D, 0);
 	_colorShaderProgram.Unuse();
