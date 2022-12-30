@@ -13,12 +13,12 @@ Bullet::~Bullet() {
 
 void Bullet::Draw(Gengine::SpriteBatch& spriteBatch) {
 	glm::vec4 uv(0.0f, 0.0f, 1.0f, 1.0f);
-	static Gengine::GLTexture texture = Gengine::ResourceManager::GetTexture("Textures/jimmyJump_pack/PNG/CharacterRight_Standing.png");
+	static Gengine::GLTexture texture = Gengine::ResourceManager::GetTexture("Textures/jimmyJump_pack/PNG/Bullet.png");
 	
 	Gengine::Color color;
 	color.r = 255; color.g = 255; color.b = 255; color.a = 255;
 
-	glm::vec4 posAndSize = glm::vec4(_position.x, _position.y, 30, 30);
+	glm::vec4 posAndSize = glm::vec4(_position.x, _position.y, 5, 5);
 
 	spriteBatch.Draw(posAndSize, uv, texture.id, 0.0f, color);
 }
