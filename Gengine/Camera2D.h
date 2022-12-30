@@ -13,6 +13,8 @@ namespace Gengine {
 
 		void Update();
 
+		glm::vec2 ConvertScreenToWorld(glm::vec2 screenCoords);
+
 		void SetScale(float newScale) { _scale = newScale; _needsMatrixUpdate = true; }
 		void SetPosition(const glm::vec2& newPosition) { _position = newPosition; _needsMatrixUpdate = true; }
 

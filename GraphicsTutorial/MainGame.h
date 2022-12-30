@@ -14,6 +14,8 @@
 #include <Camera2D.h>
 #include <InputManager.h>
 
+#include "Bullet.h"
+
 enum class GameState { PLAY, EXIT };
 
 class MainGame
@@ -29,13 +31,11 @@ private :
 	void GameLoop();
 	void ProcessInput();
 	void DrawGame();
-	void CalculateFPS();
 
 	Gengine::Window _window;
 	int _screenWidth;
 	int _screenHeight;
 	GameState _gameState;
-
 
 	Gengine::GLSLProgram _colorShaderProgram;
 	Gengine::Camera2D _camera2D;
@@ -43,6 +43,8 @@ private :
 	Gengine::FpsLimiter _fpsLimiter;
 
 	Gengine::SpriteBatch _spriteBatch;
+
+	std::vector<Bullet> _bullets;
 
 	float _maxFPS;
 	float _fps;

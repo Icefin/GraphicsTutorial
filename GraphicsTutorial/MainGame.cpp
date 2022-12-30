@@ -51,14 +51,24 @@ void MainGame::GameLoop() {
 
 		_camera2D.Update();
 
+		for (int i = 0; i < _bullets.size();) {
+			if (_bullets[i].Update()) {
+				_bullets[i] = _bullets.back();
+				_bullets.pop_back();
+			}
+			else {
+				i++;
+			}
+		}
+
 		DrawGame();
 
 		_fps = _fpsLimiter.End();
 
 		static int frameCounter = 0;
 		frameCounter++;
-		if (frameCounter == 10) {
-			std::cout << _fps << '\n';
+		if (frameCounter == 10000) {
+			std::cout << "FPS : " << _fps << '\n';
 			frameCounter = 0;
 		}
 	}
@@ -74,14 +84,20 @@ void MainGame::ProcessInput() {
 			case SDL_QUIT :
 				_gameState = GameState::EXIT;
 				break;
-			case SDL_MOUSEMOTION :
-				//std::cout << evnt.motion.x << " " << evnt.motion.y << '\n';
-				break;
 			case SDL_KEYDOWN :
 				_inputManager.PressKey(evnt.key.keysym.sym);
 				break;
 			case SDL_KEYUP :
 				_inputManager.ReleaseKey(evnt.key.keysym.sym);
+				break;
+			case SDL_MOUSEBUTTONDOWN :
+				_inputManager.PressKey(evnt.button.button);
+				break;
+			case SDL_MOUSEBUTTONUP:
+				_inputManager.ReleaseKey(evnt.button.button);
+				break;
+			case SDL_MOUSEMOTION:
+				_inputManager.SetMouseCoords(evnt.motion.x, evnt.motion.y);
 				break;
 		}
 	}
@@ -103,6 +119,16 @@ void MainGame::ProcessInput() {
 	}
 	if (_inputManager.isKeyPressed(SDLK_e)) {
 		_camera2D.SetScale(_camera2D.GetScale() - SCALE_SPEED);
+	}
+	if (_inputManager.isKeyPressed(SDL_BUTTON_LEFT)) {
+		glm::vec2 mouseCoords = _inputManager.GetMouseCoords();
+		mouseCoords = _camera2D.ConvertScreenToWorld(mouseCoords);
+		
+		glm::vec2 playerPosition(0.0f);
+		glm::vec2 direction = mouseCoords - playerPosition;
+		direction = glm::normalize(direction);
+
+		_bullets.emplace_back(playerPosition, direction, 1.0f, 1000);
 	}
 }
 
@@ -129,6 +155,10 @@ void MainGame::DrawGame() {
 	Gengine::Color color;
 	color.r = 255; color.g = 255; color.b = 255; color.a = 255;
 	_spriteBatch.Draw(position, uv, texture.id, 0.0f, color);
+
+	for (int i = 0; i < _bullets.size(); i++) {
+		_bullets[i].Draw(_spriteBatch);
+	}
 
 	_spriteBatch.End();
 	

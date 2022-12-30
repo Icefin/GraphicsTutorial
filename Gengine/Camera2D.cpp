@@ -33,4 +33,13 @@ namespace Gengine {
 			_needsMatrixUpdate = false;
 		}
 	}
+
+	glm::vec2 Camera2D::ConvertScreenToWorld(glm::vec2 screenCoords) {
+		screenCoords.y = _screenHeight - screenCoords.y;
+		screenCoords -= glm::vec2(_screenWidth / 2, _screenHeight / 2);
+		screenCoords /= _scale;
+
+		screenCoords += _position;
+		return screenCoords;
+	}
 }
