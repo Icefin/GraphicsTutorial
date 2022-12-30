@@ -9,8 +9,10 @@
 
 #include <Window.h>
 #include <Gengine.h>
+#include <Timing.h>
 
 #include <Camera2D.h>
+#include <InputManager.h>
 
 enum class GameState { PLAY, EXIT };
 
@@ -37,12 +39,12 @@ private :
 
 	Gengine::GLSLProgram _colorShaderProgram;
 	Gengine::Camera2D _camera2D;
+	Gengine::InputManager _inputManager;
+	Gengine::FpsLimiter _fpsLimiter;
 
 	Gengine::SpriteBatch _spriteBatch;
 
-	float _fps;
 	float _maxFPS;
-	float _frameTime;
-
+	float _fps;
 	float _time;
 };
