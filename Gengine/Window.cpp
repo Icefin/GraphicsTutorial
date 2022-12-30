@@ -42,6 +42,10 @@ namespace Gengine {
 		//Set VSYNC
 		SDL_GL_SetSwapInterval(0);
 
+		//Enable alpha blend
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 		return 0;
 	}
 

@@ -116,9 +116,6 @@ void MainGame::DrawGame() {
 	GLint textureLocation = _colorShaderProgram.GetUniformLocation("mySampler");
 	glUniform1i(textureLocation, 0);
 
-	GLint timeLocation = _colorShaderProgram.GetUniformLocation("time");
-	glUniform1f(timeLocation, _time);
-
 	GLint pLocation = _colorShaderProgram.GetUniformLocation("P");
 	glm::mat4 cameraMatrix = _camera2D.GetCameraMatrix();
 
