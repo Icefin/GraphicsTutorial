@@ -10,6 +10,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GraphicsTutorial", "Graphic
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Gengine", "Gengine\Gengine.vcxproj", "{B071EDF0-2536-4AC1-AAD8-9C1CDD87A9FC}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZombieGame", "ZombieGame\ZombieGame.vcxproj", "{7A675BE9-A588-411A-A046-4AEA3E701D97}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -34,6 +36,14 @@ Global
 		{B071EDF0-2536-4AC1-AAD8-9C1CDD87A9FC}.Release|x64.Build.0 = Release|x64
 		{B071EDF0-2536-4AC1-AAD8-9C1CDD87A9FC}.Release|x86.ActiveCfg = Release|Win32
 		{B071EDF0-2536-4AC1-AAD8-9C1CDD87A9FC}.Release|x86.Build.0 = Release|Win32
+		{7A675BE9-A588-411A-A046-4AEA3E701D97}.Debug|x64.ActiveCfg = Debug|x64
+		{7A675BE9-A588-411A-A046-4AEA3E701D97}.Debug|x64.Build.0 = Debug|x64
+		{7A675BE9-A588-411A-A046-4AEA3E701D97}.Debug|x86.ActiveCfg = Debug|Win32
+		{7A675BE9-A588-411A-A046-4AEA3E701D97}.Debug|x86.Build.0 = Debug|Win32
+		{7A675BE9-A588-411A-A046-4AEA3E701D97}.Release|x64.ActiveCfg = Release|x64
+		{7A675BE9-A588-411A-A046-4AEA3E701D97}.Release|x64.Build.0 = Release|x64
+		{7A675BE9-A588-411A-A046-4AEA3E701D97}.Release|x86.ActiveCfg = Release|Win32
+		{7A675BE9-A588-411A-A046-4AEA3E701D97}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
