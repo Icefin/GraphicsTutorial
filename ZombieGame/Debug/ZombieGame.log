@@ -1,9 +1,3 @@
-﻿  Agent.cpp
-  Level.cpp
-C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\Level.cpp(2,10): fatal error C1083: 포함 파일을 열 수 없습니다. 'Gengine/Errors.h': No such file or directory
-  main.cpp
-C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.h(3,10): fatal error C1083: 포함 파일을 열 수 없습니다. 'Gengine/Window.h': No such file or directory
-  MainGame.cpp
-C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.h(3,10): fatal error C1083: 포함 파일을 열 수 없습니다. 'Gengine/Window.h': No such file or directory
-  Zombie.cpp
-  코드를 생성하고 있습니다...
+﻿  Level.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\Level.cpp(23,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  ZombieGame.vcxproj -> C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\Debug\ZombieGame.exe
