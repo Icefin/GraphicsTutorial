@@ -21,7 +21,7 @@ MainGame::~MainGame() {
 
 void MainGame::run() {
 	initSystem();
-
+	initLevel();
 	gameLoop();
 }
 
@@ -29,11 +29,14 @@ void MainGame::initSystem() {
 	Gengine::Init();
 
 	_window.Create("ZombieGame", _screenWidth, _screenHeight, 0);
+	glClearColor(0.7f, 0.7f, 0.7f, 1.0f);
 
 	initShader();
 
 	_camera.Init(_screenWidth, _screenHeight);
+}
 
+void MainGame::initLevel() {
 	_levels.push_back(new Level("Levels/level1.txt"));
 	_currentLevel = 0;
 }

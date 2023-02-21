@@ -22,6 +22,7 @@ public :
 private :
 	void initSystem();
 	void initShader();
+	void initLevel();
 	void gameLoop();
 	void processInput();
 	void drawGame();
