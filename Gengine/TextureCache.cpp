@@ -18,12 +18,9 @@ namespace Gengine {
 			GLTexture newTexture = ImageLoader::LoadPNG(texturePath);
 			
 			_textureMap.insert(make_pair(texturePath, newTexture));
-		
-			std::cout << "Loaded Texture!\n";
+
 			return newTexture;
 		}
-
-		std::cout << "Used Cached Texture!\n";
 		return iter->second;
 	}
 }

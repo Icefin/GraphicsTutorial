@@ -34,7 +34,7 @@ namespace Gengine {
 		}
 
 		//Check the OpenGL version
-		std::printf("***	OpenGL Version : %s		***", glGetString(GL_VERSION));
+		std::printf("***	OpenGL Version : %s		***\n", glGetString(GL_VERSION));
 
 		//Set the background color to black
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);

@@ -6,6 +6,11 @@
 #include <Gengine/InputManager.h>
 #include "Level.h"
 
+enum class GameState {
+	PLAY,
+	EXIT
+};
+
 class MainGame
 {
 public :
@@ -26,4 +31,10 @@ private :
 	Gengine::InputManager _inputManager;
 	Gengine::Camera2D _camera;
 	std::vector<Level*> _levels;
+
+	int _screenWidth, _screenHeight;
+
+	GameState _gameState;
+	int _fps;
+	int _currentLevel;
 };
