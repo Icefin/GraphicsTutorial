@@ -3,5 +3,8 @@
 
 class Human : public Agent
 {
+public :
+	Human();
+	virtual ~Human();
 };
 
