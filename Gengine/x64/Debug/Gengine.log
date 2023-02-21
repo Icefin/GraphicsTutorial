@@ -1,0 +1,22 @@
+﻿  Camera2D.cpp
+  Errors.cpp
+  Gengine.cpp
+  GLSLProgram.cpp
+  ImageLoader.cpp
+  InputManager.cpp
+  IOManager.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\Gengine\IOManager.cpp(17,16): warning C4244: '초기화 중': 'std::streamoff'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\Gengine\IOManager.cpp(21,27): warning C4244: '-=': 'std::streamoff'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  picoPNG.cpp
+  ResourceManager.cpp
+  Sprite.cpp
+  SpriteBatch.cpp
+  TextureCache.cpp
+  Timing.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\Gengine\Timing.cpp(25,20): warning C4244: '초기화 중': 'Uint32'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\Gengine\Timing.cpp(29,32): warning C4244: '인수': 'float'에서 'Uint32'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\Gengine\Timing.cpp(40,26): warning C4244: '초기화 중': 'Uint32'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\Gengine\Timing.cpp(42,19): warning C4244: '초기화 중': 'Uint32'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Window.cpp
+  코드를 생성하고 있습니다...
+  Gengine.vcxproj -> C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\x64\Debug\Gengine.lib

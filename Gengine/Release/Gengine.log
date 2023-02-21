@@ -1,0 +1,27 @@
+﻿  Camera2D.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\Gengine\Camera2D.cpp(46,1): fatal error C1010: 미리 컴파일된 헤더를 찾는 동안 예기치 않은 파일의 끝이 나타났습니다. '#include "pch.h"'을(를) 소스에 추가하시겠습니까?
+  Errors.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\Gengine\Errors.cpp(16,1): fatal error C1010: 미리 컴파일된 헤더를 찾는 동안 예기치 않은 파일의 끝이 나타났습니다. '#include "pch.h"'을(를) 소스에 추가하시겠습니까?
+  Gengine.cpp
+  GLSLProgram.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\Gengine\GLSLProgram.cpp(140,1): fatal error C1010: 미리 컴파일된 헤더를 찾는 동안 예기치 않은 파일의 끝이 나타났습니다. '#include "pch.h"'을(를) 소스에 추가하시겠습니까?
+  ImageLoader.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\Gengine\ImageLoader.cpp(43,1): fatal error C1010: 미리 컴파일된 헤더를 찾는 동안 예기치 않은 파일의 끝이 나타났습니다. '#include "pch.h"'을(를) 소스에 추가하시겠습니까?
+  InputManager.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\Gengine\InputManager.cpp(34,1): fatal error C1010: 미리 컴파일된 헤더를 찾는 동안 예기치 않은 파일의 끝이 나타났습니다. '#include "pch.h"'을(를) 소스에 추가하시겠습니까?
+  IOManager.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\Gengine\IOManager.cpp(30,1): fatal error C1010: 미리 컴파일된 헤더를 찾는 동안 예기치 않은 파일의 끝이 나타났습니다. '#include "pch.h"'을(를) 소스에 추가하시겠습니까?
+  picoPNG.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\Gengine\picoPNG.cpp(536,1): fatal error C1010: 미리 컴파일된 헤더를 찾는 동안 예기치 않은 파일의 끝이 나타났습니다. '#include "pch.h"'을(를) 소스에 추가하시겠습니까?
+  ResourceManager.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\Gengine\ResourceManager.cpp(10,1): fatal error C1010: 미리 컴파일된 헤더를 찾는 동안 예기치 않은 파일의 끝이 나타났습니다. '#include "pch.h"'을(를) 소스에 추가하시겠습니까?
+  Sprite.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\Gengine\Sprite.cpp(86,1): fatal error C1010: 미리 컴파일된 헤더를 찾는 동안 예기치 않은 파일의 끝이 나타났습니다. '#include "pch.h"'을(를) 소스에 추가하시겠습니까?
+  SpriteBatch.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\Gengine\SpriteBatch.cpp(155,1): fatal error C1010: 미리 컴파일된 헤더를 찾는 동안 예기치 않은 파일의 끝이 나타났습니다. '#include "pch.h"'을(를) 소스에 추가하시겠습니까?
+  TextureCache.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\Gengine\TextureCache.cpp(30,1): fatal error C1010: 미리 컴파일된 헤더를 찾는 동안 예기치 않은 파일의 끝이 나타났습니다. '#include "pch.h"'을(를) 소스에 추가하시겠습니까?
+  Timing.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\Gengine\Timing.cpp(74,1): fatal error C1010: 미리 컴파일된 헤더를 찾는 동안 예기치 않은 파일의 끝이 나타났습니다. '#include "pch.h"'을(를) 소스에 추가하시겠습니까?
+  Window.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\Gengine\Window.cpp(56,1): fatal error C1010: 미리 컴파일된 헤더를 찾는 동안 예기치 않은 파일의 끝이 나타났습니다. '#include "pch.h"'을(를) 소스에 추가하시겠습니까?
