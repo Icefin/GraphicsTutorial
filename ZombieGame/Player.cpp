@@ -1,4 +1,5 @@
 #include "Player.h"
+#include <SDL/SDL.h>
 
 Player::Player() {
 
@@ -8,12 +9,25 @@ Player::~Player() {
 
 }
 
-void Player::init(float speed, glm::vec2 pos) {
+void Player::init(float speed, glm::vec2 pos, Gengine::InputManager* inputManager) {
 	_speed = speed;
 	_position = pos;
-	_color.r = 0; _color.g = 0; _color.b = 128; _color.a = 255;
+	_color.r = 0; _color.g = 0; _color.b = 185; _color.a = 255;
+	_inputManager = inputManager;
 }
 
 void Player::update() {
+	if (_inputManager->isKeyPressed(SDLK_w)) {
+		_position.y += _speed;
+	}
+	else if (_inputManager->isKeyPressed(SDLK_s)) {
+		_position.y -= _speed;
+	}
 
+	if (_inputManager->isKeyPressed(SDLK_a)) {
+		_position.x -= _speed;
+	}
+	else if (_inputManager->isKeyPressed(SDLK_d)) {
+		_position.x += _speed;
+	}
 }

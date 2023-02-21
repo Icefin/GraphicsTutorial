@@ -4,7 +4,10 @@
 #include <Gengine/GLSLProgram.h>
 #include <Gengine/Camera2D.h>
 #include <Gengine/InputManager.h>
+#include <Gengine/SpriteBatch.h>
+
 #include "Level.h"
+#include "Player.h"
 
 enum class GameState {
 	PLAY,
@@ -24,6 +27,7 @@ private :
 	void initShader();
 	void initLevel();
 	void gameLoop();
+	void updateAgents();
 	void processInput();
 	void drawGame();
 
@@ -31,11 +35,15 @@ private :
 	Gengine::GLSLProgram _textureProgram;
 	Gengine::InputManager _inputManager;
 	Gengine::Camera2D _camera;
+	Gengine::SpriteBatch _agentSpriteBatch;
 	std::vector<Level*> _levels;
 
 	int _screenWidth, _screenHeight;
 
 	GameState _gameState;
-	int _fps;
+	float _fps;
 	int _currentLevel;
+
+	std::vector<Human*> _humans;
+	Player* _player;
 };

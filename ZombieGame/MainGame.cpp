@@ -9,7 +9,8 @@ MainGame::MainGame() :
 	_screenWidth(1024),
 	_screenHeight(768),
 	_gameState(GameState::PLAY),
-	_fps(0) {
+	_fps(0),
+	_player(nullptr) {
 	//Empty
 }
 
@@ -33,12 +34,19 @@ void MainGame::initSystem() {
 
 	initShader();
 
+	_agentSpriteBatch.Init();
+
 	_camera.Init(_screenWidth, _screenHeight);
 }
 
 void MainGame::initLevel() {
 	_levels.push_back(new Level("Levels/level1.txt"));
 	_currentLevel = 0;
+
+	_player = new Player();
+	_player->init(4.0f, _levels[_currentLevel]->getPlayerStartPos(), &_inputManager);
+
+	_humans.push_back(_player);
 }
 
 void MainGame::initShader() {
@@ -57,9 +65,17 @@ void MainGame::gameLoop() {
 	while (_gameState == GameState::PLAY) {
 		_fpsLimiter.Begin();
 		processInput();
+		updateAgents();
+		_camera.SetPosition(_player->getPosition());
 		_camera.Update();
 		drawGame();
 		_fps = _fpsLimiter.End();
+	}
+}
+
+void MainGame::updateAgents() {
+	for (int i = 0; i < _humans.size(); i++) {
+		_humans[i]->update();
 	}
 }
 
@@ -76,10 +92,13 @@ void MainGame::processInput() {
 				break;
 			case SDL_KEYDOWN :
 				_inputManager.PressKey(evnt.key.keysym.sym);
+				break;
 			case SDL_KEYUP :
 				_inputManager.ReleaseKey(evnt.key.keysym.sym);
+				break;
 			case SDL_MOUSEBUTTONDOWN :
 				_inputManager.PressKey(evnt.button.button);
+				break;
 			case SDL_MOUSEBUTTONUP :
 				_inputManager.ReleaseKey(evnt.button.button);
 				break;
@@ -109,6 +128,14 @@ void MainGame::drawGame() {
 
 	//Draw the level
 	_levels[_currentLevel]->draw();
+
+	//Draw the humans
+	_agentSpriteBatch.Begin();
+	for (int i = 0; i < _humans.size(); i++) {
+		_humans[i]->draw(_agentSpriteBatch);
+	}
+	_agentSpriteBatch.End();
+	_agentSpriteBatch.RenderBatchs();
 
 	_textureProgram.Unuse();
 

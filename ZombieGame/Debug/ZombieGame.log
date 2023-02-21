@@ -1,6 +1,7 @@
 ﻿  MainGame.cpp
-C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(17,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(62,25): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(75,60): warning C4244: '인수': 'Sint32'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(75,45): warning C4244: '인수': 'Sint32'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(18,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(77,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(91,60): warning C4244: '인수': 'Sint32'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(91,45): warning C4244: '인수': 'Sint32'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(134,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
   ZombieGame.vcxproj -> C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\Debug\ZombieGame.exe
