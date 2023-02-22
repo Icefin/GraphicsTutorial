@@ -3,7 +3,8 @@
 #include <Gengine/SpriteBatch.h>
 #include <string>
 
-const float AGENT_WIDTH = 60;
+const float AGENT_WIDTH = 60.0f;
+const float AGENT_RADIUS = AGENT_WIDTH / 2.0f;
 
 class Zombie;
 class Human;
@@ -19,6 +20,7 @@ public :
 						std::vector<Zombie*> zombies) = 0;
 
 	bool collideWithLevel(const std::vector<std::string>& levelData);
+	bool collideWithAgent(Agent* agent);
 
 	void draw(Gengine::SpriteBatch& _spriteBatch);
 
