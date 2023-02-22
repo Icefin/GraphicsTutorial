@@ -1,6 +1,8 @@
 #include "MainGame.h"
 #include <Gengine/Gengine.h>
 #include <Gengine/Timing.h>
+#include <random>
+#include <ctime>
 
 #include <SDL/SDL.h>
 #include <iostream>
@@ -49,6 +51,19 @@ void MainGame::initLevel() {
 	_player->init(4.0f, _levels[_currentLevel]->getPlayerStartPos(), &_inputManager);
 
 	_humans.push_back(_player);
+
+	std::mt19937 randomEngine;
+	randomEngine.seed(time(nullptr));
+	std::uniform_int_distribution<int> randX(2, _levels[_currentLevel]->getWidth() - 2);
+	std::uniform_int_distribution<int> randY(2, _levels[_currentLevel]->getHeight() - 2);
+
+	const float HUMAN_SPEED = 1.0f;
+
+	for (int i = 0; i < _levels[_currentLevel]->getNumHumans(); i++) {
+		_humans.push_back(new Human);
+		glm::vec2 pos(randX(randomEngine) * TILE_WIDTH, randY(randomEngine) * TILE_WIDTH);
+		_humans.back()->init(HUMAN_SPEED, pos);
+	}
 }
 
 void MainGame::initShader() {
