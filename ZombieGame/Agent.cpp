@@ -11,7 +11,7 @@ Agent::~Agent() {
 
 }
 
-void Agent::collideWithLevel(const std::vector<std::string>& levelData) {
+bool Agent::collideWithLevel(const std::vector<std::string>& levelData) {
 	std::vector<glm::vec2> collideTilePositions;
 
 	//Check the four corners around player
@@ -20,12 +20,14 @@ void Agent::collideWithLevel(const std::vector<std::string>& levelData) {
 	checkTilePosition(levelData, collideTilePositions, _position.x, _position.y + AGENT_WIDTH);
 	checkTilePosition(levelData, collideTilePositions, _position.x + AGENT_WIDTH, _position.y + AGENT_WIDTH);
 	
-	if (collideTilePositions.size() == 0)
-		return ;
+	if (collideTilePositions.size() == 0) {
+		return (false);
+	}
 
 	for (int i = 0; i < collideTilePositions.size(); i++) {
 		collideWithTile(collideTilePositions[i]);
 	}
+	return (true);
 }
 
 void Agent::draw(Gengine::SpriteBatch& spriteBatch) {
