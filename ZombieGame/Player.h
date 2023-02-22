@@ -10,7 +10,9 @@ public :
 
 	void init(float speed, glm::vec2 pos, Gengine::InputManager* inputManager);
 
-	void update();
+	void update(const std::vector<std::string>& levelData,
+		std::vector<Human*> humans,
+		std::vector<Zombie*> zombies);
 
 private :
 	Gengine::InputManager* _inputManager;

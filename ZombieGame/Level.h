@@ -14,6 +14,7 @@ public :
 
 	void draw();
 
+	const std::vector<std::string>& getLevelData() const { return _levelData; }
 	glm::vec2 getPlayerStartPos() const { return _playerStartPos; }
 	const std::vector<glm::vec2>& getZombieStartPos() const { return _zombieStartPos; }
 

@@ -5,6 +5,8 @@
 #include <SDL/SDL.h>
 #include <iostream>
 
+#include "Zombie.h"
+
 MainGame::MainGame() :
 	_screenWidth(1024),
 	_screenHeight(768),
@@ -75,7 +77,7 @@ void MainGame::gameLoop() {
 
 void MainGame::updateAgents() {
 	for (int i = 0; i < _humans.size(); i++) {
-		_humans[i]->update();
+		_humans[i]->update(_levels[_currentLevel]->getLevelData(), _humans, _zombies);
 	}
 }
 

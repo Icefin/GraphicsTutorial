@@ -55,10 +55,12 @@ Level::Level(const std::string& fileName) {
 						whiteColor);
 					break;
 				case '@' :
+					_levelData[y][x] = '.';
 					_playerStartPos.x = x * TILE_WIDTH;
 					_playerStartPos.y = y * TILE_WIDTH;
 					break;
 				case 'Z' :
+					_levelData[y][x] = '.';
 					_zombieStartPos.emplace_back(x * TILE_WIDTH, y * TILE_WIDTH);
 					break;
 				default :
