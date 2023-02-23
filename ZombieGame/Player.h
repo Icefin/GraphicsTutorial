@@ -1,5 +1,6 @@
 #pragma once
 #include "Human.h"
+
 #include <Gengine/InputManager.h>
 
 class Player : public Human

@@ -1,4 +1,5 @@
 #include "Level.h"
+
 #include <Gengine/Errors.h>
 #include <Gengine/ResourceManager.h>
 
@@ -43,17 +44,17 @@ Level::Level(const std::string& fileName) {
 					break;
 				case 'G' :
 					_spriteBatch.Draw(destRect,
-						uvRect,
-						Gengine::ResourceManager::GetTexture("Textures/glass.png").id,
-						0.0f,
-						whiteColor);
+									uvRect,
+									Gengine::ResourceManager::GetTexture("Textures/glass.png").id,
+									0.0f,
+									whiteColor);
 					break;
 				case 'L':
 					_spriteBatch.Draw(destRect,
-						uvRect,
-						Gengine::ResourceManager::GetTexture("Textures/light_bricks.png").id,
-						0.0f,
-						whiteColor);
+									uvRect,
+									Gengine::ResourceManager::GetTexture("Textures/light_bricks.png").id,
+									0.0f,
+									whiteColor);
 					break;
 				case '@' :
 					_levelData[y][x] = '.';

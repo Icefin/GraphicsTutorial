@@ -1,13 +1,12 @@
 #pragma once
+#include "Level.h"
+#include "Player.h"
 
 #include <Gengine/Window.h>
 #include <Gengine/GLSLProgram.h>
 #include <Gengine/Camera2D.h>
 #include <Gengine/InputManager.h>
 #include <Gengine/SpriteBatch.h>
-
-#include "Level.h"
-#include "Player.h"
 
 class Zombie;
 

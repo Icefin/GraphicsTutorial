@@ -1,6 +1,7 @@
 #pragma once
 #include <glm/glm.hpp>
 #include <Gengine/SpriteBatch.h>
+
 #include <string>
 
 const float AGENT_WIDTH = 60.0f;

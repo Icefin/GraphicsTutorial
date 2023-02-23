@@ -1,4 +1,5 @@
 #include "Player.h"
+
 #include <SDL/SDL.h>
 
 Player::Player() {

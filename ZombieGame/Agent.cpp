@@ -1,6 +1,8 @@
 #include "Agent.h"
 #include "Level.h"
+
 #include <Gengine/ResourceManager.h>
+
 #include <algorithm>
 
 Agent::Agent() {

@@ -1,13 +1,13 @@
 #include "MainGame.h"
+#include "Zombie.h"
+
 #include <Gengine/Gengine.h>
 #include <Gengine/Timing.h>
+#include <SDL/SDL.h>
+
 #include <random>
 #include <ctime>
-
-#include <SDL/SDL.h>
 #include <iostream>
-
-#include "Zombie.h"
 
 MainGame::MainGame() :
 	_screenWidth(1024),

@@ -1,8 +1,8 @@
 #pragma once
+#include <Gengine/SpriteBatch.h>
+
 #include <string>
 #include <vector>
-
-#include <Gengine/SpriteBatch.h>
 
 const int TILE_WIDTH = 64;
 
