@@ -71,7 +71,7 @@ void MainGame::initLevel() {
 	const std::vector<glm::vec2>& zombiePositions = _levels[_currentLevel]->getZombieStartPos();
 	for (int i = 0; i < zombiePositions.size(); i++) {
 		_zombies.push_back(new Zombie);
-		_humans.back()->init(ZOMBIE_SPEED, zombiePositions[i]);
+		_zombies.back()->init(ZOMBIE_SPEED, zombiePositions[i]);
 	}
 }
 
