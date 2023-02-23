@@ -9,6 +9,10 @@
 #include <ctime>
 #include <iostream>
 
+const float HUMAN_SPEED = 1.0f;
+const float ZOMBIE_SPEED = 1.3f;
+const float PLAYER_SPEED = 5.0f;
+
 MainGame::MainGame() :
 	_screenWidth(1024),
 	_screenHeight(768),
@@ -48,7 +52,7 @@ void MainGame::initLevel() {
 	_currentLevel = 0;
 
 	_player = new Player();
-	_player->init(4.0f, _levels[_currentLevel]->getPlayerStartPos(), &_inputManager);
+	_player->init(PLAYER_SPEED, _levels[_currentLevel]->getPlayerStartPos(), &_inputManager);
 
 	_humans.push_back(_player);
 
@@ -57,12 +61,16 @@ void MainGame::initLevel() {
 	std::uniform_int_distribution<int> randX(2, _levels[_currentLevel]->getWidth() - 2);
 	std::uniform_int_distribution<int> randY(2, _levels[_currentLevel]->getHeight() - 2);
 
-	const float HUMAN_SPEED = 1.0f;
-
 	for (int i = 0; i < _levels[_currentLevel]->getNumHumans(); i++) {
 		_humans.push_back(new Human);
 		glm::vec2 pos(randX(randomEngine) * TILE_WIDTH, randY(randomEngine) * TILE_WIDTH);
 		_humans.back()->init(HUMAN_SPEED, pos);
+	}
+
+	const std::vector<glm::vec2>& zombiePositions = _levels[_currentLevel]->getZombieStartPos();
+	for (int i = 0; i < zombiePositions.size(); i++) {
+		_zombies.push_back(new Zombie);
+		_humans.back()->init(ZOMBIE_SPEED, zombiePositions[i]);
 	}
 }
 
@@ -93,6 +101,25 @@ void MainGame::gameLoop() {
 void MainGame::updateAgents() {
 	for (int i = 0; i < _humans.size(); i++) {
 		_humans[i]->update(_levels[_currentLevel]->getLevelData(), _humans, _zombies);
+	}
+
+	for (int i = 0; i < _zombies.size(); i++) {
+		_zombies[i]->update(_levels[_currentLevel]->getLevelData(), _humans, _zombies);
+	}
+
+	for (int i = 0; i < _zombies.size(); i++) {
+		for (int j = i + 1; j < _zombies.size(); j++) {
+			_zombies[i]->collideWithAgent(_zombies[j]);
+		}
+		for (int j = i + 1; j < _humans.size(); j++) {
+			if (_zombies[i]->collideWithAgent(_humans[j])) {
+				_zombies.push_back(new Zombie);
+				_zombies.back()->init(ZOMBIE_SPEED, _humans[j]->getPosition());
+				delete _humans[j];
+				_humans[j] = _humans.back();
+				_humans.pop_back();
+			}
+		}
 	}
 
 	for (int i = 0; i < _humans.size(); i++) {
@@ -157,6 +184,12 @@ void MainGame::drawGame() {
 	for (int i = 0; i < _humans.size(); i++) {
 		_humans[i]->draw(_agentSpriteBatch);
 	}
+
+	//Draw the zombies
+	for (int i = 0; i < _zombies.size(); i++) {
+		_zombies[i]->draw(_agentSpriteBatch);
+	}
+
 	_agentSpriteBatch.End();
 	_agentSpriteBatch.RenderBatchs();
 
