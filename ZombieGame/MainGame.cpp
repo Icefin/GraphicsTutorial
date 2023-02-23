@@ -3,6 +3,7 @@
 
 #include <Gengine/Gengine.h>
 #include <Gengine/Timing.h>
+#include <Gengine/Errors.h>
 #include <SDL/SDL.h>
 
 #include <random>
@@ -111,7 +112,7 @@ void MainGame::updateAgents() {
 		for (int j = i + 1; j < _zombies.size(); j++) {
 			_zombies[i]->collideWithAgent(_zombies[j]);
 		}
-		for (int j = i + 1; j < _humans.size(); j++) {
+		for (int j = 1; j < _humans.size(); j++) {
 			if (_zombies[i]->collideWithAgent(_humans[j])) {
 				_zombies.push_back(new Zombie);
 				_zombies.back()->init(ZOMBIE_SPEED, _humans[j]->getPosition());
@@ -119,6 +120,10 @@ void MainGame::updateAgents() {
 				_humans[j] = _humans.back();
 				_humans.pop_back();
 			}
+		}
+
+		if (_zombies[i]->collideWithAgent(_player)) {
+			Gengine::FatalError("YOU LOSE");
 		}
 	}
 
