@@ -22,6 +22,8 @@ public :
 	void draw(Gengine::SpriteBatch& spriteBatch);
 	bool collideWithAgent(Agent* other);
 
+	float getDamage() const { return (_damage); }
+
 private :
 	bool collideWithWorld(const std::vector<std::string>& levelData);
 

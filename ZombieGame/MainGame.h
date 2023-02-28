@@ -31,6 +31,7 @@ private :
 	void gameLoop();
 	void updateAgents();
 	void updateBullets();
+	void checkVictory();
 	void processInput();
 	void drawGame();
 
@@ -46,6 +47,9 @@ private :
 	GameState _gameState;
 	float _fps;
 	int _currentLevel;
+
+	int _numHumansKilled;
+	int _numZombiesKilled;
 
 	std::vector<Human*> _humans;
 	std::vector<Zombie*> _zombies;

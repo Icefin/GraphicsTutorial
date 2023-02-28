@@ -36,7 +36,20 @@ void Bullet::draw(Gengine::SpriteBatch& spriteBatch) {
 }
 
 bool Bullet::collideWithAgent(Agent* other) {
-	return (true);
+	const float MIN_DISTANCE = AGENT_RADIUS + BULLET_RADIUS;
+
+	glm::vec2 centerPosSelf = _position;
+	glm::vec2 centerPosOther = other->getPosition() + glm::vec2(AGENT_RADIUS);
+
+	glm::vec2 distVec = centerPosSelf - centerPosOther;
+
+	float distance = glm::length(distVec);
+	float collisionDepth = MIN_DISTANCE - distance;
+
+	if (collisionDepth > 0) {
+		return (true);
+	}
+	return (false);
 }
 
 bool Bullet::collideWithWorld(const std::vector<std::string>& levelData) {

@@ -20,7 +20,9 @@ MainGame::MainGame() :
 	_screenHeight(768),
 	_gameState(GameState::PLAY),
 	_fps(0),
-	_player(nullptr) {
+	_player(nullptr),
+	_numHumansKilled(0),
+	_numZombiesKilled(0) {
 	//Empty
 }
 
@@ -96,6 +98,7 @@ void MainGame::gameLoop() {
 
 	while (_gameState == GameState::PLAY) {
 		_fpsLimiter.Begin();
+		checkVictory();
 		processInput();
 		updateAgents();
 		updateBullets();
@@ -142,6 +145,7 @@ void MainGame::updateAgents() {
 }
 
 void MainGame::updateBullets() {
+	//Update and collide with World
 	for (int i = 0; i < _bullets.size();) {
 		if (_bullets[i].update(_levels[_currentLevel]->getLevelData())) {
 			_bullets[i] = _bullets.back();
@@ -151,6 +155,62 @@ void MainGame::updateBullets() {
 			i++;
 		}
 	}
+
+	bool wasBulletRemoved;
+	//Collide With Agents
+	for (int i = 0; i < _bullets.size(); i++) {
+		wasBulletRemoved = false;
+		//Loop through zombies
+		for (int j = 0; j < _zombies.size();) {
+			if (_bullets[i].collideWithAgent(_zombies[j])) {
+				if (_zombies[j]->applyDamage(_bullets[i].getDamage())) {
+					delete _zombies[j];
+					_zombies[j] = _zombies.back();
+					_zombies.pop_back();
+					_numZombiesKilled++;
+				}
+				else {
+					j++;
+				}
+				_bullets[i] = _bullets.back();
+				_bullets.pop_back();
+				wasBulletRemoved = true;
+				break;
+			}
+			else {
+				j++;
+			}
+		}
+		if (wasBulletRemoved) continue;
+		//Loop through humans
+		for (int j = 1; j < _humans.size();) {
+			if (_bullets[i].collideWithAgent(_humans[j])) {
+				if (_humans[j]->applyDamage(_bullets[i].getDamage())) {
+					delete _humans[j];
+					_humans[j] = _humans.back();
+					_humans.pop_back();
+					_numHumansKilled++;
+				}
+				else {
+					j++;
+				}
+				_bullets[i] = _bullets.back();
+				_bullets.pop_back();
+				break;
+			}
+			else {
+				j++;
+			}
+		}
+	}
+}
+
+void MainGame::checkVictory() {
+	if (_zombies.empty()) {
+		std::printf("*** You Win! ***\n You killed %d humans and %d zombies.\n There are %d/%d humans remaining",
+			_numHumansKilled, _numZombiesKilled, _humans.size() - 1, _levels[_currentLevel]->getNumHumans());
+		Gengine::FatalError("");
+	}
 }
 
 void MainGame::processInput() {
@@ -159,7 +219,7 @@ void MainGame::processInput() {
 	while (SDL_PollEvent(&evnt)) {
 		switch (evnt.type) {
 			case SDL_QUIT :
-				//Exit the game
+				_gameState = GameState::EXIT;
 				break;
 			case SDL_MOUSEMOTION :
 				_inputManager.SetMouseCoords(evnt.motion.x, evnt.motion.y);

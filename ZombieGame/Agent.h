@@ -24,6 +24,7 @@ public :
 	bool collideWithAgent(Agent* agent);
 
 	void draw(Gengine::SpriteBatch& _spriteBatch);
+	bool applyDamage(float damage);
 
 	glm::vec2 getPosition() const { return _position; }
 
