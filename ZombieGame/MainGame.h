@@ -1,6 +1,7 @@
 #pragma once
 #include "Level.h"
 #include "Player.h"
+#include "Bullet.h"
 
 #include <Gengine/Window.h>
 #include <Gengine/GLSLProgram.h>
@@ -29,6 +30,7 @@ private :
 	void initLevel();
 	void gameLoop();
 	void updateAgents();
+	void updateBullets();
 	void processInput();
 	void drawGame();
 
@@ -47,5 +49,7 @@ private :
 
 	std::vector<Human*> _humans;
 	std::vector<Zombie*> _zombies;
+	std::vector<Bullet> _bullets;
+
 	Player* _player;
 };

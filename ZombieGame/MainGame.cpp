@@ -1,5 +1,6 @@
 #include "MainGame.h"
 #include "Zombie.h"
+#include "Gun.h"
 
 #include <Gengine/Gengine.h>
 #include <Gengine/Timing.h>
@@ -53,7 +54,7 @@ void MainGame::initLevel() {
 	_currentLevel = 0;
 
 	_player = new Player();
-	_player->init(PLAYER_SPEED, _levels[_currentLevel]->getPlayerStartPos(), &_inputManager);
+	_player->init(PLAYER_SPEED, _levels[_currentLevel]->getPlayerStartPos(), &_inputManager, &_camera, &_bullets);
 
 	_humans.push_back(_player);
 
@@ -73,6 +74,11 @@ void MainGame::initLevel() {
 		_zombies.push_back(new Zombie);
 		_zombies.back()->init(ZOMBIE_SPEED, zombiePositions[i]);
 	}
+
+	const float BULLET_SPEED = 2.0f;
+	_player->addGun(new Gun("Magnum", 30, 1, 0, 30.0f, BULLET_SPEED));
+	_player->addGun(new Gun("Shotgun", 60, 20, 0, 4.0f, BULLET_SPEED));
+	_player->addGun(new Gun("MP5", 5, 1, 0, 20.0f, BULLET_SPEED));
 }
 
 void MainGame::initShader() {
@@ -92,6 +98,7 @@ void MainGame::gameLoop() {
 		_fpsLimiter.Begin();
 		processInput();
 		updateAgents();
+		updateBullets();
 		_camera.SetPosition(_player->getPosition());
 		_camera.Update();
 		drawGame();
@@ -131,6 +138,12 @@ void MainGame::updateAgents() {
 		for (int j = i + 1; j < _humans.size(); j++) {
 			_humans[i]->collideWithAgent(_humans[j]);
 		}
+	}
+}
+
+void MainGame::updateBullets() {
+	for (int i = 0; i < _bullets.size(); i++) {
+		_bullets[i].update(_humans, _zombies);
 	}
 }
 
@@ -193,6 +206,11 @@ void MainGame::drawGame() {
 	//Draw the zombies
 	for (int i = 0; i < _zombies.size(); i++) {
 		_zombies[i]->draw(_agentSpriteBatch);
+	}
+
+	//Draw the bullets
+	for (int i = 0; i < _bullets.size(); i++) {
+		_bullets[i].draw(_agentSpriteBatch);
 	}
 
 	_agentSpriteBatch.End();
