@@ -75,10 +75,10 @@ void MainGame::initLevel() {
 		_zombies.back()->init(ZOMBIE_SPEED, zombiePositions[i]);
 	}
 
-	const float BULLET_SPEED = 2.0f;
-	_player->addGun(new Gun("Magnum", 30, 1, 0, 30.0f, BULLET_SPEED));
-	_player->addGun(new Gun("Shotgun", 60, 20, 0, 4.0f, BULLET_SPEED));
-	_player->addGun(new Gun("MP5", 5, 1, 0, 20.0f, BULLET_SPEED));
+	const float BULLET_SPEED = 20.0f;
+	_player->addGun(new Gun("Magnum", 10, 1, 0.01f, 30, BULLET_SPEED));
+	_player->addGun(new Gun("Shotgun", 30, 12, 0.5f, 4, BULLET_SPEED));
+	_player->addGun(new Gun("MP5", 2, 1, 0.01f, 20, BULLET_SPEED));
 }
 
 void MainGame::initShader() {
