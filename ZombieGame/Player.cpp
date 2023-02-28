@@ -19,6 +19,7 @@ void Player::init(float speed, glm::vec2 pos, Gengine::InputManager* inputManage
 	_inputManager = inputManager;
 	_camera = camera;
 	_bullets = bullets;
+	_health = 150.0f;
 }
 
 void Player::update(const std::vector<std::string>& levelData,

@@ -36,5 +36,6 @@ protected :
 	glm::vec2 _position;
 	Gengine::Color _color;
 	float _speed;
+	float _health;
 };
 

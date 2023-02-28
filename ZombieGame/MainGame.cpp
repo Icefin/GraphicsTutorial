@@ -142,8 +142,14 @@ void MainGame::updateAgents() {
 }
 
 void MainGame::updateBullets() {
-	for (int i = 0; i < _bullets.size(); i++) {
-		_bullets[i].update(_humans, _zombies);
+	for (int i = 0; i < _bullets.size();) {
+		if (_bullets[i].update(_levels[_currentLevel]->getLevelData())) {
+			_bullets[i] = _bullets.back();
+			_bullets.pop_back();
+		}
+		else {
+			i++;
+		}
 	}
 }
 
