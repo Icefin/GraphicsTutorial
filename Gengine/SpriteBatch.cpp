@@ -27,7 +27,7 @@ namespace Gengine {
 		CreateRenderBatches();
 	}
 
-	void SpriteBatch::Draw(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint texture, float depth, const Color& color) {
+	void SpriteBatch::Draw(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint texture, float depth, const ColorRGBA8& color) {
 		Glyph* newGlyph = new Glyph;
 		newGlyph->texture = texture;
 		newGlyph->depth = depth;
@@ -120,7 +120,7 @@ namespace Gengine {
 
 		//Position for attribute pointer
 		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, position));
-		//Color for attribute pointer
+		//ColorRGBA8 for attribute pointer
 		glVertexAttribPointer(1, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(Vertex), (void*)offsetof(Vertex, color));
 		//UV attribute pointer
 		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, uv));

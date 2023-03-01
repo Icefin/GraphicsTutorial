@@ -29,8 +29,7 @@ void Bullet::draw(Gengine::SpriteBatch& spriteBatch) {
 					   BULLET_RADIUS * 2,
 					   BULLET_RADIUS * 2);
 	const glm::vec4 uvRect(0.0f, 0.0f, 1.0f, 1.0f);
-	Gengine::Color color;
-	color.r = 75; color.g = 75; color.b = 75; color.a = 255;
+	Gengine::ColorRGBA8 color(75, 75, 75, 255);
 
 	spriteBatch.Draw(destRect, uvRect, Gengine::ResourceManager::GetTexture("Textures/circle.png").id, 0.0f, color);
 }

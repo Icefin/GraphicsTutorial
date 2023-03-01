@@ -48,11 +48,11 @@ namespace Gengine {
 		vertexData[5].SetUV(1.0f, 1.0f);
 
 		for (int i = 0; i < 6; i++) {
-			vertexData[i].SetColor(255, 0, 255, 255);
+			vertexData[i].SetColorRGBA8(255, 0, 255, 255);
 		}
 
-		vertexData[1].SetColor(0, 0, 255, 255);
-		vertexData[4].SetColor(0, 255, 0, 255);
+		vertexData[1].SetColorRGBA8(0, 0, 255, 255);
+		vertexData[4].SetColorRGBA8(0, 255, 0, 255);
 
 		glBindBuffer(GL_ARRAY_BUFFER, _vboID);
 		glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
@@ -70,7 +70,7 @@ namespace Gengine {
 
 		//Position for attribute pointer
 		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, position));
-		//Color for attribute pointer
+		//ColorRGBA8 for attribute pointer
 		glVertexAttribPointer(1, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(Vertex), (void*)offsetof(Vertex, color));
 		//UV attribute pointer
 		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, uv));

@@ -13,7 +13,7 @@ void Zombie::init(float speed, glm::vec2 pos) {
 	_speed = speed;
 	_position = pos;
 	_health = 150.0f;
-	_color.r = 0; _color.g = 160; _color.b = 0; _color.a = 255;
+	_color = Gengine::ColorRGBA8(0, 160, 0, 255);
 }
 
 void Zombie::update(const std::vector<std::string>& levelData,

@@ -15,7 +15,7 @@ Player::~Player() {
 void Player::init(float speed, glm::vec2 pos, Gengine::InputManager* inputManager, Gengine::Camera2D* camera, std::vector<Bullet>* bullets) {
 	_speed = speed;
 	_position = pos;
-	_color.r = 0; _color.g = 0; _color.b = 185; _color.a = 255;
+	_color = Gengine::ColorRGBA8(0, 0, 185, 255);
 	_inputManager = inputManager;
 	_camera = camera;
 	_bullets = bullets;

@@ -36,7 +36,7 @@ void MainGame::InitSystems() {
 void MainGame::InitShaders() {
 	_colorShaderProgram.CompileShaders("Shaders/colorShading.vert", "Shaders/colorShading.frag");
 	_colorShaderProgram.AddAttribute("vertexPosition");
-	_colorShaderProgram.AddAttribute("vertexColor");
+	_colorShaderProgram.AddAttribute("vertexColorRGBA8");
 	_colorShaderProgram.AddAttribute("vertexUV");
 	_colorShaderProgram.LinkShaders();
 }
@@ -152,7 +152,7 @@ void MainGame::DrawGame() {
 	glm::vec4 position(0.0f, 0.0f, 50.0f, 50.0f);
 	glm::vec4 uv(0.0f, 0.0f, 1.0f, 1.0f);
 	static Gengine::GLTexture texture = Gengine::ResourceManager::GetTexture("Textures/jimmyJump_pack/PNG/CharacterRight_Standing.png");
-	Gengine::Color color;
+	Gengine::ColorRGBA8 color;
 	color.r = 255; color.g = 255; color.b = 255; color.a = 255;
 	_spriteBatch.Draw(position, uv, texture.id, 0.0f, color);
 

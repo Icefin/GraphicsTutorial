@@ -25,8 +25,7 @@ Level::Level(const std::string& fileName) {
 	_spriteBatch.Init();
 	_spriteBatch.Begin();
 	glm::vec4 uvRect(0.0f, 0.0f, 1.0f, 1.0f);
-	Gengine::Color whiteColor;
-	whiteColor.r = 255; whiteColor.g = 255; whiteColor.b = 255; whiteColor.a = 255;
+	Gengine::ColorRGBA8 whiteColor(255, 255, 255, 255);
 	for (int y = 0; y < _levelData.size(); y++) {
 		for (int x = 0; x < _levelData[y].size(); x++) {
 			char tile = _levelData[y][x];

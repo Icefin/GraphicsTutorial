@@ -8,7 +8,10 @@ namespace Gengine {
 		float y;
 	};
 
-	struct Color {
+	struct ColorRGBA8 {
+		ColorRGBA8() : r(0), g(0), b(0), a(0) {}
+		ColorRGBA8(GLubyte R, GLubyte G, GLubyte B, GLubyte A) :
+			r(R), g(G), b(B), a(A) {}
 		GLubyte r;
 		GLubyte g;
 		GLubyte b;
@@ -22,7 +25,7 @@ namespace Gengine {
 
 	struct Vertex {
 		Position position;
-		Color color;
+		ColorRGBA8 color;
 		//UV texture coordinates
 		UV uv;
 
@@ -31,7 +34,7 @@ namespace Gengine {
 			position.y = y;
 		}
 
-		void SetColor(GLubyte r, GLubyte g, GLubyte b, GLubyte a) {
+		void SetColorRGBA8(GLubyte r, GLubyte g, GLubyte b, GLubyte a) {
 			color.r = r;
 			color.g = g;
 			color.b = b;
