@@ -29,8 +29,8 @@ private :
 	void initShader();
 	void initLevel();
 	void gameLoop();
-	void updateAgents();
-	void updateBullets();
+	void updateAgents(float deltaTime);
+	void updateBullets(float deltaTime);
 	void checkVictory();
 	void processInput();
 	void drawGame();

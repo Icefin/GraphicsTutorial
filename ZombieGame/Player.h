@@ -16,7 +16,8 @@ public :
 	void init(float speed, glm::vec2 pos, Gengine::InputManager* inputManager, Gengine::Camera2D* camera, std::vector<Bullet>* bullets);
 	void update(const std::vector<std::string>& levelData,
 		std::vector<Human*> humans,
-		std::vector<Zombie*> zombies);
+		std::vector<Zombie*> zombies,
+		float deltaTime) override;
 	void addGun(Gun* gun);
 
 private :
