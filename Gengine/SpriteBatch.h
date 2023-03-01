@@ -12,14 +12,35 @@ namespace Gengine {
 		TEXTURE
 	};
 
-	struct Glyph {
-		GLuint texture;
-		float depth;
+	class Glyph {
+		public :
+			Glyph() {};
+			Glyph(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint Texture, float Depth, const ColorRGBA8& color) : 
+				texture(Texture), depth(Depth) {
+				topLeft.color = color;
+				topLeft.SetPosition(destRect.x, destRect.y + destRect.w);	//x,y : bottomLeftPos, z,w : len of side
+				topLeft.SetUV(uvRect.x, uvRect.y + uvRect.w);
 
-		Vertex topLeft;
-		Vertex bottomLeft;
-		Vertex topRight;
-		Vertex bottomRight;
+				bottomLeft.color = color;
+				bottomLeft.SetPosition(destRect.x, destRect.y);
+				bottomLeft.SetUV(uvRect.x, uvRect.y);
+
+				bottomRight.color = color;
+				bottomRight.SetPosition(destRect.x + destRect.z, destRect.y);
+				bottomRight.SetUV(uvRect.x + uvRect.z, uvRect.y);
+
+				topRight.color = color;
+				topRight.SetPosition(destRect.x + destRect.z, destRect.y + destRect.w);
+				topRight.SetUV(uvRect.x + uvRect.z, uvRect.y + uvRect.w);
+			}
+
+			GLuint texture;
+			float depth;
+
+			Vertex topLeft;
+			Vertex bottomLeft;
+			Vertex topRight;
+			Vertex bottomRight;
 	};
 
 	class RenderBatch {
@@ -56,7 +77,8 @@ namespace Gengine {
 
 		GlyphSortType _sortType;
 
-		std::vector<Glyph*> _glyphs;
+		std::vector<Glyph*> _glyphsPointers;
+		std::vector<Glyph> _glyphs;
 		std::vector<RenderBatch> _renderBatches;
 	};
 }

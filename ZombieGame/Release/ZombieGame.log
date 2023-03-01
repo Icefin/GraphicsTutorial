@@ -1,30 +1,6 @@
-﻿  Agent.cpp
-  Human.cpp
-  Level.cpp
-  main.cpp
-  MainGame.cpp
-C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(45,60): warning C4244: '인수': 'Sint32'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(45,45): warning C4244: '인수': 'Sint32'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Player.cpp
-  Zombie.cpp
-Gengine.lib(Errors.obj) : error LNK2038: '_ITERATOR_DEBUG_LEVEL'에 대해 불일치가 검색되었습니다. '2' 값이 '0'(Level.obj에 위치) 값과 일치하지 않습니다.
-Gengine.lib(Errors.obj) : error LNK2038: 'RuntimeLibrary'에 대해 불일치가 검색되었습니다. 'MDd_DynamicDebug' 값이 'MD_DynamicRelease'(Level.obj에 위치) 값과 일치하지 않습니다.
-Gengine.lib(Errors.obj) : warning LNK4075: '/EDITANDCONTINUE'이(가) '/OPT:ICF' 사양으로 인해 무시됩니다.
-Gengine.lib(InputManager.obj) : error LNK2038: '_ITERATOR_DEBUG_LEVEL'에 대해 불일치가 검색되었습니다. '2' 값이 '0'(Level.obj에 위치) 값과 일치하지 않습니다.
-Gengine.lib(InputManager.obj) : error LNK2038: 'RuntimeLibrary'에 대해 불일치가 검색되었습니다. 'MDd_DynamicDebug' 값이 'MD_DynamicRelease'(Level.obj에 위치) 값과 일치하지 않습니다.
-Gengine.lib(GLSLProgram.obj) : error LNK2038: '_ITERATOR_DEBUG_LEVEL'에 대해 불일치가 검색되었습니다. '2' 값이 '0'(Level.obj에 위치) 값과 일치하지 않습니다.
-Gengine.lib(GLSLProgram.obj) : error LNK2038: 'RuntimeLibrary'에 대해 불일치가 검색되었습니다. 'MDd_DynamicDebug' 값이 'MD_DynamicRelease'(Level.obj에 위치) 값과 일치하지 않습니다.
-Gengine.lib(Window.obj) : error LNK2038: '_ITERATOR_DEBUG_LEVEL'에 대해 불일치가 검색되었습니다. '2' 값이 '0'(Level.obj에 위치) 값과 일치하지 않습니다.
-Gengine.lib(Window.obj) : error LNK2038: 'RuntimeLibrary'에 대해 불일치가 검색되었습니다. 'MDd_DynamicDebug' 값이 'MD_DynamicRelease'(Level.obj에 위치) 값과 일치하지 않습니다.
-Gengine.lib(Camera2D.obj) : error LNK2038: '_ITERATOR_DEBUG_LEVEL'에 대해 불일치가 검색되었습니다. '2' 값이 '0'(Level.obj에 위치) 값과 일치하지 않습니다.
-Gengine.lib(Camera2D.obj) : error LNK2038: 'RuntimeLibrary'에 대해 불일치가 검색되었습니다. 'MDd_DynamicDebug' 값이 'MD_DynamicRelease'(Level.obj에 위치) 값과 일치하지 않습니다.
-LINK : warning LNK4098: 'MSVCRTD' defaultlib가 다른 라이브러리와 충돌합니다. /NODEFAULTLIB:library를 사용하십시오.
-Gengine.lib(Errors.obj) : error LNK2001: 확인할 수 없는 외부 기호 __imp___invalid_parameter
-Gengine.lib(InputManager.obj) : error LNK2001: 확인할 수 없는 외부 기호 __imp___invalid_parameter
-Gengine.lib(GLSLProgram.obj) : error LNK2001: 확인할 수 없는 외부 기호 __imp___invalid_parameter
-Gengine.lib(Window.obj) : error LNK2001: 확인할 수 없는 외부 기호 __imp___invalid_parameter
-Gengine.lib(Errors.obj) : error LNK2001: 확인할 수 없는 외부 기호 __imp___CrtDbgReport
-Gengine.lib(InputManager.obj) : error LNK2001: 확인할 수 없는 외부 기호 __imp___CrtDbgReport
-Gengine.lib(GLSLProgram.obj) : error LNK2001: 확인할 수 없는 외부 기호 __imp___CrtDbgReport
-Gengine.lib(Window.obj) : error LNK2001: 확인할 수 없는 외부 기호 __imp___CrtDbgReport
-C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\Release\ZombieGame.exe : fatal error LNK1120: 2개의 확인할 수 없는 외부 참조입니다.
+﻿  코드를 생성하고 있습니다.
+  0 of 1425 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  코드를 생성했습니다.
+  ZombieGame.vcxproj -> C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\Release\ZombieGame.exe
