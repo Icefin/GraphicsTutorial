@@ -10,6 +10,12 @@ namespace Gengine {
 
 	}
 
+	void InputManager::update() {
+		for (auto& key : _keyMap) {
+			_prevKeyMap[key.first] = key.second;
+		}
+	}
+
 	void InputManager::PressKey(unsigned int keyID) {
 		_keyMap[keyID] = true;
 	}
@@ -22,9 +28,24 @@ namespace Gengine {
 		_mouseCoords.y = y;
 	}
 
-	bool InputManager::isKeyPressed(unsigned int keyID) {
+	bool InputManager::isKeyDown(unsigned int keyID) {
 		auto iter = _keyMap.find(keyID);
 		if (iter != _keyMap.end()) {
+			return iter->second;
+		}
+		return false;
+	}
+
+	bool InputManager::isKeyPressed(unsigned int keyID) {
+		if (isKeyDown(keyID) && wasKeyDown(keyID) == false) {
+			return (true);
+		}
+		return (false);
+	}
+
+	bool InputManager::wasKeyDown(unsigned int keyID) {
+		auto iter = _prevKeyMap.find(keyID);
+		if (iter != _prevKeyMap.end()) {
 			return iter->second;
 		}
 

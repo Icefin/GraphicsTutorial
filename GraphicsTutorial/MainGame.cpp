@@ -102,25 +102,25 @@ void MainGame::ProcessInput() {
 		}
 	}
 
-	if (_inputManager.isKeyPressed(SDLK_w)) {
+	if (_inputManager.isKeyDown(SDLK_w)) {
 		_camera2D.SetPosition(_camera2D.GetPosition() + glm::vec2(0.0f, CAMERA_SPEED));
 	}
-	if (_inputManager.isKeyPressed(SDLK_s)) {
+	if (_inputManager.isKeyDown(SDLK_s)) {
 		_camera2D.SetPosition(_camera2D.GetPosition() + glm::vec2(0.0f, -CAMERA_SPEED));
 	}
-	if (_inputManager.isKeyPressed(SDLK_a)) {
+	if (_inputManager.isKeyDown(SDLK_a)) {
 		_camera2D.SetPosition(_camera2D.GetPosition() + glm::vec2(-CAMERA_SPEED, 0.0f));
 	}
-	if (_inputManager.isKeyPressed(SDLK_d)) {
+	if (_inputManager.isKeyDown(SDLK_d)) {
 		_camera2D.SetPosition(_camera2D.GetPosition() + glm::vec2(CAMERA_SPEED, 0.0f));
 	}
-	if (_inputManager.isKeyPressed(SDLK_q)) {
+	if (_inputManager.isKeyDown(SDLK_q)) {
 		_camera2D.SetScale(_camera2D.GetScale() + SCALE_SPEED);
 	}
-	if (_inputManager.isKeyPressed(SDLK_e)) {
+	if (_inputManager.isKeyDown(SDLK_e)) {
 		_camera2D.SetScale(_camera2D.GetScale() - SCALE_SPEED);
 	}
-	if (_inputManager.isKeyPressed(SDL_BUTTON_LEFT)) {
+	if (_inputManager.isKeyDown(SDL_BUTTON_LEFT)) {
 		glm::vec2 mouseCoords = _inputManager.GetMouseCoords();
 		mouseCoords = _camera2D.ConvertScreenToWorld(mouseCoords);
 		
