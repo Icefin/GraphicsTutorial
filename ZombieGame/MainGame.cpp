@@ -104,6 +104,9 @@ void MainGame::gameLoop() {
 	Gengine::FpsLimiter _fpsLimiter;
 	_fpsLimiter.SetMaxFPS(60.0f);
 
+	const float CAMERA_SCALE = 1.0f / 4.0f;
+	_camera.SetScale(CAMERA_SCALE);
+
 	while (_gameState == GameState::PLAY) {
 		_fpsLimiter.Begin();
 		checkVictory();
