@@ -298,13 +298,18 @@ void MainGame::drawGame() {
 
 	//Draw the humans
 	_agentSpriteBatch.Begin();
+
+	const glm::vec2 agentDim(AGENT_RADIUS * 2);
+
 	for (int i = 0; i < _humans.size(); i++) {
-		_humans[i]->draw(_agentSpriteBatch);
+		if (_camera.isBoxInView(_humans[i]->getPosition(), agentDim))
+			_humans[i]->draw(_agentSpriteBatch);
 	}
 
 	//Draw the zombies
 	for (int i = 0; i < _zombies.size(); i++) {
-		_zombies[i]->draw(_agentSpriteBatch);
+		if (_camera.isBoxInView(_zombies[i]->getPosition(), agentDim))
+			_zombies[i]->draw(_agentSpriteBatch);
 	}
 
 	//Draw the bullets

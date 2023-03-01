@@ -42,4 +42,23 @@ namespace Gengine {
 		screenCoords += _position;
 		return screenCoords;
 	}
+
+	bool Camera2D::isBoxInView(const glm::vec2& position, const glm::vec2& dimension) {
+		glm::vec2 scaledScreenDimension = glm::vec2(_screenWidth, _screenHeight) / (_scale * 2.0f);
+
+		const float MIN_DISTANCE_X = dimension.x / 2.0f + scaledScreenDimension.x / 2.0f;
+		const float MIN_DISTANCE_Y = dimension.y / 2.0f + scaledScreenDimension.y / 2.0f;
+
+		glm::vec2 centerPosition = position + dimension / 2.0f;
+		glm::vec2 centerCameraPosition = _position;
+		glm::vec2 distVec = centerPosition - centerCameraPosition;
+
+		float xDepth = MIN_DISTANCE_X - abs(distVec.x);
+		float yDepth = MIN_DISTANCE_Y - abs(distVec.y);
+
+		if (xDepth > 0 && yDepth > 0) {
+			return (true);
+		}
+		return (false);
+	}
 }
