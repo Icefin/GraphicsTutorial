@@ -1,2 +1,0 @@
-C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\x64\Debug\Gengine.pdb
-C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\Gengine\x64\Debug\Gengine.pdb

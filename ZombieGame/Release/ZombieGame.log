@@ -2,29 +2,29 @@
 C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(31,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
 C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(35,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
 C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(39,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(73,24): warning C4244: '인수': 'time_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(84,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(117,18): warning C4244: '초기화 중': 'Uint32'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(78,24): warning C4244: '인수': 'time_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(89,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
 C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(122,18): warning C4244: '초기화 중': 'Uint32'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(146,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(150,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(154,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(155,25): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(158,21): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(173,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(174,25): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(182,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(194,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(197,21): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(219,21): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(258,60): warning C4244: '인수': 'Sint32'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(258,45): warning C4244: '인수': 'Sint32'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(304,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(127,18): warning C4244: '초기화 중': 'Uint32'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(152,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(156,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(160,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(161,25): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(164,21): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(179,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(180,25): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(188,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(200,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(203,21): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(225,21): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(264,60): warning C4244: '인수': 'Sint32'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(264,45): warning C4244: '인수': 'Sint32'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(310,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
 C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(316,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\ZombieGame\MainGame.cpp(322,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
   코드를 생성하고 있습니다.
-  0 of 1426 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+  3 of 1478 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    24 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.
   ZombieGame.vcxproj -> C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\Release\ZombieGame.exe

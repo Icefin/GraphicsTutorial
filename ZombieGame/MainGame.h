@@ -8,6 +8,7 @@
 #include <Gengine/Camera2D.h>
 #include <Gengine/InputManager.h>
 #include <Gengine/SpriteBatch.h>
+#include <Gengine/SpriteFont.h>
 
 class Zombie;
 
@@ -34,12 +35,16 @@ private :
 	void checkVictory();
 	void processInput();
 	void drawGame();
+	void drawUI();
 
 	Gengine::Window _window;
 	Gengine::GLSLProgram _textureProgram;
 	Gengine::InputManager _inputManager;
 	Gengine::Camera2D _camera;
+	Gengine::Camera2D _uiCamera;
 	Gengine::SpriteBatch _agentSpriteBatch;
+	Gengine::SpriteBatch _uiSpriteBatch;
+	Gengine::SpriteFont* _spriteFont;
 	std::vector<Level*> _levels;
 
 	int _screenWidth, _screenHeight;

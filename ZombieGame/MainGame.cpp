@@ -56,8 +56,13 @@ void MainGame::initSystem() {
 	initShader();
 
 	_agentSpriteBatch.Init();
+	_uiSpriteBatch.Init();
+
+	_spriteFont = new Gengine::SpriteFont("Fonts/chintzy.ttf", 32);
 
 	_camera.Init(_screenWidth, _screenHeight);
+	_uiCamera.Init(_screenWidth, _screenHeight);
+	_uiCamera.SetPosition(glm::vec2(_screenWidth / 2, _screenHeight / 2));
 }
 
 void MainGame::initLevel() {
@@ -137,6 +142,7 @@ void MainGame::gameLoop() {
 		}
 		_camera.SetPosition(_player->getPosition());
 		_camera.Update();
+		_uiCamera.Update();
 		drawGame();
 		_fps = _fpsLimiter.End();
 	}
@@ -320,8 +326,31 @@ void MainGame::drawGame() {
 	_agentSpriteBatch.End();
 	_agentSpriteBatch.RenderBatchs();
 
+	drawUI();
+
 	_textureProgram.Unuse();
 
 	//Swap our buffer and draw everything to the screen
 	_window.SwapBuffer();
+}
+
+void MainGame::drawUI() {
+	char buffer[256];
+
+	glm::mat4 projectionMatrix = _uiCamera.GetCameraMatrix();
+	GLint pUniform = _textureProgram.GetUniformLocation("P");
+	glUniformMatrix4fv(pUniform, 1, GL_FALSE, &projectionMatrix[0][0]);
+
+	_uiSpriteBatch.Begin();
+
+	sprintf_s(buffer, "Num Humans %d", _humans.size());
+	_spriteFont->draw(_uiSpriteBatch, buffer, glm::vec2(130, 0),
+						glm::vec2(1.0), 0.0f, Gengine::ColorRGBA8(255, 255, 255, 255));
+
+	sprintf_s(buffer, "Num Zombies %d", _zombies.size());
+	_spriteFont->draw(_uiSpriteBatch, buffer, glm::vec2(130, 40),
+		glm::vec2(1.0), 0.0f, Gengine::ColorRGBA8(255, 255, 255, 255));
+
+	_uiSpriteBatch.End();
+	_uiSpriteBatch.RenderBatchs();
 }

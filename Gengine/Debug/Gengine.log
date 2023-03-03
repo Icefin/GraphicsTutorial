@@ -1,7 +1,6 @@
-﻿  SpriteBatch.cpp
-C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\Gengine\SpriteBatch.cpp(24,21): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\Gengine\SpriteBatch.cpp(37,21): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\Gengine\SpriteBatch.cpp(64,43): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+﻿  Camera2D.cpp
+  SpriteFont.cpp
+  코드를 생성하고 있습니다...
 opengl32.lib(OPENGL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR이(가) SDL2.lib(SDL2.dll)에 이미 정의되어 있습니다. 초 정의가 무시됩니다.
 glew32.lib(glew32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR이(가) SDL2.lib(SDL2.dll)에 이미 정의되어 있습니다. 초 정의가 무시됩니다.
   Gengine.vcxproj -> C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\Debug\Gengine.lib
