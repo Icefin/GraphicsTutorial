@@ -9,6 +9,7 @@
 #include <Gengine/InputManager.h>
 #include <Gengine/SpriteBatch.h>
 #include <Gengine/SpriteFont.h>
+#include <Gengine/AudioEngine.h>
 
 class Zombie;
 
@@ -44,6 +45,7 @@ private :
 	Gengine::Camera2D _uiCamera;
 	Gengine::SpriteBatch _agentSpriteBatch;
 	Gengine::SpriteBatch _uiSpriteBatch;
+	Gengine::AudioEngine _audioEngine;
 	Gengine::SpriteFont* _spriteFont;
 	std::vector<Level*> _levels;
 

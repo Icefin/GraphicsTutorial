@@ -167,6 +167,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AudioEngine.h" />
     <ClInclude Include="Camera2D.h" />
     <ClInclude Include="Errors.h" />
     <ClInclude Include="framework.h" />
@@ -188,6 +189,7 @@
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AudioEngine.cpp" />
     <ClCompile Include="Camera2D.cpp" />
     <ClCompile Include="Errors.cpp" />
     <ClCompile Include="Gengine.cpp" />

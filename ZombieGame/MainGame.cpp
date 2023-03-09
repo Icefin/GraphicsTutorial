@@ -44,11 +44,17 @@ MainGame::~MainGame() {
 void MainGame::run() {
 	initSystem();
 	initLevel();
+
+	Gengine::Music bgm = _audioEngine.loadMusic("Sound/XYZ.ogg");
+	bgm.play();
+
 	gameLoop();
 }
 
 void MainGame::initSystem() {
 	Gengine::Init();
+	
+	_audioEngine.init();
 
 	_window.Create("ZombieGame", _screenWidth, _screenHeight, 0);
 	glClearColor(0.7f, 0.7f, 0.7f, 1.0f);
@@ -92,9 +98,9 @@ void MainGame::initLevel() {
 	}
 
 	const float BULLET_SPEED = 20.0f;
-	_player->addGun(new Gun("Magnum", 10, 1, 0.01f, 30, BULLET_SPEED));
-	_player->addGun(new Gun("Shotgun", 30, 12, 0.5f, 4, BULLET_SPEED));
-	_player->addGun(new Gun("MP5", 2, 1, 0.01f, 20, BULLET_SPEED));
+	_player->addGun(new Gun("Magnum", 10, 1, 0.01f, 30, BULLET_SPEED, _audioEngine.loadSoundEffect("Sound/shots/pistol.wav")));
+	_player->addGun(new Gun("Shotgun", 30, 12, 0.5f, 4, BULLET_SPEED, _audioEngine.loadSoundEffect("Sound/shots/shotgun.wav")));
+	_player->addGun(new Gun("MP5", 2, 1, 0.1f, 20, BULLET_SPEED, _audioEngine.loadSoundEffect("Sound/shots/cg1.wav")));
 }
 
 void MainGame::initShader() {

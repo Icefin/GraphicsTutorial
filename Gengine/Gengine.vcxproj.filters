@@ -21,9 +21,6 @@
     <ClInclude Include="pch.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Errors.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="GLSLProgram.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -72,15 +69,18 @@
     <ClInclude Include="SpriteFont.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="AudioEngine.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Errors.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Gengine.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Errors.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="GLSLProgram.cpp">
@@ -120,6 +120,12 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="SpriteFont.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioEngine.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Errors.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
