@@ -35,6 +35,10 @@ namespace Gengine {
 	}
 
 	void AudioEngine::init() {
+		if (_isInitialized) {
+			FatalError("Tried to initialize Audio Engine Twice!\n");
+		}
+
 		//Parameter can be a bitwise combination of MIX_INIT_FAC,
 		//MIX_INIT_MOD, MIX_INIT_MP3, MIX_INIT_OGG
 		if (Mix_Init(MIX_INIT_MP3 | MIX_INIT_OGG) == -1) {
@@ -45,12 +49,24 @@ namespace Gengine {
 			FatalError("Mix_OpenAudio error : " + std::string(Mix_GetError()));
 		}
 
-		isInitialized = true;
+		_isInitialized = true;
 	}
 
 	void AudioEngine::destroy() {
-		if (isInitialized) {
-			isInitialized = false;
+		if (_isInitialized) {
+			_isInitialized = false;
+
+			for (auto& it : _effectMap) {
+				Mix_FreeChunk(it.second);
+			}
+			for (auto& it : _musicMap) {
+				Mix_FreeMusic(it.second);
+			}
+
+			_effectMap.clear();
+			_musicMap.clear();
+
+			Mix_CloseAudio();
 			Mix_Quit();
 		}
 	}
@@ -58,14 +74,14 @@ namespace Gengine {
 	SoundEffect AudioEngine::loadSoundEffect(const std::string& filePath) {
 		SoundEffect effect;
 		
-		auto iter = effectMap.find(filePath);
-		if (iter == effectMap.end()) {
+		auto iter = _effectMap.find(filePath);
+		if (iter == _effectMap.end()) {
 			Mix_Chunk* chunk = Mix_LoadWAV(filePath.c_str());
 			if (chunk == nullptr) {
 				FatalError("Mix_LoadWAV error : " + std::string(Mix_GetError()));
 			}
 			effect.m_chunk = chunk;
-			effectMap[filePath] = chunk;
+			_effectMap[filePath] = chunk;
 		}
 		else {
 			effect.m_chunk = iter->second;
@@ -77,14 +93,14 @@ namespace Gengine {
 	Music AudioEngine::loadMusic(const std::string& filePath) {
 		Music music;
 
-		auto iter = musicMap.find(filePath);
-		if (iter == musicMap.end()) {
+		auto iter = _musicMap.find(filePath);
+		if (iter == _musicMap.end()) {
 			Mix_Music* mixMusic = Mix_LoadMUS(filePath.c_str());
 			if (mixMusic == nullptr) {
 				FatalError("Mix_LoadMUS error : " + std::string(Mix_GetError()));
 			}
 			music.m_music = mixMusic;
-			musicMap[filePath] = mixMusic;
+			_musicMap[filePath] = mixMusic;
 		}
 		else {
 			music.m_music = iter->second;
