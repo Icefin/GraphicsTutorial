@@ -34,7 +34,6 @@ void Player::update(const std::vector<std::string>& levelData,
 	else if (_inputManager->isKeyDown(SDLK_s)) {
 		_position.y -= _speed * deltaTime;
 	}
-
 	if (_inputManager->isKeyDown(SDLK_a)) {
 		_position.x -= _speed * deltaTime;
 	}

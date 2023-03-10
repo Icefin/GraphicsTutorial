@@ -281,7 +281,7 @@ void MainGame::processInput() {
 				_gameState = GameState::EXIT;
 				break;
 			case SDL_MOUSEMOTION :
-				_inputManager.SetMouseCoords(evnt.motion.x, evnt.motion.y);
+				_inputManager.SetMouseCoords(evnt.motion.x - 125, evnt.motion.y);
 				break;
 			case SDL_KEYDOWN :
 				_inputManager.PressKey(evnt.key.keysym.sym);
@@ -325,7 +325,7 @@ void MainGame::drawGame() {
 	//Draw the humans
 	_agentSpriteBatch.Begin();
 
-	const glm::vec2 agentDim(AGENT_RADIUS * 2);
+	const glm::vec2 agentDim(AGENT_RADIUS * 2.0f);
 
 	for (int i = 0; i < _humans.size(); i++) {
 		if (_camera.isBoxInView(_humans[i]->getPosition(), agentDim))
