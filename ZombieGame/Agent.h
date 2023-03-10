@@ -35,7 +35,9 @@ protected :
 						float x, float y);
 	void collideWithTile(glm::vec2 tilePosition);
 
+	GLuint _textureID;
 	glm::vec2 _position;
+	glm::vec2 _direction = glm::vec2(1.0f, 0.0f);
 	Gengine::ColorRGBA8 _color;
 	float _speed;
 	float _health;

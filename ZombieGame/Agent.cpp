@@ -54,7 +54,6 @@ bool Agent::collideWithAgent(Agent* other) {
 
 void Agent::draw(Gengine::SpriteBatch& spriteBatch) {
 	const glm::vec4 uvRect(0.0f, 0.0f, 1.0f, 1.0f);
-	static int textureID = Gengine::ResourceManager::GetTexture("Textures/circle.png").id;
 	
 	glm::vec4 destRect;
 	destRect.x = _position.x;
@@ -62,7 +61,7 @@ void Agent::draw(Gengine::SpriteBatch& spriteBatch) {
 	destRect.z = AGENT_WIDTH;
 	destRect.w = AGENT_WIDTH;
 	
-	spriteBatch.Draw(destRect, uvRect, textureID, 0.0f, _color);
+	spriteBatch.Draw(destRect, uvRect, _textureID, 0.0f, _color, _direction);
 }
 
 bool Agent::applyDamage(float damage) {

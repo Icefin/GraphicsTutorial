@@ -15,24 +15,8 @@ namespace Gengine {
 	class Glyph {
 		public :
 			Glyph() {};
-			Glyph(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint Texture, float Depth, const ColorRGBA8& color) : 
-				texture(Texture), depth(Depth) {
-				topLeft.color = color;
-				topLeft.SetPosition(destRect.x, destRect.y + destRect.w);	//x,y : bottomLeftPos, z,w : len of side
-				topLeft.SetUV(uvRect.x, uvRect.y + uvRect.w);
-
-				bottomLeft.color = color;
-				bottomLeft.SetPosition(destRect.x, destRect.y);
-				bottomLeft.SetUV(uvRect.x, uvRect.y);
-
-				bottomRight.color = color;
-				bottomRight.SetPosition(destRect.x + destRect.z, destRect.y);
-				bottomRight.SetUV(uvRect.x + uvRect.z, uvRect.y);
-
-				topRight.color = color;
-				topRight.SetPosition(destRect.x + destRect.z, destRect.y + destRect.w);
-				topRight.SetUV(uvRect.x + uvRect.z, uvRect.y + uvRect.w);
-			}
+			Glyph(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint Texture, float Depth, const ColorRGBA8& color);
+			Glyph(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint Texture, float Depth, const ColorRGBA8& color, float angle);
 
 			GLuint texture;
 			float depth;
@@ -41,6 +25,10 @@ namespace Gengine {
 			Vertex bottomLeft;
 			Vertex topRight;
 			Vertex bottomRight;
+		
+		private :
+			glm::vec2 rotatePoint(glm::vec2 pos, float angle);
+
 	};
 
 	class RenderBatch {
@@ -62,6 +50,8 @@ namespace Gengine {
 		void End();
 
 		void Draw(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint texture, float depth, const ColorRGBA8& color);
+		void Draw(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint texture, float depth, const ColorRGBA8& color, float angle);
+		void Draw(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint texture, float depth, const ColorRGBA8& color, const glm::vec2& dir);
 		void RenderBatchs();
 	private :
 		void CreateRenderBatches();

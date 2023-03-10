@@ -1,6 +1,7 @@
 #include "Human.h"
 
 #include <glm/gtx/rotate_vector.hpp>
+#include <Gengine/ResourceManager.h>
 
 #include <ctime>
 #include <random>
@@ -19,7 +20,7 @@ void Human::init(float speed, glm::vec2 pos) {
 
 	_health = 20.0f;
 
-	_color = Gengine::ColorRGBA8(200, 0, 200, 255);
+	_color = Gengine::ColorRGBA8(255, 255, 255, 255);
 
 	_speed = speed;
 	_position = pos;
@@ -28,6 +29,7 @@ void Human::init(float speed, glm::vec2 pos) {
 	if (_direction.length() == 0) _direction = glm::vec2(1.0f, 0.0f);
 
 	_direction = glm::normalize(_direction);
+	_textureID = Gengine::ResourceManager::GetTexture("Textures/human.png").id;
 }
 
 void Human::update(const std::vector<std::string>& levelData,

@@ -2,6 +2,64 @@
 #include <algorithm>
 
 namespace Gengine {
+
+	Glyph::Glyph(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint Texture, float Depth, const ColorRGBA8& color) :
+		texture(Texture), depth(Depth) {
+		topLeft.color = color;
+		topLeft.SetPosition(destRect.x, destRect.y + destRect.w);	//x,y : bottomLeftPos, z,w : len of side
+		topLeft.SetUV(uvRect.x, uvRect.y + uvRect.w);
+
+		bottomLeft.color = color;
+		bottomLeft.SetPosition(destRect.x, destRect.y);
+		bottomLeft.SetUV(uvRect.x, uvRect.y);
+
+		bottomRight.color = color;
+		bottomRight.SetPosition(destRect.x + destRect.z, destRect.y);
+		bottomRight.SetUV(uvRect.x + uvRect.z, uvRect.y);
+
+		topRight.color = color;
+		topRight.SetPosition(destRect.x + destRect.z, destRect.y + destRect.w);
+		topRight.SetUV(uvRect.x + uvRect.z, uvRect.y + uvRect.w);
+	}
+
+	Glyph::Glyph(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint Texture, float Depth, const ColorRGBA8& color, float angle) :
+		texture(Texture), depth(Depth) {
+
+		glm::vec2 halfDimension(destRect.z / 2.0f, destRect.w / 2.0f);
+		glm::vec2 tl(-halfDimension.x, halfDimension.y);
+		glm::vec2 bl(-halfDimension.x, -halfDimension.y);
+		glm::vec2 br(halfDimension.x, -halfDimension.y);
+		glm::vec2 tr(halfDimension.x, halfDimension.y);
+
+		tl = rotatePoint(tl, angle) + halfDimension;
+		bl = rotatePoint(bl, angle) + halfDimension;
+		br = rotatePoint(br, angle) + halfDimension;
+		tr = rotatePoint(tr, angle) + halfDimension;
+		
+		topLeft.color = color;
+		topLeft.SetPosition(destRect.x + tl.x, destRect.y + tl.y);	//x,y : bottomLeftPos, z,w : len of side
+		topLeft.SetUV(uvRect.x, uvRect.y + uvRect.w);
+
+		bottomLeft.color = color;
+		bottomLeft.SetPosition(destRect.x + bl.x, destRect.y + bl.y);
+		bottomLeft.SetUV(uvRect.x, uvRect.y);
+
+		bottomRight.color = color;
+		bottomRight.SetPosition(destRect.x + br.x, destRect.y + br.y);
+		bottomRight.SetUV(uvRect.x + uvRect.z, uvRect.y);
+
+		topRight.color = color;
+		topRight.SetPosition(destRect.x + tr.x, destRect.y + tr.y);
+		topRight.SetUV(uvRect.x + uvRect.z, uvRect.y + uvRect.w);
+	}
+
+	glm::vec2 Glyph::rotatePoint(glm::vec2 pos, float angle) {
+		glm::vec2 rotVector;
+		rotVector.x = pos.x * cos(angle) - pos.y * sin(angle);
+		rotVector.y = pos.x * sin(angle) + pos.y * cos(angle);
+		return (rotVector);
+	}
+
 	SpriteBatch::SpriteBatch() : _vbo(0), _vao(0) {
 	
 	}
@@ -30,6 +88,17 @@ namespace Gengine {
 
 	void SpriteBatch::Draw(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint texture, float depth, const ColorRGBA8& color) {
 		_glyphs.emplace_back(destRect, uvRect, texture, depth, color);
+	}
+
+	void SpriteBatch::Draw(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint texture, float depth, const ColorRGBA8& color, float angle) {
+		_glyphs.emplace_back(destRect, uvRect, texture, depth, color, angle);
+	}
+
+	void SpriteBatch::Draw(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint texture, float depth, const ColorRGBA8& color, const glm::vec2& dir) {
+		const glm::vec2 xDir(1.0f, 0.0f);
+		float angle = acos(glm::dot(xDir, dir));
+		if (dir.y < 0.0f) angle = -angle;
+		_glyphs.emplace_back(destRect, uvRect, texture, depth, color, angle);
 	}
 
 	void SpriteBatch::RenderBatchs() {

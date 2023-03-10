@@ -2,6 +2,7 @@
 #include "Gun.h"
 
 #include <SDL/SDL.h>
+#include <Gengine/ResourceManager.h>
 
 Player::Player() :
 	_currentGunIndex(-1) {
@@ -15,11 +16,12 @@ Player::~Player() {
 void Player::init(float speed, glm::vec2 pos, Gengine::InputManager* inputManager, Gengine::Camera2D* camera, std::vector<Bullet>* bullets) {
 	_speed = speed;
 	_position = pos;
-	_color = Gengine::ColorRGBA8(0, 0, 185, 255);
+	_color = Gengine::ColorRGBA8(255, 255, 255, 255);
 	_inputManager = inputManager;
 	_camera = camera;
 	_bullets = bullets;
 	_health = 150.0f;
+	_textureID = Gengine::ResourceManager::GetTexture("Textures/player.png").id;
 }
 
 void Player::update(const std::vector<std::string>& levelData,
@@ -50,16 +52,16 @@ void Player::update(const std::vector<std::string>& levelData,
 		_currentGunIndex = 2;
 	}
 
+	glm::vec2 mouseCoords = _inputManager->GetMouseCoords();
+	mouseCoords = _camera->ConvertScreenToWorld(mouseCoords);
+
+	glm::vec2 centerPosition = _position + glm::vec2(AGENT_RADIUS);
+	_direction = glm::normalize(mouseCoords - centerPosition);
+
 	if (_currentGunIndex != -1) {
-		glm::vec2 mouseCoords = _inputManager->GetMouseCoords();
-		mouseCoords = _camera->ConvertScreenToWorld(mouseCoords);
-
-		glm::vec2 centerPosition = _position + glm::vec2(AGENT_RADIUS);
-		glm::vec2 direction = glm::normalize(mouseCoords - centerPosition);
-
 		_guns[_currentGunIndex]->update(_inputManager->isKeyDown(SDL_BUTTON_LEFT),
 										centerPosition,
-										direction,
+										_direction,
 										*_bullets,
 										deltaTime);
 	}
