@@ -6,20 +6,22 @@
 
 #include <glm/glm.hpp>
 
+#include <functional>
+
 namespace Gengine {
+
 	class Particle2D {
 		public :
-			friend class ParticleBatch2D;
-
-			void update(float deltaTime);
-
-		private :
-			glm::vec2 _position = glm::vec2(0.0f);
-			glm::vec2 _velocity = glm::vec2(0.0f);
-			ColorRGBA8 _color;
-			float _width = 0.0f;
-			float _life = 0.0f;
+			glm::vec2 position = glm::vec2(0.0f);
+			glm::vec2 velocity = glm::vec2(0.0f);
+			ColorRGBA8 color;
+			float width = 0.0f;
+			float life = 0.0f;
 	};
+
+	inline void defaultParticleUpdate(Particle2D& particle, float deltaTime) {
+		particle.position += particle.velocity * deltaTime;
+	}
 
 	class ParticleBatch2D
 	{
@@ -29,7 +31,8 @@ namespace Gengine {
 			ParticleBatch2D();
 			~ParticleBatch2D();
 
-			void init(int maxParticles, float decayRate, GLTexture texture);
+			void init(int maxParticles, float decayRate, GLTexture texture,
+					std::function<void(Particle2D&, float)> updateFunc = defaultParticleUpdate);
 			void update(float deltaTime);
 			void draw(SpriteBatch* spriteBatch);
 			void addParticle(const glm::vec2& position, const glm::vec2& velocity, const ColorRGBA8& color, float width);
@@ -43,6 +46,7 @@ namespace Gengine {
 			
 			GLTexture _texture;
 			float _decayRate = 0.1f;
+			std::function<void(Particle2D&, float)> _updateFunc;
 	};
 }
 

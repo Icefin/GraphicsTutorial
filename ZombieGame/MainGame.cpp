@@ -73,7 +73,11 @@ void MainGame::initSystem() {
 	_uiCamera.SetPosition(glm::vec2(_screenWidth / 2, _screenHeight / 2));
 
 	_bloodParticleBatch = new Gengine::ParticleBatch2D;
-	_bloodParticleBatch->init(1000, 0.05f, Gengine::ResourceManager::GetTexture("Textures/particle.png"));
+	_bloodParticleBatch->init(1000, 0.05f, Gengine::ResourceManager::GetTexture("Textures/particle.png"),
+		[](Gengine::Particle2D& particle, float deltaTime) {
+			particle.position += particle.velocity * deltaTime;
+			particle.color.a = (GLubyte)(particle.life * 255.0f);
+		});
 	_particleEngine2D.addParticleBatch(_bloodParticleBatch);
 }
 
