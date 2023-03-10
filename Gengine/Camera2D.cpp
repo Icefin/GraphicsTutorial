@@ -44,7 +44,7 @@ namespace Gengine {
 	}
 
 	bool Camera2D::isBoxInView(const glm::vec2& position, const glm::vec2& dimension) {
-		glm::vec2 scaledScreenDimension = glm::vec2(_screenWidth, _screenHeight) / (_scale * 2.0f);
+		glm::vec2 scaledScreenDimension = glm::vec2(_screenWidth, _screenHeight) / (_scale * 1.0f);
 
 		const float MIN_DISTANCE_X = dimension.x / 2.0f + scaledScreenDimension.x / 2.0f;
 		const float MIN_DISTANCE_Y = dimension.y / 2.0f + scaledScreenDimension.y / 2.0f;

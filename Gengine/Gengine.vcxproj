@@ -177,6 +177,8 @@
     <ClInclude Include="ImageLoader.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="IOManager.h" />
+    <ClInclude Include="ParticleBatch2D.h" />
+    <ClInclude Include="ParticleEngine2D.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="picoPNG.h" />
     <ClInclude Include="ResourceManager.h" />
@@ -197,6 +199,8 @@
     <ClCompile Include="ImageLoader.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="IOManager.cpp" />
+    <ClCompile Include="ParticleBatch2D.cpp" />
+    <ClCompile Include="ParticleEngine2D.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

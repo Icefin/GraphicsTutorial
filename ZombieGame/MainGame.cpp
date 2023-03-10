@@ -5,7 +5,9 @@
 #include <Gengine/Gengine.h>
 #include <Gengine/Timing.h>
 #include <Gengine/Errors.h>
+#include <Gengine/ResourceManager.h>
 #include <SDL/SDL.h>
+#include <glm/gtx/rotate_vector.hpp>
 
 #include <random>
 #include <ctime>
@@ -69,6 +71,10 @@ void MainGame::initSystem() {
 	_camera.Init(_screenWidth, _screenHeight);
 	_uiCamera.Init(_screenWidth, _screenHeight);
 	_uiCamera.SetPosition(glm::vec2(_screenWidth / 2, _screenHeight / 2));
+
+	_bloodParticleBatch = new Gengine::ParticleBatch2D;
+	_bloodParticleBatch->init(1000, 0.05f, Gengine::ResourceManager::GetTexture("Textures/particle.png"));
+	_particleEngine2D.addParticleBatch(_bloodParticleBatch);
 }
 
 void MainGame::initLevel() {
@@ -143,9 +149,11 @@ void MainGame::gameLoop() {
 			float deltaTime = std::min(totalDeltaTime, MAX_DELTA_TIME);
 			updateAgents(deltaTime);
 			updateBullets(deltaTime);
+			_particleEngine2D.update(deltaTime);
 			totalDeltaTime -= deltaTime;
 			step_cnt++;
 		}
+
 		_camera.SetPosition(_player->getPosition());
 		_camera.Update();
 		_uiCamera.Update();
@@ -208,6 +216,7 @@ void MainGame::updateBullets(float deltaTime) {
 		//Loop through zombies
 		for (int j = 0; j < _zombies.size();) {
 			if (_bullets[i].collideWithAgent(_zombies[j])) {
+				addBlood(_bullets[i].getPosition(), 5);
 				if (_zombies[j]->applyDamage(_bullets[i].getDamage())) {
 					delete _zombies[j];
 					_zombies[j] = _zombies.back();
@@ -230,6 +239,7 @@ void MainGame::updateBullets(float deltaTime) {
 		//Loop through humans
 		for (int j = 1; j < _humans.size();) {
 			if (_bullets[i].collideWithAgent(_humans[j])) {
+				addBlood(_bullets[i].getPosition(), 5);
 				if (_humans[j]->applyDamage(_bullets[i].getDamage())) {
 					delete _humans[j];
 					_humans[j] = _humans.back();
@@ -332,6 +342,8 @@ void MainGame::drawGame() {
 	_agentSpriteBatch.End();
 	_agentSpriteBatch.RenderBatchs();
 
+	_particleEngine2D.draw(&_agentSpriteBatch);
+
 	drawUI();
 
 	_textureProgram.Unuse();
@@ -359,4 +371,17 @@ void MainGame::drawUI() {
 
 	_uiSpriteBatch.End();
 	_uiSpriteBatch.RenderBatchs();
+}
+
+void MainGame::addBlood(const glm::vec2& position, int numParticles) {
+	static std::mt19937 randEngine(time(nullptr));
+	static std::uniform_real_distribution<float> randAngle(0.0f, 360.0f);
+	
+	glm::vec2 velocity(2.0f, 0.0f);
+
+	Gengine::ColorRGBA8 color(255, 0, 0, 255);
+
+	for (int i = 0; i < numParticles; i++) {
+		_bloodParticleBatch->addParticle(position, glm::rotate(velocity, randAngle(randEngine)), color, 20.0f);
+	}
 }

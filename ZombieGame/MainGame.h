@@ -10,6 +10,8 @@
 #include <Gengine/SpriteBatch.h>
 #include <Gengine/SpriteFont.h>
 #include <Gengine/AudioEngine.h>
+#include <Gengine/ParticleEngine2D.h>
+#include <Gengine/ParticleBatch2D.h>
 
 class Zombie;
 
@@ -38,6 +40,8 @@ private :
 	void drawGame();
 	void drawUI();
 
+	void addBlood(const glm::vec2& position, int numParticles);
+
 	Gengine::Window _window;
 	Gengine::GLSLProgram _textureProgram;
 	Gengine::InputManager _inputManager;
@@ -46,6 +50,8 @@ private :
 	Gengine::SpriteBatch _agentSpriteBatch;
 	Gengine::SpriteBatch _uiSpriteBatch;
 	Gengine::AudioEngine _audioEngine;
+	Gengine::ParticleEngine2D _particleEngine2D;
+	Gengine::ParticleBatch2D* _bloodParticleBatch;
 	Gengine::SpriteFont* _spriteFont;
 	std::vector<Level*> _levels;
 
