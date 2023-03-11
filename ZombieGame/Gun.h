@@ -18,16 +18,16 @@ public :
 private :
 	void fire(const glm::vec2& direction, const glm::vec2& position, std::vector<Bullet>& bullets);
 
-	std::string _name;
-	Gengine::SoundEffect _fireEffect;
+	std::string m_name;
+	Gengine::SoundEffect m_fireEffect;
 
-	int _fireRate;
-	int _bulletsPerShot;
-	float _spread;
+	int m_fireRate;
+	int m_bulletsPerShot;
+	float m_spread;
 
-	float _bulletDamage;
-	float _bulletSpeed;
+	float m_bulletDamage;
+	float m_bulletSpeed;
 
-	float _frameCounter;
+	float m_frameCounter;
 };
 

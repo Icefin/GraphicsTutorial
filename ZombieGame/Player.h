@@ -21,11 +21,11 @@ public :
 	void addGun(Gun* gun);
 
 private :
-	Gengine::InputManager* _inputManager;
-	Gengine::Camera2D* _camera;
+	Gengine::InputManager* m_inputManager;
+	Gengine::Camera2D* m_camera;
 
-	std::vector<Gun*> _guns;
-	int _currentGunIndex;
-	std::vector<Bullet>* _bullets;
+	std::vector<Gun*> m_guns;
+	int m_currentGunIndex;
+	std::vector<Bullet>* m_bullets;
 };
 

@@ -27,7 +27,7 @@ public :
 	void draw(Gengine::SpriteBatch& _spriteBatch);
 	bool applyDamage(float damage);
 
-	glm::vec2 getPosition() const { return _position; }
+	glm::vec2 getPosition() const { return m_position; }
 
 protected :
 	void checkTilePosition(const std::vector<std::string>& levelData,
@@ -35,11 +35,11 @@ protected :
 						float x, float y);
 	void collideWithTile(glm::vec2 tilePosition);
 
-	GLuint _textureID;
-	glm::vec2 _position;
-	glm::vec2 _direction = glm::vec2(1.0f, 0.0f);
-	Gengine::ColorRGBA8 _color;
-	float _speed;
-	float _health;
+	GLuint m_textureID;
+	glm::vec2 m_position;
+	glm::vec2 m_direction = glm::vec2(1.0f, 0.0f);
+	Gengine::ColorRGBA8 m_color;
+	float m_speed;
+	float m_health;
 };
 

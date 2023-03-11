@@ -12,11 +12,11 @@ Zombie::~Zombie() {
 }
 
 void Zombie::init(float speed, glm::vec2 pos) {
-	_speed = speed;
-	_position = pos;
-	_health = 150.0f;
-	_color = Gengine::ColorRGBA8(255, 255, 255, 255);
-	_textureID = Gengine::ResourceManager::GetTexture("Textures/zombie.png").id;
+	m_speed = speed;
+	m_position = pos;
+	m_health = 150.0f;
+	m_color = Gengine::ColorRGBA8(255, 255, 255, 255);
+	m_textureID = Gengine::ResourceManager::GetTexture("Textures/zombie.png").id;
 }
 
 void Zombie::update(const std::vector<std::string>& levelData,
@@ -27,8 +27,8 @@ void Zombie::update(const std::vector<std::string>& levelData,
 	Human* closestHuman = getNearestHuman(humans);
 
 	if (closestHuman != nullptr) {
-		_direction = glm::normalize(closestHuman->getPosition() - _position);
-		_position += _direction * _speed * deltaTime;
+		m_direction = glm::normalize(closestHuman->getPosition() - m_position);
+		m_position += m_direction * m_speed * deltaTime;
 	}
 
 	collideWithLevel(levelData);
@@ -39,7 +39,7 @@ Human* Zombie::getNearestHuman(std::vector<Human*> humans) {
 	float smallestDistance = 987654321.0f;
 
 	for (int i = 0; i < humans.size(); i++) {
-		glm::vec2 distVec = humans[i]->getPosition() - _position;
+		glm::vec2 distVec = humans[i]->getPosition() - m_position;
 		float distance = glm::length(distVec);
 
 		if (distance < smallestDistance) {

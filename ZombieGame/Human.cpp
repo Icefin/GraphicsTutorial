@@ -6,7 +6,7 @@
 #include <ctime>
 #include <random>
 
-Human::Human() : _frames(0) {
+Human::Human() : m_frames(0) {
 
 }
 
@@ -18,18 +18,18 @@ void Human::init(float speed, glm::vec2 pos) {
 	static std::mt19937 randomEngine(time(nullptr));
 	static std::uniform_real_distribution<float> randDir(-1.0f, 1.0f);
 
-	_health = 20.0f;
+	m_health = 20.0f;
 
-	_color = Gengine::ColorRGBA8(255, 255, 255, 255);
+	m_color = Gengine::ColorRGBA8(255, 255, 255, 255);
 
-	_speed = speed;
-	_position = pos;
-	_direction = glm::vec2(randDir(randomEngine), randDir(randomEngine));
+	m_speed = speed;
+	m_position = pos;
+	m_direction = glm::vec2(randDir(randomEngine), randDir(randomEngine));
 	//make sure direction isn't zero
-	if (_direction.length() == 0) _direction = glm::vec2(1.0f, 0.0f);
+	if (m_direction.length() == 0) m_direction = glm::vec2(1.0f, 0.0f);
 
-	_direction = glm::normalize(_direction);
-	_textureID = Gengine::ResourceManager::GetTexture("Textures/human.png").id;
+	m_direction = glm::normalize(m_direction);
+	m_textureID = Gengine::ResourceManager::GetTexture("Textures/human.png").id;
 }
 
 void Human::update(const std::vector<std::string>& levelData,
@@ -40,15 +40,15 @@ void Human::update(const std::vector<std::string>& levelData,
 	static std::mt19937 randomEngine(time(nullptr));
 	static std::uniform_real_distribution<float> randRot(-40.0f, 40.0f);
 
-	_position += _direction * _speed * deltaTime;
+	m_position += m_direction * m_speed * deltaTime;
 
-	if (_frames == 1000) {
-		_direction = glm::rotate(_direction, randRot(randomEngine));
-		_frames = 0;
+	if (m_frames == 1000) {
+		m_direction = glm::rotate(m_direction, randRot(randomEngine));
+		m_frames = 0;
 	}
 	
 	if (collideWithLevel(levelData)) {
-		_direction = glm::rotate(_direction, randRot(randomEngine));
+		m_direction = glm::rotate(m_direction, randRot(randomEngine));
 	}
-	_frames++;
+	m_frames++;
 }

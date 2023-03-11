@@ -42,31 +42,31 @@ private :
 
 	void addBlood(const glm::vec2& position, int numParticles);
 
-	Gengine::Window _window;
-	Gengine::GLSLProgram _textureProgram;
-	Gengine::InputManager _inputManager;
-	Gengine::Camera2D _camera;
-	Gengine::Camera2D _uiCamera;
-	Gengine::SpriteBatch _agentSpriteBatch;
-	Gengine::SpriteBatch _uiSpriteBatch;
-	Gengine::AudioEngine _audioEngine;
-	Gengine::ParticleEngine2D _particleEngine2D;
-	Gengine::ParticleBatch2D* _bloodParticleBatch;
-	Gengine::SpriteFont* _spriteFont;
-	std::vector<Level*> _levels;
+	Gengine::Window m_window;
+	Gengine::GLSLProgram m_textureProgram;
+	Gengine::InputManager m_inputManager;
+	Gengine::Camera2D m_camera;
+	Gengine::Camera2D m_uiCamera;
+	Gengine::SpriteBatch m_agentSpriteBatch;
+	Gengine::SpriteBatch m_uiSpriteBatch;
+	Gengine::AudioEngine m_audioEngine;
+	Gengine::ParticleEngine2D m_particleEngine2D;
+	Gengine::ParticleBatch2D* m_bloodParticleBatch;
+	Gengine::SpriteFont* m_spriteFont;
+	std::vector<Level*> m_levels;
 
-	int _screenWidth, _screenHeight;
+	int m_screenWidth, m_screenHeight;
 
-	GameState _gameState;
-	float _fps;
-	int _currentLevel;
+	GameState m_gameState;
+	float m_fps;
+	int m_currentLevel;
 
-	int _numHumansKilled;
-	int _numZombiesKilled;
+	int m_numHumansKilled;
+	int m_numZombiesKilled;
 
-	std::vector<Human*> _humans;
-	std::vector<Zombie*> _zombies;
-	std::vector<Bullet> _bullets;
+	std::vector<Human*> m_humans;
+	std::vector<Zombie*> m_zombies;
+	std::vector<Bullet> m_bullets;
 
-	Player* _player;
+	Player* m_player;
 };

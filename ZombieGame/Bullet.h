@@ -22,15 +22,15 @@ public :
 	void draw(Gengine::SpriteBatch& spriteBatch);
 	bool collideWithAgent(Agent* other);
 
-	float getDamage() const { return (_damage); }
-	glm::vec2 getPosition() const { return (_position); }
+	float getDamage() const { return (m_damage); }
+	glm::vec2 getPosition() const { return (m_position); }
 
 private :
 	bool collideWithWorld(const std::vector<std::string>& levelData);
 
-	glm::vec2 _position;
-	glm::vec2 _direction;
-	float _damage;
-	float _speed;
+	glm::vec2 m_position;
+	glm::vec2 m_direction;
+	float m_damage;
+	float m_speed;
 };
 

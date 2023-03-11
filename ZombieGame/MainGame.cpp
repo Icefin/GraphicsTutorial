@@ -19,27 +19,27 @@ const float ZOMBIE_SPEED = 1.3f;
 const float PLAYER_SPEED = 5.0f;
 
 MainGame::MainGame() :
-	_screenWidth(1024),
-	_screenHeight(768),
-	_gameState(GameState::PLAY),
-	_fps(0),
-	_player(nullptr),
-	_numHumansKilled(0),
-	_numZombiesKilled(0) {
+	m_screenWidth(1024),
+	m_screenHeight(768),
+	m_gameState(GameState::PLAY),
+	m_fps(0),
+	m_player(nullptr),
+	m_numHumansKilled(0),
+	m_numZombiesKilled(0) {
 	//Empty
 }
 
 MainGame::~MainGame() {
-	for (int i = 0; i < _levels.size(); i++) {
-		delete _levels[i];
+	for (int i = 0; i < m_levels.size(); i++) {
+		delete m_levels[i];
 	}
 
-	for (int i = 0; i < _humans.size(); i++) {
-		delete _humans[i];
+	for (int i = 0; i < m_humans.size(); i++) {
+		delete m_humans[i];
 	}
 
-	for (int i = 0; i < _zombies.size(); i++) {
-		delete _zombies[i];
+	for (int i = 0; i < m_zombies.size(); i++) {
+		delete m_zombies[i];
 	}
 }
 
@@ -47,7 +47,7 @@ void MainGame::run() {
 	initSystem();
 	initLevel();
 
-	Gengine::Music bgm = _audioEngine.loadMusic("Sound/XYZ.ogg");
+	Gengine::Music bgm = m_audioEngine.loadMusic("Sound/XYZ.ogg");
 	bgm.play();
 
 	gameLoop();
@@ -56,78 +56,78 @@ void MainGame::run() {
 void MainGame::initSystem() {
 	Gengine::Init();
 	
-	_audioEngine.init();
+	m_audioEngine.init();
 
-	_window.Create("ZombieGame", _screenWidth, _screenHeight, 0);
+	m_window.Create("ZombieGame", m_screenWidth, m_screenHeight, 0);
 	glClearColor(0.7f, 0.7f, 0.7f, 1.0f);
 
 	initShader();
 
-	_agentSpriteBatch.Init();
-	_uiSpriteBatch.Init();
+	m_agentSpriteBatch.Init();
+	m_uiSpriteBatch.Init();
 
-	_spriteFont = new Gengine::SpriteFont("Fonts/chintzy.ttf", 32);
+	m_spriteFont = new Gengine::SpriteFont("Fonts/chintzy.ttf", 32);
 
-	_camera.Init(_screenWidth, _screenHeight);
-	_uiCamera.Init(_screenWidth, _screenHeight);
-	_uiCamera.SetPosition(glm::vec2(_screenWidth / 2, _screenHeight / 2));
+	m_camera.Init(m_screenWidth, m_screenHeight);
+	m_uiCamera.Init(m_screenWidth, m_screenHeight);
+	m_uiCamera.SetPosition(glm::vec2(m_screenWidth / 2, m_screenHeight / 2));
 
-	_bloodParticleBatch = new Gengine::ParticleBatch2D;
-	_bloodParticleBatch->init(1000, 0.05f, Gengine::ResourceManager::GetTexture("Textures/particle.png"),
+	m_bloodParticleBatch = new Gengine::ParticleBatch2D;
+	m_bloodParticleBatch->init(1000, 0.05f, Gengine::ResourceManager::GetTexture("Textures/particle.png"),
 		[](Gengine::Particle2D& particle, float deltaTime) {
 			particle.position += particle.velocity * deltaTime;
 			particle.color.a = (GLubyte)(particle.life * 255.0f);
 		});
-	_particleEngine2D.addParticleBatch(_bloodParticleBatch);
+	m_particleEngine2D.addParticleBatch(m_bloodParticleBatch);
 }
 
 void MainGame::initLevel() {
-	_levels.push_back(new Level("Levels/level1.txt"));
-	_currentLevel = 0;
+	m_levels.push_back(new Level("Levels/level1.txt"));
+	m_currentLevel = 0;
 
-	_player = new Player();
-	_player->init(PLAYER_SPEED, _levels[_currentLevel]->getPlayerStartPos(), &_inputManager, &_camera, &_bullets);
+	m_player = new Player();
+	m_player->init(PLAYER_SPEED, m_levels[m_currentLevel]->getPlayerStartPos(), &m_inputManager, &m_camera, &m_bullets);
 
-	_humans.push_back(_player);
+	m_humans.push_back(m_player);
 
 	std::mt19937 randomEngine;
 	randomEngine.seed(time(nullptr));
-	std::uniform_int_distribution<int> randX(2, _levels[_currentLevel]->getWidth() - 2);
-	std::uniform_int_distribution<int> randY(2, _levels[_currentLevel]->getHeight() - 2);
+	std::uniform_int_distribution<int> randX(2, m_levels[m_currentLevel]->getWidth() - 2);
+	std::uniform_int_distribution<int> randY(2, m_levels[m_currentLevel]->getHeight() - 2);
 
-	for (int i = 0; i < _levels[_currentLevel]->getNumHumans(); i++) {
-		_humans.push_back(new Human);
+	for (int i = 0; i < m_levels[m_currentLevel]->getNumHumans(); i++) {
+		m_humans.push_back(new Human);
 		glm::vec2 pos(randX(randomEngine) * TILE_WIDTH, randY(randomEngine) * TILE_WIDTH);
-		_humans.back()->init(HUMAN_SPEED, pos);
+		m_humans.back()->init(HUMAN_SPEED, pos);
 	}
 
-	const std::vector<glm::vec2>& zombiePositions = _levels[_currentLevel]->getZombieStartPos();
+	const std::vector<glm::vec2>& zombiePositions = m_levels[m_currentLevel]->getZombieStartPos();
 	for (int i = 0; i < zombiePositions.size(); i++) {
-		_zombies.push_back(new Zombie);
-		_zombies.back()->init(ZOMBIE_SPEED, zombiePositions[i]);
+		m_zombies.push_back(new Zombie);
+		m_zombies.back()->init(ZOMBIE_SPEED, zombiePositions[i]);
 	}
 
 	const float BULLET_SPEED = 20.0f;
-	_player->addGun(new Gun("Magnum", 10, 1, 0.01f, 30, BULLET_SPEED, _audioEngine.loadSoundEffect("Sound/shots/pistol.wav")));
-	_player->addGun(new Gun("Shotgun", 30, 12, 0.5f, 4, BULLET_SPEED, _audioEngine.loadSoundEffect("Sound/shots/shotgun.wav")));
-	_player->addGun(new Gun("MP5", 2, 1, 0.1f, 20, BULLET_SPEED, _audioEngine.loadSoundEffect("Sound/shots/cg1.wav")));
+	m_player->addGun(new Gun("Magnum", 10, 1, 0.01f, 30, BULLET_SPEED, m_audioEngine.loadSoundEffect("Sound/shots/pistol.wav")));
+	m_player->addGun(new Gun("Shotgun", 30, 12, 0.5f, 4, BULLET_SPEED, m_audioEngine.loadSoundEffect("Sound/shots/shotgun.wav")));
+	m_player->addGun(new Gun("MP5", 2, 1, 0.1f, 20, BULLET_SPEED, m_audioEngine.loadSoundEffect("Sound/shots/cg1.wav")));
 }
 
 void MainGame::initShader() {
 	//Compile our color shader
-	_textureProgram.CompileShaders("Shaders/textureShading.vert", "Shaders/textureShading.frag");
-	_textureProgram.AddAttribute("vertexPosition");
-	_textureProgram.AddAttribute("vertexColor");
-	_textureProgram.AddAttribute("vertexUV");
-	_textureProgram.LinkShaders();
+	m_textureProgram.CompileShaders("Shaders/textureShading.vert", "Shaders/textureShading.frag");
+	m_textureProgram.AddAttribute("vertexPosition");
+	m_textureProgram.AddAttribute("vertexColor");
+	m_textureProgram.AddAttribute("vertexUV");
+	m_textureProgram.LinkShaders();
 }
 
 void MainGame::gameLoop() {
-	Gengine::FpsLimiter _fpsLimiter;
-	_fpsLimiter.SetMaxFPS(60.0f);
+	Gengine::FpsLimiter fpsLimiter;
+	fpsLimiter.SetMaxFPS(60.0f);
 
 	const float CAMERA_SCALE = 1.0f / 4.0f;
-	_camera.SetScale(CAMERA_SCALE);
+	m_camera.SetScale(CAMERA_SCALE);
 
 	const int MAX_PHYSICS_STEPS = 6;
 	const float DESIRED_FPS = 60;
@@ -137,8 +137,8 @@ void MainGame::gameLoop() {
 
 	float prevTicks = SDL_GetTicks();
 
-	while (_gameState == GameState::PLAY) {
-		_fpsLimiter.Begin();
+	while (m_gameState == GameState::PLAY) {
+		fpsLimiter.Begin();
 
 		float newTicks = SDL_GetTicks();
 		float frameTime = newTicks - prevTicks;
@@ -153,60 +153,60 @@ void MainGame::gameLoop() {
 			float deltaTime = std::min(totalDeltaTime, MAX_DELTA_TIME);
 			updateAgents(deltaTime);
 			updateBullets(deltaTime);
-			_particleEngine2D.update(deltaTime);
+			m_particleEngine2D.update(deltaTime);
 			totalDeltaTime -= deltaTime;
 			step_cnt++;
 		}
 
-		_camera.SetPosition(_player->getPosition());
-		_camera.Update();
-		_uiCamera.Update();
+		m_camera.SetPosition(m_player->getPosition());
+		m_camera.Update();
+		m_uiCamera.Update();
 		drawGame();
-		_fps = _fpsLimiter.End();
+		m_fps = fpsLimiter.End();
 	}
 }
 
 void MainGame::updateAgents(float deltaTime) {
-	for (int i = 0; i < _humans.size(); i++) {
-		_humans[i]->update(_levels[_currentLevel]->getLevelData(), _humans, _zombies, deltaTime);
+	for (int i = 0; i < m_humans.size(); i++) {
+		m_humans[i]->update(m_levels[m_currentLevel]->getLevelData(), m_humans, m_zombies, deltaTime);
 	}
 
-	for (int i = 0; i < _zombies.size(); i++) {
-		_zombies[i]->update(_levels[_currentLevel]->getLevelData(), _humans, _zombies, deltaTime);
+	for (int i = 0; i < m_zombies.size(); i++) {
+		m_zombies[i]->update(m_levels[m_currentLevel]->getLevelData(), m_humans, m_zombies, deltaTime);
 	}
 
-	for (int i = 0; i < _zombies.size(); i++) {
-		for (int j = i + 1; j < _zombies.size(); j++) {
-			_zombies[i]->collideWithAgent(_zombies[j]);
+	for (int i = 0; i < m_zombies.size(); i++) {
+		for (int j = i + 1; j < m_zombies.size(); j++) {
+			m_zombies[i]->collideWithAgent(m_zombies[j]);
 		}
-		for (int j = 1; j < _humans.size(); j++) {
-			if (_zombies[i]->collideWithAgent(_humans[j])) {
-				_zombies.push_back(new Zombie);
-				_zombies.back()->init(ZOMBIE_SPEED, _humans[j]->getPosition());
-				delete _humans[j];
-				_humans[j] = _humans.back();
-				_humans.pop_back();
+		for (int j = 1; j < m_humans.size(); j++) {
+			if (m_zombies[i]->collideWithAgent(m_humans[j])) {
+				m_zombies.push_back(new Zombie);
+				m_zombies.back()->init(ZOMBIE_SPEED, m_humans[j]->getPosition());
+				delete m_humans[j];
+				m_humans[j] = m_humans.back();
+				m_humans.pop_back();
 			}
 		}
 
-		if (_zombies[i]->collideWithAgent(_player)) {
+		if (m_zombies[i]->collideWithAgent(m_player)) {
 			Gengine::FatalError("YOU LOSE");
 		}
 	}
 
-	for (int i = 0; i < _humans.size(); i++) {
-		for (int j = i + 1; j < _humans.size(); j++) {
-			_humans[i]->collideWithAgent(_humans[j]);
+	for (int i = 0; i < m_humans.size(); i++) {
+		for (int j = i + 1; j < m_humans.size(); j++) {
+			m_humans[i]->collideWithAgent(m_humans[j]);
 		}
 	}
 }
 
 void MainGame::updateBullets(float deltaTime) {
 	//Update and collide with World
-	for (int i = 0; i < _bullets.size();) {
-		if (_bullets[i].update(_levels[_currentLevel]->getLevelData(), deltaTime)) {
-			_bullets[i] = _bullets.back();
-			_bullets.pop_back();
+	for (int i = 0; i < m_bullets.size();) {
+		if (m_bullets[i].update(m_levels[m_currentLevel]->getLevelData(), deltaTime)) {
+			m_bullets[i] = m_bullets.back();
+			m_bullets.pop_back();
 		}
 		else {
 			i++;
@@ -215,23 +215,23 @@ void MainGame::updateBullets(float deltaTime) {
 
 	bool wasBulletRemoved;
 	//Collide With Agents
-	for (int i = 0; i < _bullets.size(); i++) {
+	for (int i = 0; i < m_bullets.size(); i++) {
 		wasBulletRemoved = false;
 		//Loop through zombies
-		for (int j = 0; j < _zombies.size();) {
-			if (_bullets[i].collideWithAgent(_zombies[j])) {
-				addBlood(_bullets[i].getPosition(), 5);
-				if (_zombies[j]->applyDamage(_bullets[i].getDamage())) {
-					delete _zombies[j];
-					_zombies[j] = _zombies.back();
-					_zombies.pop_back();
-					_numZombiesKilled++;
+		for (int j = 0; j < m_zombies.size();) {
+			if (m_bullets[i].collideWithAgent(m_zombies[j])) {
+				addBlood(m_bullets[i].getPosition(), 5);
+				if (m_zombies[j]->applyDamage(m_bullets[i].getDamage())) {
+					delete m_zombies[j];
+					m_zombies[j] = m_zombies.back();
+					m_zombies.pop_back();
+					m_numZombiesKilled++;
 				}
 				else {
 					j++;
 				}
-				_bullets[i] = _bullets.back();
-				_bullets.pop_back();
+				m_bullets[i] = m_bullets.back();
+				m_bullets.pop_back();
 				wasBulletRemoved = true;
 				break;
 			}
@@ -241,20 +241,20 @@ void MainGame::updateBullets(float deltaTime) {
 		}
 		if (wasBulletRemoved) continue;
 		//Loop through humans
-		for (int j = 1; j < _humans.size();) {
-			if (_bullets[i].collideWithAgent(_humans[j])) {
-				addBlood(_bullets[i].getPosition(), 5);
-				if (_humans[j]->applyDamage(_bullets[i].getDamage())) {
-					delete _humans[j];
-					_humans[j] = _humans.back();
-					_humans.pop_back();
-					_numHumansKilled++;
+		for (int j = 1; j < m_humans.size();) {
+			if (m_bullets[i].collideWithAgent(m_humans[j])) {
+				addBlood(m_bullets[i].getPosition(), 5);
+				if (m_humans[j]->applyDamage(m_bullets[i].getDamage())) {
+					delete m_humans[j];
+					m_humans[j] = m_humans.back();
+					m_humans.pop_back();
+					m_numHumansKilled++;
 				}
 				else {
 					j++;
 				}
-				_bullets[i] = _bullets.back();
-				_bullets.pop_back();
+				m_bullets[i] = m_bullets.back();
+				m_bullets.pop_back();
 				break;
 			}
 			else {
@@ -265,9 +265,9 @@ void MainGame::updateBullets(float deltaTime) {
 }
 
 void MainGame::checkVictory() {
-	if (_zombies.empty()) {
+	if (m_zombies.empty()) {
 		std::printf("*** You Win! ***\n You killed %d humans and %d zombies.\n There are %d/%d humans remaining",
-			_numHumansKilled, _numZombiesKilled, _humans.size() - 1, _levels[_currentLevel]->getNumHumans());
+			m_numHumansKilled, m_numZombiesKilled, m_humans.size() - 1, m_levels[m_currentLevel]->getNumHumans());
 		Gengine::FatalError("");
 	}
 }
@@ -278,22 +278,22 @@ void MainGame::processInput() {
 	while (SDL_PollEvent(&evnt)) {
 		switch (evnt.type) {
 			case SDL_QUIT :
-				_gameState = GameState::EXIT;
+				m_gameState = GameState::EXIT;
 				break;
 			case SDL_MOUSEMOTION :
-				_inputManager.SetMouseCoords(evnt.motion.x - 125, evnt.motion.y);
+				m_inputManager.SetMouseCoords(evnt.motion.x - 125, evnt.motion.y);
 				break;
 			case SDL_KEYDOWN :
-				_inputManager.PressKey(evnt.key.keysym.sym);
+				m_inputManager.PressKey(evnt.key.keysym.sym);
 				break;
 			case SDL_KEYUP :
-				_inputManager.ReleaseKey(evnt.key.keysym.sym);
+				m_inputManager.ReleaseKey(evnt.key.keysym.sym);
 				break;
 			case SDL_MOUSEBUTTONDOWN :
-				_inputManager.PressKey(evnt.button.button);
+				m_inputManager.PressKey(evnt.button.button);
 				break;
 			case SDL_MOUSEBUTTONUP :
-				_inputManager.ReleaseKey(evnt.button.button);
+				m_inputManager.ReleaseKey(evnt.button.button);
 				break;
 		}
 	}
@@ -305,76 +305,76 @@ void MainGame::drawGame() {
 	//Clear the color and depth  buffer
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	_textureProgram.Use();
+	m_textureProgram.Use();
 
 	//Draw code goes here
 	glActiveTexture(GL_TEXTURE0);
 
 	//Make sure the shader uses texture 0
-	GLint textureUniform = _textureProgram.GetUniformLocation("mySampler");
+	GLint textureUniform = m_textureProgram.GetUniformLocation("mySampler");
 	glUniform1i(textureUniform, 0);
 
 	//Grab the camera matrix
-	glm::mat4 projectionMatrix = _camera.GetCameraMatrix();
-	GLint pUniform = _textureProgram.GetUniformLocation("P");
+	glm::mat4 projectionMatrix = m_camera.GetCameraMatrix();
+	GLint pUniform = m_textureProgram.GetUniformLocation("P");
 	glUniformMatrix4fv(pUniform, 1, GL_FALSE, &projectionMatrix[0][0]);
 
 	//Draw the level
-	_levels[_currentLevel]->draw();
+	m_levels[m_currentLevel]->draw();
 
 	//Draw the humans
-	_agentSpriteBatch.Begin();
+	m_agentSpriteBatch.Begin();
 
 	const glm::vec2 agentDim(AGENT_RADIUS * 2.0f);
 
-	for (int i = 0; i < _humans.size(); i++) {
-		if (_camera.isBoxInView(_humans[i]->getPosition(), agentDim))
-			_humans[i]->draw(_agentSpriteBatch);
+	for (int i = 0; i < m_humans.size(); i++) {
+		if (m_camera.isBoxInView(m_humans[i]->getPosition(), agentDim))
+			m_humans[i]->draw(m_agentSpriteBatch);
 	}
 
 	//Draw the zombies
-	for (int i = 0; i < _zombies.size(); i++) {
-		if (_camera.isBoxInView(_zombies[i]->getPosition(), agentDim))
-			_zombies[i]->draw(_agentSpriteBatch);
+	for (int i = 0; i < m_zombies.size(); i++) {
+		if (m_camera.isBoxInView(m_zombies[i]->getPosition(), agentDim))
+			m_zombies[i]->draw(m_agentSpriteBatch);
 	}
 
 	//Draw the bullets
-	for (int i = 0; i < _bullets.size(); i++) {
-		_bullets[i].draw(_agentSpriteBatch);
+	for (int i = 0; i < m_bullets.size(); i++) {
+		m_bullets[i].draw(m_agentSpriteBatch);
 	}
 
-	_agentSpriteBatch.End();
-	_agentSpriteBatch.RenderBatchs();
+	m_agentSpriteBatch.End();
+	m_agentSpriteBatch.RenderBatchs();
 
-	_particleEngine2D.draw(&_agentSpriteBatch);
+	m_particleEngine2D.draw(&m_agentSpriteBatch);
 
 	drawUI();
 
-	_textureProgram.Unuse();
+	m_textureProgram.Unuse();
 
 	//Swap our buffer and draw everything to the screen
-	_window.SwapBuffer();
+	m_window.SwapBuffer();
 }
 
 void MainGame::drawUI() {
 	char buffer[256];
 
-	glm::mat4 projectionMatrix = _uiCamera.GetCameraMatrix();
-	GLint pUniform = _textureProgram.GetUniformLocation("P");
+	glm::mat4 projectionMatrix = m_uiCamera.GetCameraMatrix();
+	GLint pUniform = m_textureProgram.GetUniformLocation("P");
 	glUniformMatrix4fv(pUniform, 1, GL_FALSE, &projectionMatrix[0][0]);
 
-	_uiSpriteBatch.Begin();
+	m_uiSpriteBatch.Begin();
 
-	sprintf_s(buffer, "Num Humans %d", _humans.size());
-	_spriteFont->draw(_uiSpriteBatch, buffer, glm::vec2(130, 0),
+	sprintf_s(buffer, "Num Humans %d", m_humans.size());
+	m_spriteFont->draw(m_uiSpriteBatch, buffer, glm::vec2(130, 0),
 						glm::vec2(1.0), 0.0f, Gengine::ColorRGBA8(255, 255, 255, 255));
 
-	sprintf_s(buffer, "Num Zombies %d", _zombies.size());
-	_spriteFont->draw(_uiSpriteBatch, buffer, glm::vec2(130, 40),
+	sprintf_s(buffer, "Num Zombies %d", m_zombies.size());
+	m_spriteFont->draw(m_uiSpriteBatch, buffer, glm::vec2(130, 40),
 		glm::vec2(1.0), 0.0f, Gengine::ColorRGBA8(255, 255, 255, 255));
 
-	_uiSpriteBatch.End();
-	_uiSpriteBatch.RenderBatchs();
+	m_uiSpriteBatch.End();
+	m_uiSpriteBatch.RenderBatchs();
 }
 
 void MainGame::addBlood(const glm::vec2& position, int numParticles) {
@@ -386,6 +386,6 @@ void MainGame::addBlood(const glm::vec2& position, int numParticles) {
 	Gengine::ColorRGBA8 color(255, 0, 0, 255);
 
 	for (int i = 0; i < numParticles; i++) {
-		_bloodParticleBatch->addParticle(position, glm::rotate(velocity, randAngle(randEngine)), color, 20.0f);
+		m_bloodParticleBatch->addParticle(position, glm::rotate(velocity, randAngle(randEngine)), color, 20.0f);
 	}
 }
