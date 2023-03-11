@@ -3,5 +3,5 @@
 #include <string>
 
 namespace Gengine {
-	extern void FatalError(std::string errorString);
+	extern void fatalError(std::string errorString);
 }

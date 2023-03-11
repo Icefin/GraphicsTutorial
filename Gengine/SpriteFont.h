@@ -53,7 +53,7 @@ namespace Gengine {
 
     class SpriteFont {
     public:
-        SpriteFont() {};
+        SpriteFont();
         SpriteFont(const char* font, int size, char cs, char ce);
         SpriteFont(const char* font, int size) :
             SpriteFont(font, size, FIRST_PRINTABLE_CHAR, LAST_PRINTABLE_CHAR) {
@@ -65,9 +65,7 @@ namespace Gengine {
         /// Destroys the font resources
         void dispose();
 
-        int getFontHeight() const {
-            return _fontHeight;
-        }
+        int getFontHeight() const { return (m_fontHeight); }
 
         /// Measures the dimensions of the text
         glm::vec2 measure(const char* s);
@@ -78,17 +76,13 @@ namespace Gengine {
     private:
         static std::vector<int>* createRows(glm::ivec4* rects, int rectsLength, int r, int padding, int& w);
 
-        int _regStart, _regLength;
-        CharGlyph* _glyphs;
-        int _fontHeight;
+        int m_regStart, m_regLength;
+        CharGlyph* m_glyphs;
+        int m_fontHeight;
 
-        unsigned int _texID;
+        unsigned int m_texID;
     };
 
 }
 
 #endif // SpriteFont_h__
-
-class SpriteFont
-{
-};

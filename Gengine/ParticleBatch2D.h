@@ -40,13 +40,13 @@ namespace Gengine {
 		private :
 			int findFreeParticleIdx();
 
-			Particle2D* _particles = nullptr;
-			int _maxParticles = 0;
-			int _lastFreeParticleIdx = 0;
+			Particle2D* m_particles = nullptr;
+			int m_maxParticles = 0;
+			int m_lastFreeParticleIdx = 0;
 			
-			GLTexture _texture;
-			float _decayRate = 0.1f;
-			std::function<void(Particle2D&, float)> _updateFunc;
+			GLTexture m_texture;
+			float m_decayRate = 0.1f;
+			std::function<void(Particle2D&, float)> m_updateFunc;
 	};
 }
 

@@ -2,7 +2,7 @@
 #include "Errors.h"
 
 namespace Gengine {
-	int Window::Create(std::string windowName, int screenWidth, int screenHeight, unsigned int currentFlags) {
+	int Window::create(std::string windowName, int screenWidth, int screenHeight, unsigned int currentFlags) {
 		Uint32 flags = SDL_WINDOW_OPENGL;
 		if (currentFlags & INVISIBLE) {
 			flags |= SDL_WINDOW_HIDDEN;
@@ -15,22 +15,22 @@ namespace Gengine {
 		}
 
 		//Open an SDL window
-		_sdlWindow = SDL_CreateWindow(windowName.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+		m_sdlWindow = SDL_CreateWindow(windowName.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 			screenWidth, screenHeight, flags);
-		if (_sdlWindow == nullptr) {
-			FatalError("SDL Window could not be created");
+		if (m_sdlWindow == nullptr) {
+			fatalError("SDL Window could not be created");
 		}
 
 		//Set up OpenGL context
-		SDL_GLContext glContext = SDL_GL_CreateContext(_sdlWindow);
+		SDL_GLContext glContext = SDL_GL_CreateContext(m_sdlWindow);
 		if (glContext == nullptr) {
-			FatalError("SDL_GLContext could not be created");
+			fatalError("SDL_GLContext could not be created");
 		}
 
 		//Set up glew
 		GLenum error = glewInit();
 		if (error != GLEW_OK) {
-			FatalError("Could not initialize glew");
+			fatalError("Could not initialize glew");
 		}
 
 		//Check the OpenGL version
@@ -49,7 +49,7 @@ namespace Gengine {
 		return 0;
 	}
 
-	void Window::SwapBuffer() {
-		SDL_GL_SwapWindow(_sdlWindow);
+	void Window::swapBuffer() {
+		SDL_GL_SwapWindow(m_sdlWindow);
 	}
 }

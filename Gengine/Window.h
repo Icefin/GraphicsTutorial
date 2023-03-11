@@ -9,13 +9,13 @@ namespace Gengine {
 	class Window
 	{
 	public:
-		int Create(std::string windowName, int screenWidth, int screenHeight, unsigned int cureentFlags);
-		void SwapBuffer();
+		int create(std::string windowName, int screenWidth, int screenHeight, unsigned int cureentFlags);
+		void swapBuffer();
 
-		int getScreenWidth() { _screenWidth; }
-		int getScreenHeight() { _screenHeight; }
+		int getScreenWidth() { m_screenWidth; }
+		int getScreenHeight() { m_screenHeight; }
 	private:
-		SDL_Window* _sdlWindow;
-		int _screenWidth, _screenHeight;
+		SDL_Window* m_sdlWindow;
+		int m_screenWidth, m_screenHeight;
 	};
 }

@@ -6,6 +6,6 @@ namespace Gengine {
 	class ImageLoader
 	{
 	public:
-		static GLTexture LoadPNG(std::string filePath);
+		static GLTexture loadPNG(std::string filePath);
 	};
 }

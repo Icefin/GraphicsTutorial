@@ -1,9 +1,9 @@
 #include "ResourceManager.h"
 
 namespace Gengine {
-	GLTexture ResourceManager::GetTexture(std::string texturePath) {
-		return _textureCache.GetTexture(texturePath);
+	GLTexture ResourceManager::getTexture(std::string texturePath) {
+		return (m_textureCache.getTexture(texturePath));
 	}
 
-	TextureCache ResourceManager::_textureCache;
+	TextureCache ResourceManager::m_textureCache;
 }

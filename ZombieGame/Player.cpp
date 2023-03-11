@@ -21,7 +21,7 @@ void Player::init(float speed, glm::vec2 pos, Gengine::InputManager* inputManage
 	m_camera = camera;
 	m_bullets = bullets;
 	m_health = 150.0f;
-	m_textureID = Gengine::ResourceManager::GetTexture("Textures/player.png").id;
+	m_textureID = Gengine::ResourceManager::getTexture("Textures/player.png").id;
 }
 
 void Player::update(const std::vector<std::string>& levelData,
@@ -51,8 +51,8 @@ void Player::update(const std::vector<std::string>& levelData,
 		m_currentGunIndex = 2;
 	}
 
-	glm::vec2 mouseCoords = m_inputManager->GetMouseCoords();
-	mouseCoords = m_camera->ConvertScreenToWorld(mouseCoords);
+	glm::vec2 mouseCoords = m_inputManager->getMouseCoords();
+	mouseCoords = m_camera->convertScreenToWorld(mouseCoords);
 
 	glm::vec2 centerPosition = m_position + glm::vec2(AGENT_RADIUS);
 	m_direction = glm::normalize(mouseCoords - centerPosition);

@@ -53,10 +53,10 @@ namespace Gengine {
 			Music loadMusic(const std::string& filePath);
 
 		private :
-			bool _isInitialized = false;
+			bool m_isInitialized = false;
 
-			std::map<std::string, Mix_Chunk*> _effectMap;
-			std::map<std::string, Mix_Music*> _musicMap;
+			std::map<std::string, Mix_Chunk*> m_effectMap;
+			std::map<std::string, Mix_Music*> m_musicMap;
 
 	};
 }

@@ -9,22 +9,22 @@ namespace Gengine {
 		GLSLProgram();
 		~GLSLProgram();
 
-		void CompileShaders(const std::string& vertexShaderFilePath, const std::string& fragmentShaderFilePath);
-		void LinkShaders();
-		void AddAttribute(const std::string& attributeName);
+		void compileShaders(const std::string& vertexShaderFilePath, const std::string& fragmentShaderFilePath);
+		void linkShaders();
+		void addAttribute(const std::string& attributeName);
 
-		GLint GetUniformLocation(const std::string& uniformName);
+		GLint getUniformLocation(const std::string& uniformName);
 
-		void Use();
-		void Unuse();
+		void use();
+		void unuse();
 
 	private:
-		void CompileShader(const std::string& filePath, GLuint& id);
+		void compileShader(const std::string& filePath, GLuint& id);
 
-		int _numAttributes;
+		int m_numAttributes;
 
-		GLuint _programID;
-		GLuint _vertexShaderID;
-		GLuint _fragmentShaderID;
+		GLuint m_programID;
+		GLuint m_vertexShaderID;
+		GLuint m_fragmentShaderID;
 	};
 }

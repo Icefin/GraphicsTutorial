@@ -19,6 +19,6 @@ namespace Gengine {
 			void draw(SpriteBatch* spriteBatch);
 
 		private :
-			std::vector<ParticleBatch2D*> _particleBatches;
+			std::vector<ParticleBatch2D*> m_particleBatches;
 	};
 }

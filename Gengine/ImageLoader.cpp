@@ -4,12 +4,12 @@
 #include "Errors.h"
 
 namespace Gengine {
-	GLTexture ImageLoader::LoadPNG(std::string filePath) {
+	GLTexture ImageLoader::loadPNG(std::string filePath) {
 		GLTexture texture = {};
 
 		std::vector<unsigned char> in;
-		if (IOManager::ReadFileToBuffer(filePath, in) == false) {
-			FatalError("Failed to load PNG file to buffer");
+		if (IOManager::readFileToBuffer(filePath, in) == false) {
+			fatalError("Failed to load PNG file to buffer");
 		}
 
 		std::vector<unsigned char> out;
@@ -17,7 +17,7 @@ namespace Gengine {
 
 		int errorCode = decodePNG(out, width, height, &(in[0]), in.size());
 		if (errorCode != 0) {
-			FatalError("Decode PNG failed with error : " + std::to_string(errorCode));
+			fatalError("Decode PNG failed with error : " + std::to_string(errorCode));
 		}
 
 		glGenTextures(1, &(texture.id));
@@ -37,6 +37,6 @@ namespace Gengine {
 		texture.width = width;
 		texture.height = height;
 
-		return texture;
+		return (texture);
 	}
 }

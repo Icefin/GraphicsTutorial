@@ -54,26 +54,26 @@ void MainGame::run() {
 }
 
 void MainGame::initSystem() {
-	Gengine::Init();
+	Gengine::init();
 	
 	m_audioEngine.init();
 
-	m_window.Create("ZombieGame", m_screenWidth, m_screenHeight, 0);
+	m_window.create("ZombieGame", m_screenWidth, m_screenHeight, 0);
 	glClearColor(0.7f, 0.7f, 0.7f, 1.0f);
 
 	initShader();
 
-	m_agentSpriteBatch.Init();
-	m_uiSpriteBatch.Init();
+	m_agentSpriteBatch.init();
+	m_uiSpriteBatch.init();
 
 	m_spriteFont = new Gengine::SpriteFont("Fonts/chintzy.ttf", 32);
 
-	m_camera.Init(m_screenWidth, m_screenHeight);
-	m_uiCamera.Init(m_screenWidth, m_screenHeight);
-	m_uiCamera.SetPosition(glm::vec2(m_screenWidth / 2, m_screenHeight / 2));
+	m_camera.init(m_screenWidth, m_screenHeight);
+	m_uiCamera.init(m_screenWidth, m_screenHeight);
+	m_uiCamera.setPosition(glm::vec2(m_screenWidth / 2, m_screenHeight / 2));
 
 	m_bloodParticleBatch = new Gengine::ParticleBatch2D;
-	m_bloodParticleBatch->init(1000, 0.05f, Gengine::ResourceManager::GetTexture("Textures/particle.png"),
+	m_bloodParticleBatch->init(1000, 0.05f, Gengine::ResourceManager::getTexture("Textures/particle.png"),
 		[](Gengine::Particle2D& particle, float deltaTime) {
 			particle.position += particle.velocity * deltaTime;
 			particle.color.a = (GLubyte)(particle.life * 255.0f);
@@ -115,19 +115,19 @@ void MainGame::initLevel() {
 
 void MainGame::initShader() {
 	//Compile our color shader
-	m_textureProgram.CompileShaders("Shaders/textureShading.vert", "Shaders/textureShading.frag");
-	m_textureProgram.AddAttribute("vertexPosition");
-	m_textureProgram.AddAttribute("vertexColor");
-	m_textureProgram.AddAttribute("vertexUV");
-	m_textureProgram.LinkShaders();
+	m_textureProgram.compileShaders("Shaders/textureShading.vert", "Shaders/textureShading.frag");
+	m_textureProgram.addAttribute("vertexPosition");
+	m_textureProgram.addAttribute("vertexColor");
+	m_textureProgram.addAttribute("vertexUV");
+	m_textureProgram.linkShaders();
 }
 
 void MainGame::gameLoop() {
 	Gengine::FpsLimiter fpsLimiter;
-	fpsLimiter.SetMaxFPS(60.0f);
+	fpsLimiter.setMaxFPS(60.0f);
 
 	const float CAMERA_SCALE = 1.0f / 4.0f;
-	m_camera.SetScale(CAMERA_SCALE);
+	m_camera.setScale(CAMERA_SCALE);
 
 	const int MAX_PHYSICS_STEPS = 6;
 	const float DESIRED_FPS = 60;
@@ -138,7 +138,7 @@ void MainGame::gameLoop() {
 	float prevTicks = SDL_GetTicks();
 
 	while (m_gameState == GameState::PLAY) {
-		fpsLimiter.Begin();
+		fpsLimiter.begin();
 
 		float newTicks = SDL_GetTicks();
 		float frameTime = newTicks - prevTicks;
@@ -158,11 +158,11 @@ void MainGame::gameLoop() {
 			step_cnt++;
 		}
 
-		m_camera.SetPosition(m_player->getPosition());
-		m_camera.Update();
-		m_uiCamera.Update();
+		m_camera.setPosition(m_player->getPosition());
+		m_camera.update();
+		m_uiCamera.update();
 		drawGame();
-		m_fps = fpsLimiter.End();
+		m_fps = fpsLimiter.end();
 	}
 }
 
@@ -190,7 +190,7 @@ void MainGame::updateAgents(float deltaTime) {
 		}
 
 		if (m_zombies[i]->collideWithAgent(m_player)) {
-			Gengine::FatalError("YOU LOSE");
+			Gengine::fatalError("YOU LOSE");
 		}
 	}
 
@@ -268,7 +268,7 @@ void MainGame::checkVictory() {
 	if (m_zombies.empty()) {
 		std::printf("*** You Win! ***\n You killed %d humans and %d zombies.\n There are %d/%d humans remaining",
 			m_numHumansKilled, m_numZombiesKilled, m_humans.size() - 1, m_levels[m_currentLevel]->getNumHumans());
-		Gengine::FatalError("");
+		Gengine::fatalError("");
 	}
 }
 
@@ -281,19 +281,19 @@ void MainGame::processInput() {
 				m_gameState = GameState::EXIT;
 				break;
 			case SDL_MOUSEMOTION :
-				m_inputManager.SetMouseCoords(evnt.motion.x - 125, evnt.motion.y);
+				m_inputManager.setMouseCoords(evnt.motion.x - 125, evnt.motion.y);
 				break;
 			case SDL_KEYDOWN :
-				m_inputManager.PressKey(evnt.key.keysym.sym);
+				m_inputManager.pressKey(evnt.key.keysym.sym);
 				break;
 			case SDL_KEYUP :
-				m_inputManager.ReleaseKey(evnt.key.keysym.sym);
+				m_inputManager.releaseKey(evnt.key.keysym.sym);
 				break;
 			case SDL_MOUSEBUTTONDOWN :
-				m_inputManager.PressKey(evnt.button.button);
+				m_inputManager.pressKey(evnt.button.button);
 				break;
 			case SDL_MOUSEBUTTONUP :
-				m_inputManager.ReleaseKey(evnt.button.button);
+				m_inputManager.releaseKey(evnt.button.button);
 				break;
 		}
 	}
@@ -305,25 +305,25 @@ void MainGame::drawGame() {
 	//Clear the color and depth  buffer
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	m_textureProgram.Use();
+	m_textureProgram.use();
 
 	//Draw code goes here
 	glActiveTexture(GL_TEXTURE0);
 
 	//Make sure the shader uses texture 0
-	GLint textureUniform = m_textureProgram.GetUniformLocation("mySampler");
+	GLint textureUniform = m_textureProgram.getUniformLocation("mySampler");
 	glUniform1i(textureUniform, 0);
 
 	//Grab the camera matrix
-	glm::mat4 projectionMatrix = m_camera.GetCameraMatrix();
-	GLint pUniform = m_textureProgram.GetUniformLocation("P");
+	glm::mat4 projectionMatrix = m_camera.getCameraMatrix();
+	GLint pUniform = m_textureProgram.getUniformLocation("P");
 	glUniformMatrix4fv(pUniform, 1, GL_FALSE, &projectionMatrix[0][0]);
 
 	//Draw the level
 	m_levels[m_currentLevel]->draw();
 
 	//Draw the humans
-	m_agentSpriteBatch.Begin();
+	m_agentSpriteBatch.begin();
 
 	const glm::vec2 agentDim(AGENT_RADIUS * 2.0f);
 
@@ -343,27 +343,27 @@ void MainGame::drawGame() {
 		m_bullets[i].draw(m_agentSpriteBatch);
 	}
 
-	m_agentSpriteBatch.End();
-	m_agentSpriteBatch.RenderBatchs();
+	m_agentSpriteBatch.end();
+	m_agentSpriteBatch.renderBatchs();
 
 	m_particleEngine2D.draw(&m_agentSpriteBatch);
 
 	drawUI();
 
-	m_textureProgram.Unuse();
+	m_textureProgram.unuse();
 
 	//Swap our buffer and draw everything to the screen
-	m_window.SwapBuffer();
+	m_window.swapBuffer();
 }
 
 void MainGame::drawUI() {
 	char buffer[256];
 
-	glm::mat4 projectionMatrix = m_uiCamera.GetCameraMatrix();
-	GLint pUniform = m_textureProgram.GetUniformLocation("P");
+	glm::mat4 projectionMatrix = m_uiCamera.getCameraMatrix();
+	GLint pUniform = m_textureProgram.getUniformLocation("P");
 	glUniformMatrix4fv(pUniform, 1, GL_FALSE, &projectionMatrix[0][0]);
 
-	m_uiSpriteBatch.Begin();
+	m_uiSpriteBatch.begin();
 
 	sprintf_s(buffer, "Num Humans %d", m_humans.size());
 	m_spriteFont->draw(m_uiSpriteBatch, buffer, glm::vec2(130, 0),
@@ -373,8 +373,8 @@ void MainGame::drawUI() {
 	m_spriteFont->draw(m_uiSpriteBatch, buffer, glm::vec2(130, 40),
 		glm::vec2(1.0), 0.0f, Gengine::ColorRGBA8(255, 255, 255, 255));
 
-	m_uiSpriteBatch.End();
-	m_uiSpriteBatch.RenderBatchs();
+	m_uiSpriteBatch.end();
+	m_uiSpriteBatch.renderBatchs();
 }
 
 void MainGame::addBlood(const glm::vec2& position, int numParticles) {

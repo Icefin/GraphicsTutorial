@@ -2,7 +2,7 @@
 
 
 namespace Gengine {
-	InputManager::InputManager() : _mouseCoords(0.0f, 0.0f) {
+	InputManager::InputManager() : m_mouseCoords(0.0f, 0.0f) {
 	
 	}
 
@@ -11,29 +11,29 @@ namespace Gengine {
 	}
 
 	void InputManager::update() {
-		for (auto& key : _keyMap) {
-			_prevKeyMap[key.first] = key.second;
+		for (auto& key : m_keyMap) {
+			m_prevKeyMap[key.first] = key.second;
 		}
 	}
 
-	void InputManager::PressKey(unsigned int keyID) {
-		_keyMap[keyID] = true;
+	void InputManager::pressKey(unsigned int keyID) {
+		m_keyMap[keyID] = true;
 	}
-	void InputManager::ReleaseKey(unsigned int keyID) {
-		_keyMap[keyID] = false;
+	void InputManager::releaseKey(unsigned int keyID) {
+		m_keyMap[keyID] = false;
 	}
 
-	void InputManager::SetMouseCoords(float x, float y) {
-		_mouseCoords.x = x;
-		_mouseCoords.y = y;
+	void InputManager::setMouseCoords(float x, float y) {
+		m_mouseCoords.x = x;
+		m_mouseCoords.y = y;
 	}
 
 	bool InputManager::isKeyDown(unsigned int keyID) {
-		auto iter = _keyMap.find(keyID);
-		if (iter != _keyMap.end()) {
-			return iter->second;
+		auto iter = m_keyMap.find(keyID);
+		if (iter != m_keyMap.end()) {
+			return (iter->second);
 		}
-		return false;
+		return (false);
 	}
 
 	bool InputManager::isKeyPressed(unsigned int keyID) {
@@ -44,11 +44,11 @@ namespace Gengine {
 	}
 
 	bool InputManager::wasKeyDown(unsigned int keyID) {
-		auto iter = _prevKeyMap.find(keyID);
-		if (iter != _prevKeyMap.end()) {
-			return iter->second;
+		auto iter = m_prevKeyMap.find(keyID);
+		if (iter != m_prevKeyMap.end()) {
+			return (iter->second);
 		}
 
-		return false;
+		return (false);
 	}
 }

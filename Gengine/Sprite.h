@@ -11,16 +11,16 @@ namespace Gengine {
 		Sprite();
 		~Sprite();
 
-		void Init(float x, float y, float width, float height, std::string texturePath);
-		void Draw();
+		void init(float x, float y, float width, float height, std::string texturePath);
+		void draw();
 
 	private:
-		float _x;
-		float _y;
-		float _width;
-		float _height;
+		float m_x;
+		float m_y;
+		float m_width;
+		float m_height;
 
-		GLuint _vboID;
-		GLTexture _texture;
+		GLuint m_vboID;
+		GLTexture m_texture;
 	};
 }

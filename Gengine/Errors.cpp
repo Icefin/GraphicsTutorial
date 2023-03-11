@@ -4,7 +4,7 @@
 #include <SDL/SDL.h>
 
 namespace Gengine {
-	void FatalError(std::string errorString) {
+	void fatalError(std::string errorString) {
 		std::cout << errorString << '\n';
 		std::cout << "Enter any key to quit...";
 		int tmp;

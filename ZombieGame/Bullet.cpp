@@ -31,7 +31,7 @@ void Bullet::draw(Gengine::SpriteBatch& spriteBatch) {
 	const glm::vec4 uvRect(0.0f, 0.0f, 1.0f, 1.0f);
 	Gengine::ColorRGBA8 color(75, 75, 75, 255);
 
-	spriteBatch.Draw(destRect, uvRect, Gengine::ResourceManager::GetTexture("Textures/circle.png").id, 0.0f, color);
+	spriteBatch.draw(destRect, uvRect, Gengine::ResourceManager::getTexture("Textures/circle.png").id, 0.0f, color);
 }
 
 bool Bullet::collideWithAgent(Agent* other) {

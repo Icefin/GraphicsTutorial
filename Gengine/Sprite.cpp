@@ -6,64 +6,64 @@
 
 namespace Gengine {
 	Sprite::Sprite() {
-		_vboID = 0;
+		m_vboID = 0;
 	}
 
 	Sprite::~Sprite() {
-		if (_vboID != 0) {
-			glDeleteBuffers(1, &_vboID);
+		if (m_vboID != 0) {
+			glDeleteBuffers(1, &m_vboID);
 		}
 	}
 
-	void Sprite::Init(float x, float y, float width, float height, std::string texturePath) {
-		_x = x;
-		_y = y;
-		_width = width;
-		_height = height;
+	void Sprite::init(float x, float y, float width, float height, std::string texturePath) {
+		m_x = x;
+		m_y = y;
+		m_width = width;
+		m_height = height;
 
-		_texture = ResourceManager::GetTexture(texturePath);
+		m_texture = ResourceManager::getTexture(texturePath);
 
-		if (_vboID == 0) {
-			glGenBuffers(1, &_vboID);
+		if (m_vboID == 0) {
+			glGenBuffers(1, &m_vboID);
 		}
 
 		Vertex vertexData[6];
 
-		vertexData[0].SetPosition(x + width, y + height);
-		vertexData[0].SetUV(1.0f, 1.0f);
+		vertexData[0].setPosition(x + width, y + height);
+		vertexData[0].setUV(1.0f, 1.0f);
 
-		vertexData[1].SetPosition(x, y + height);
-		vertexData[1].SetUV(0.0f, 1.0f);
+		vertexData[1].setPosition(x, y + height);
+		vertexData[1].setUV(0.0f, 1.0f);
 
-		vertexData[2].SetPosition(x, y);
-		vertexData[2].SetUV(0.0f, 0.0f);
+		vertexData[2].setPosition(x, y);
+		vertexData[2].setUV(0.0f, 0.0f);
 
-		vertexData[3].SetPosition(x, y);
-		vertexData[3].SetUV(0.0f, 0.0f);
+		vertexData[3].setPosition(x, y);
+		vertexData[3].setUV(0.0f, 0.0f);
 
-		vertexData[4].SetPosition(x + width, y);
-		vertexData[4].SetUV(1.0f, 0.0f);
+		vertexData[4].setPosition(x + width, y);
+		vertexData[4].setUV(1.0f, 0.0f);
 
-		vertexData[5].SetPosition(x + width, y + height);
-		vertexData[5].SetUV(1.0f, 1.0f);
+		vertexData[5].setPosition(x + width, y + height);
+		vertexData[5].setUV(1.0f, 1.0f);
 
 		for (int i = 0; i < 6; i++) {
-			vertexData[i].SetColorRGBA8(255, 0, 255, 255);
+			vertexData[i].setColorRGBA8(255, 0, 255, 255);
 		}
 
-		vertexData[1].SetColorRGBA8(0, 0, 255, 255);
-		vertexData[4].SetColorRGBA8(0, 255, 0, 255);
+		vertexData[1].setColorRGBA8(0, 0, 255, 255);
+		vertexData[4].setColorRGBA8(0, 255, 0, 255);
 
-		glBindBuffer(GL_ARRAY_BUFFER, _vboID);
+		glBindBuffer(GL_ARRAY_BUFFER, m_vboID);
 		glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
 
-	void Sprite::Draw() {
-		glBindTexture(GL_TEXTURE_2D, _texture.id);
+	void Sprite::draw() {
+		glBindTexture(GL_TEXTURE_2D, m_texture.id);
 
-		glBindBuffer(GL_ARRAY_BUFFER, _vboID);
+		glBindBuffer(GL_ARRAY_BUFFER, m_vboID);
 		glEnableVertexAttribArray(0);
 		glEnableVertexAttribArray(1);
 		glEnableVertexAttribArray(2);

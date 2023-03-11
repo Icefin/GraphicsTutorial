@@ -14,7 +14,7 @@ namespace Gengine {
 
 	class Glyph {
 		public :
-			Glyph() {};
+			Glyph();
 			Glyph(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint Texture, float Depth, const ColorRGBA8& color);
 			Glyph(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint Texture, float Depth, const ColorRGBA8& color, float angle);
 
@@ -33,10 +33,10 @@ namespace Gengine {
 
 	class RenderBatch {
 	public :
-		RenderBatch(GLuint offset, GLuint numVertices, GLuint texture) : _offset(offset), _numVertices(numVertices), _texture(texture) {};
-		GLuint _offset;
-		GLuint _numVertices;
-		GLuint _texture;
+		RenderBatch(GLuint off, GLuint numVert, GLuint textureID) : offset(off), numVertices(numVert), texture(textureID) {};
+		GLuint offset;
+		GLuint numVertices;
+		GLuint texture;
 	};
 
 	class SpriteBatch
@@ -45,30 +45,30 @@ namespace Gengine {
 		SpriteBatch();
 		~SpriteBatch();
 
-		void Init();
-		void Begin(GlyphSortType sortType = GlyphSortType::TEXTURE);
-		void End();
+		void init();
+		void begin(GlyphSortType sortType = GlyphSortType::TEXTURE);
+		void end();
 
-		void Draw(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint texture, float depth, const ColorRGBA8& color);
-		void Draw(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint texture, float depth, const ColorRGBA8& color, float angle);
-		void Draw(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint texture, float depth, const ColorRGBA8& color, const glm::vec2& dir);
-		void RenderBatchs();
+		void draw(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint texture, float depth, const ColorRGBA8& color);
+		void draw(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint texture, float depth, const ColorRGBA8& color, float angle);
+		void draw(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint texture, float depth, const ColorRGBA8& color, const glm::vec2& dir);
+		void renderBatchs();
 	private :
-		void CreateRenderBatches();
-		void CreateVertexArray();
-		void SortGlyphs();
+		void createRenderBatches();
+		void createVertexArray();
+		void sortGlyphs();
 
-		static bool CompareFrontToBack(Glyph* a, Glyph* b);
-		static bool CompareBackToFront(Glyph* a, Glyph* b);
-		static bool CompareTexture(Glyph* a, Glyph* b);
+		static bool compareFrontToBack(Glyph* a, Glyph* b);
+		static bool compareBackToFront(Glyph* a, Glyph* b);
+		static bool compareTexture(Glyph* a, Glyph* b);
 
-		GLuint _vbo;
-		GLuint _vao;
+		GLuint m_vbo;
+		GLuint m_vao;
 
-		GlyphSortType _sortType;
+		GlyphSortType m_sortType;
 
-		std::vector<Glyph*> _glyphsPointers;
-		std::vector<Glyph> _glyphs;
-		std::vector<RenderBatch> _renderBatches;
+		std::vector<Glyph*> m_glyphsPointers;
+		std::vector<Glyph> m_glyphs;
+		std::vector<RenderBatch> m_renderBatches;
 	};
 }

@@ -7,17 +7,17 @@ namespace Gengine {
 		FpsLimiter();
 		~FpsLimiter();
 
-		void Init(float maxFPS);
-		void SetMaxFPS(float maxFPS);
+		void init(float maxFPS);
+		void setMaxFPS(float maxFPS);
 
-		void Begin();
-		float End();
+		void begin();
+		float end();
 	private :
 		void calculateFPS();
 
-		float _fps;
-		float _maxFPS;
-		float _frameTime;
-		unsigned int _startTicks;
+		float m_fps;
+		float m_maxFPS;
+		float m_frameTime;
+		unsigned int m_startTicks;
 	};
 }

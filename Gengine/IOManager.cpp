@@ -2,7 +2,7 @@
 #include <fstream>
 
 namespace Gengine {
-	bool IOManager::ReadFileToBuffer(std::string filePath, std::vector<unsigned char>& buffer) {
+	bool IOManager::readFileToBuffer(std::string filePath, std::vector<unsigned char>& buffer) {
 		std::ifstream file(filePath, std::ios::binary);
 		if (file.fail()) {
 			perror(filePath.c_str());
@@ -24,6 +24,6 @@ namespace Gengine {
 		file.read((char*)&(buffer[0]), fileSize);
 		file.close();
 
-		return true;
+		return (true);
 	}
 }

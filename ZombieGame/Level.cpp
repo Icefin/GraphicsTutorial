@@ -11,7 +11,7 @@ Level::Level(const std::string& fileName) {
 	file.open(fileName);
 
 	if (file.fail()) {
-		Gengine::FatalError("Failed to open" + fileName);
+		Gengine::fatalError("Failed to open" + fileName);
 	}
 	
 	std::string temp;
@@ -22,8 +22,8 @@ Level::Level(const std::string& fileName) {
 		m_levelData.push_back(temp);
 	}
 
-	m_spriteBatch.Init();
-	m_spriteBatch.Begin();
+	m_spriteBatch.init();
+	m_spriteBatch.begin();
 	glm::vec4 uvRect(0.0f, 0.0f, 1.0f, 1.0f);
 	Gengine::ColorRGBA8 whiteColor(255, 255, 255, 255);
 	for (int y = 0; y < m_levelData.size(); y++) {
@@ -35,23 +35,23 @@ Level::Level(const std::string& fileName) {
 					break;
 				case 'B' :
 				case 'R' :
-					m_spriteBatch.Draw(destRect,
+					m_spriteBatch.draw(destRect,
 									uvRect,
-									Gengine::ResourceManager::GetTexture("Textures/red_bricks.png").id,
+									Gengine::ResourceManager::getTexture("Textures/red_bricks.png").id,
 									0.0f,
 									whiteColor);
 					break;
 				case 'G' :
-					m_spriteBatch.Draw(destRect,
+					m_spriteBatch.draw(destRect,
 									uvRect,
-									Gengine::ResourceManager::GetTexture("Textures/glass.png").id,
+									Gengine::ResourceManager::getTexture("Textures/glass.png").id,
 									0.0f,
 									whiteColor);
 					break;
 				case 'L':
-					m_spriteBatch.Draw(destRect,
+					m_spriteBatch.draw(destRect,
 									uvRect,
-									Gengine::ResourceManager::GetTexture("Textures/light_bricks.png").id,
+									Gengine::ResourceManager::getTexture("Textures/light_bricks.png").id,
 									0.0f,
 									whiteColor);
 					break;
@@ -70,7 +70,7 @@ Level::Level(const std::string& fileName) {
 			}
 		}
 	}
-	m_spriteBatch.End();
+	m_spriteBatch.end();
 }
 
 Level::~Level() {
@@ -78,5 +78,5 @@ Level::~Level() {
 }
 
 void Level::draw() {
-	m_spriteBatch.RenderBatchs();
+	m_spriteBatch.renderBatchs();
 }

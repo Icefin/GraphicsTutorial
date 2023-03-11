@@ -61,7 +61,7 @@ void Agent::draw(Gengine::SpriteBatch& spriteBatch) {
 	destRect.z = AGENT_WIDTH;
 	destRect.w = AGENT_WIDTH;
 	
-	spriteBatch.Draw(destRect, uvRect, m_textureID, 0.0f, m_color, m_direction);
+	spriteBatch.draw(destRect, uvRect, m_textureID, 0.0f, m_color, m_direction);
 }
 
 bool Agent::applyDamage(float damage) {

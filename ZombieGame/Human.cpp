@@ -29,7 +29,7 @@ void Human::init(float speed, glm::vec2 pos) {
 	if (m_direction.length() == 0) m_direction = glm::vec2(1.0f, 0.0f);
 
 	m_direction = glm::normalize(m_direction);
-	m_textureID = Gengine::ResourceManager::GetTexture("Textures/human.png").id;
+	m_textureID = Gengine::ResourceManager::getTexture("Textures/human.png").id;
 }
 
 void Human::update(const std::vector<std::string>& levelData,

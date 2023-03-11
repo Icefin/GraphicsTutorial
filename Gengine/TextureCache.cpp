@@ -11,16 +11,16 @@ namespace Gengine {
 
 	}
 
-	GLTexture TextureCache::GetTexture(std::string texturePath) {
-		auto iter = _textureMap.find(texturePath);
+	GLTexture TextureCache::getTexture(std::string texturePath) {
+		auto iter = m_textureMap.find(texturePath);
 
-		if (iter == _textureMap.end()) {
-			GLTexture newTexture = ImageLoader::LoadPNG(texturePath);
+		if (iter == m_textureMap.end()) {
+			GLTexture newTexture = ImageLoader::loadPNG(texturePath);
 			
-			_textureMap.insert(make_pair(texturePath, newTexture));
+			m_textureMap.insert(make_pair(texturePath, newTexture));
 
-			return newTexture;
+			return (newTexture);
 		}
-		return iter->second;
+		return (iter->second);
 	}
 }

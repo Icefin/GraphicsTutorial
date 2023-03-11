@@ -9,29 +9,29 @@ namespace Gengine {
 	}
 
 	ParticleEngine2D::~ParticleEngine2D() {
-		for (auto& batch : _particleBatches) {
+		for (auto& batch : m_particleBatches) {
 			delete batch;
 		}
 	}
 
 	void ParticleEngine2D::addParticleBatch(ParticleBatch2D* particleBatch) {
-		_particleBatches.push_back(particleBatch);
+		m_particleBatches.push_back(particleBatch);
 	}
 
 	void ParticleEngine2D::update(float deltaTime) {
-		for (auto& batch : _particleBatches) {
+		for (auto& batch : m_particleBatches) {
 			batch->update(deltaTime);
 		}
 	}
 
 	void ParticleEngine2D::draw(SpriteBatch* spriteBatch) {
-		for (auto& batch : _particleBatches) {
-			spriteBatch->Begin();
+		for (auto& batch : m_particleBatches) {
+			spriteBatch->begin();
 
 			batch->draw(spriteBatch);
 
-			spriteBatch->End();
-			spriteBatch->RenderBatchs();
+			spriteBatch->end();
+			spriteBatch->renderBatchs();
 		}
 	}
 }

@@ -29,19 +29,19 @@ namespace Gengine {
 		//UV texture coordinates
 		UV uv;
 
-		void SetPosition(float x, float y) {
+		void setPosition(float x, float y) {
 			position.x = x;
 			position.y = y;
 		}
 
-		void SetColorRGBA8(GLubyte r, GLubyte g, GLubyte b, GLubyte a) {
+		void setColorRGBA8(GLubyte r, GLubyte g, GLubyte b, GLubyte a) {
 			color.r = r;
 			color.g = g;
 			color.b = b;
 			color.a = a;
 		}
 
-		void SetUV(float u, float v) {
+		void setUV(float u, float v) {
 			uv.u = u;
 			uv.v = v;
 		}
