@@ -10,6 +10,8 @@ namespace Gengine {
 	class IGameScreen
 	{
 	public :
+		friend class ScreenList;
+
 		IGameScreen() {};
 		virtual ~IGameScreen() {};
 
@@ -25,11 +27,14 @@ namespace Gengine {
 		virtual void update() = 0;
 		virtual void draw() = 0;
 
-		int getCurrentScreenIndex() const { return (m_screenIdx); }
+		int getScreenIndex() const { return (m_screenIdx); }
 		virtual int getNextScreenIndex() const = 0;
 		virtual int getPrevScreenIndex() const = 0;
 
+		ScreenState getState() const { return (m_currentState); }
+
 		void setParentGame(IMainGame* game) { m_game = game; }
+		void setRunning() { m_currentState = ScreenState::RUNNING; }
 
 	protected :
 		ScreenState m_currentState = ScreenState::NONE;

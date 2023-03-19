@@ -32,6 +32,7 @@ namespace Gengine {
 	}
 
 	void ScreenList::addScreen(IGameScreen* newScreen) {
+		newScreen->m_screenIdx = m_screens.size();
 		m_screens.push_back(newScreen);
 		newScreen->build();
 		newScreen->setParentGame(m_game);
@@ -40,7 +41,6 @@ namespace Gengine {
 	void ScreenList::destroy() {
 		for (auto& screen : m_screens) {
 			screen->destroy();
-			delete screen;
 		}
 		m_screens.resize(0);
 		m_currentScreenIdx = SCREEN_IDX_NO_SCREEN;
