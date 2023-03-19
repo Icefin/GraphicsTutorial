@@ -234,7 +234,7 @@ void MainGame::drawUI() {
     const Gengine::ColorRGBA8 fontColor(255, 0, 0, 255);
     // Convert float to char *
     char buffer[64];
-    sprintf(buffer, "%.1f", m_fps);
+    sprintf_s(buffer, "%.1f", m_fps);
 
     m_spriteBatch.begin();
     m_spriteFont->draw(m_spriteBatch, buffer, glm::vec2(m_screenWidth / 4.0f, m_screenHeight - 50.0f),
