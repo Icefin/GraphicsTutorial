@@ -174,7 +174,9 @@
     <ClInclude Include="Gengine.h" />
     <ClInclude Include="GLSLProgram.h" />
     <ClInclude Include="GLTexture.h" />
+    <ClInclude Include="IGameScreen.h" />
     <ClInclude Include="ImageLoader.h" />
+    <ClInclude Include="IMainGame.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="IOManager.h" />
     <ClInclude Include="ParticleBatch2D.h" />
@@ -182,6 +184,7 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="picoPNG.h" />
     <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="ScreenList.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteBatch.h" />
     <ClInclude Include="SpriteFont.h" />
@@ -197,6 +200,7 @@
     <ClCompile Include="Gengine.cpp" />
     <ClCompile Include="GLSLProgram.cpp" />
     <ClCompile Include="ImageLoader.cpp" />
+    <ClCompile Include="IMainGame.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="IOManager.cpp" />
     <ClCompile Include="ParticleBatch2D.cpp" />
@@ -209,6 +213,7 @@
     </ClCompile>
     <ClCompile Include="picoPNG.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="ScreenList.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SpriteBatch.cpp" />
     <ClCompile Include="SpriteFont.cpp" />
