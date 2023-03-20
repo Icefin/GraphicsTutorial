@@ -1,0 +1,28 @@
+﻿  freeglut_callbacks.c
+  freeglut_cursor.c
+  freeglut_display.c
+  freeglut_ext.c
+  freeglut_font.c
+  freeglut_font_data.c
+  freeglut_gamemode.c
+  freeglut_geometry.c
+  freeglut_glutfont_definitions.c
+  freeglut_init.c
+  freeglut_input_devices.c
+  freeglut_joystick.c
+  freeglut_main.c
+  freeglut_menu.c
+  freeglut_misc.c
+  freeglut_overlay.c
+  freeglut_spaceball.c
+  freeglut_state.c
+  freeglut_stroke_mono_roman.c
+  freeglut_stroke_roman.c
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  freeglut_structure.c
+  freeglut_teapot.c
+  freeglut_videoresize.c
+  freeglut_window.c
+  코드를 생성하고 있습니다...
+  FreeGLUT.vcxproj -> C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\deps\Box2D_v2.3.0\Box2D\Build\vs2012\bin\Release\FreeGLUT.lib

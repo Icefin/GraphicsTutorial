@@ -1,0 +1,67 @@
+﻿cl : 명령줄 warning D9035: 'Gm' 옵션은 더 이상 사용되지 않으므로 이후 릴리스에서 제거될 예정입니다.
+cl : 명령줄 warning D9025: '/W3'을(를) '/W1'(으)로 재정의합니다.
+  quaternion.cpp
+  glui_window.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\deps\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: 'nodiscard' 특성이 포함된 함수의 반환 값을 버리는 중
+  glui_treepanel.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\deps\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: 'nodiscard' 특성이 포함된 함수의 반환 값을 버리는 중
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\deps\Box2D_v2.3.0\Box2D\glui\glui_treepanel.cpp(169,20): warning C4834: 'nodiscard' 특성이 포함된 함수의 반환 값을 버리는 중
+  glui_tree.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\deps\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: 'nodiscard' 특성이 포함된 함수의 반환 값을 버리는 중
+  glui_translation.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\deps\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: 'nodiscard' 특성이 포함된 함수의 반환 값을 버리는 중
+  glui_textbox.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\deps\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: 'nodiscard' 특성이 포함된 함수의 반환 값을 버리는 중
+  glui_string.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\deps\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: 'nodiscard' 특성이 포함된 함수의 반환 값을 버리는 중
+  glui_statictext.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\deps\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: 'nodiscard' 특성이 포함된 함수의 반환 값을 버리는 중
+  glui_spinner.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\deps\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: 'nodiscard' 특성이 포함된 함수의 반환 값을 버리는 중
+  glui_separator.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\deps\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: 'nodiscard' 특성이 포함된 함수의 반환 값을 버리는 중
+  glui_scrollbar.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\deps\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: 'nodiscard' 특성이 포함된 함수의 반환 값을 버리는 중
+  glui_rotation.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\deps\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: 'nodiscard' 특성이 포함된 함수의 반환 값을 버리는 중
+  glui_rollout.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\deps\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: 'nodiscard' 특성이 포함된 함수의 반환 값을 버리는 중
+  glui_radio.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\deps\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: 'nodiscard' 특성이 포함된 함수의 반환 값을 버리는 중
+  glui_panel.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\deps\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: 'nodiscard' 특성이 포함된 함수의 반환 값을 버리는 중
+  glui_node.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\deps\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: 'nodiscard' 특성이 포함된 함수의 반환 값을 버리는 중
+  glui_mouse_iaction.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\deps\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: 'nodiscard' 특성이 포함된 함수의 반환 값을 버리는 중
+  glui_listbox.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\deps\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: 'nodiscard' 특성이 포함된 함수의 반환 값을 버리는 중
+  glui_list.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\deps\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: 'nodiscard' 특성이 포함된 함수의 반환 값을 버리는 중
+  glui_filebrowser.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\deps\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: 'nodiscard' 특성이 포함된 함수의 반환 값을 버리는 중
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  glui_edittext.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\deps\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: 'nodiscard' 특성이 포함된 함수의 반환 값을 버리는 중
+  glui_control.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\deps\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: 'nodiscard' 특성이 포함된 함수의 반환 값을 버리는 중
+  glui_commandline.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\deps\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: 'nodiscard' 특성이 포함된 함수의 반환 값을 버리는 중
+  glui_column.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\deps\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: 'nodiscard' 특성이 포함된 함수의 반환 값을 버리는 중
+  glui_checkbox.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\deps\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: 'nodiscard' 특성이 포함된 함수의 반환 값을 버리는 중
+  glui_button.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\deps\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: 'nodiscard' 특성이 포함된 함수의 반환 값을 버리는 중
+  glui_bitmap_img_data.cpp
+  glui_bitmaps.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\deps\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: 'nodiscard' 특성이 포함된 함수의 반환 값을 버리는 중
+  glui_add_controls.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\deps\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: 'nodiscard' 특성이 포함된 함수의 반환 값을 버리는 중
+  glui.cpp
+C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\deps\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: 'nodiscard' 특성이 포함된 함수의 반환 값을 버리는 중
+  arcball.cpp
+  algebra3.cpp
+  코드를 생성하고 있습니다...
+  GLUI.vcxproj -> C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\deps\Box2D_v2.3.0\Box2D\Build\vs2012\bin\Debug\GLUI.lib

@@ -1,0 +1,6 @@
+﻿cl : 명령줄 warning D9035: 'Gm' 옵션은 더 이상 사용되지 않으므로 이후 릴리스에서 제거될 예정입니다.
+  b2Island.cpp
+  b2WheelJoint.cpp
+  b2CollideCircle.cpp
+  코드를 생성하고 있습니다...
+  Box2D.vcxproj -> C:\Users\user\Desktop\Programming_Practice\GraphicsTutorial\deps\Box2D_v2.3.0\Box2D\Build\vs2012\bin\Debug\Box2D.lib
