@@ -82,7 +82,7 @@ namespace Gengine {
 	}
 
 	bool IMainGame::initSystems() {
-		m_window.create("Default", 1024, 576, 0);
+		m_window.create("Default", 1400, 1050, 0);
 		return (true);
 	}
 

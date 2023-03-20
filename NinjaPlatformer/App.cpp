@@ -13,7 +13,7 @@ void App::onInit() {
 }
 
 void App::addScreens() {
-	m_gameScreen = std::make_unique<GameScreen>();
+	m_gameScreen = std::make_unique<GameScreen>(&m_window);
 
 	m_screenList->addScreen(m_gameScreen.get());
 	m_screenList->setScreen(m_gameScreen->getScreenIndex());

@@ -4,6 +4,10 @@
 namespace Gengine {
 	int Window::create(std::string windowName, int screenWidth, int screenHeight, unsigned int currentFlags) {
 		Uint32 flags = SDL_WINDOW_OPENGL;
+
+		m_screenWidth = screenWidth;
+		m_screenHeight = screenHeight;
+
 		if (currentFlags & INVISIBLE) {
 			flags |= SDL_WINDOW_HIDDEN;
 		}
