@@ -22,7 +22,7 @@ void GameScreen::destroy() {
 }
 #include <iostream>
 void GameScreen::onEntry() {
-	b2Vec2 gravity(0.0f, -9.81f);
+	b2Vec2 gravity(0.0f, -25.0f);
 	m_world = std::make_unique<b2World>(gravity);
 
 	//Make the ground
@@ -33,6 +33,9 @@ void GameScreen::onEntry() {
 	b2PolygonShape groundBox;
 	groundBox.SetAsBox(50.0f, 10.0f);
 	groundBody->CreateFixture(&groundBox, 0.0f);
+
+	//Load the textrue
+	m_texture = Gengine::ResourceManager::getTexture("Assets/bricks_top.png");
 
 	std::mt19937 randGenerator;
 	std::uniform_real_distribution<float> xPos(-10.0f, 10.0f);
@@ -49,7 +52,7 @@ void GameScreen::onEntry() {
 		randColor.g = color(randGenerator);
 		randColor.b = color(randGenerator);
 		randColor.a = 255;
-		newBox.init(m_world.get(), glm::vec2(xPos(randGenerator), yPos(randGenerator)), glm::vec2(side(randGenerator), side(randGenerator)), randColor);
+		newBox.init(m_world.get(), glm::vec2(xPos(randGenerator), yPos(randGenerator)), glm::vec2(side(randGenerator), side(randGenerator)), m_texture, randColor, false);
 		m_boxes.push_back(newBox);
 	}
 
@@ -63,12 +66,12 @@ void GameScreen::onEntry() {
 	m_textureProgram.addAttribute("vertexUV");
 	m_textureProgram.linkShaders();
 
-	//Load the textrue
-	m_texture = Gengine::ResourceManager::getTexture("Assets/bricks_top.png");
-
 	//Initialize Camera
 	m_camera.init(m_window->getScreenWidth(), m_window->getScreenHeight());
 	m_camera.setScale(32.0f);
+
+	//Initialize Player
+	m_player.init(m_world.get(), glm::vec2(0.0f, 30.0f), glm::vec2(1.0f, 2.0f), Gengine::ColorRGBA8(255, 255, 255, 255));
 }
 
 void GameScreen::onExit() {
@@ -77,6 +80,8 @@ void GameScreen::onExit() {
 void GameScreen::update() {
 	m_camera.update();
 	checkInput();
+
+	m_player.update(m_game->inputManager);
 
 	//Update physics simulation
 	m_world->Step(1.0f / 60.0f /*frame rate*/, 6, 2);
@@ -103,13 +108,9 @@ void GameScreen::draw() {
 
 	//Draw all the boxes
 	for (auto& box : m_boxes) {
-		glm::vec4 destRect;
-		destRect.x = box.getBody()->GetPosition().x - box.getDimensions().x / 2.0f;
-		destRect.y = box.getBody()->GetPosition().y - box.getDimensions().y / 2.0f;
-		destRect.z = box.getDimensions().x;
-		destRect.w = box.getDimensions().y;
-		m_spriteBatch.draw(destRect, glm::vec4(0.0f, 0.0f, 1.0f, 1.0f), m_texture.id, 0.0f, box.getColor(), box.getBody()->GetAngle());
+		box.draw(m_spriteBatch);
 	}
+	m_player.draw(m_spriteBatch);
 
 	m_spriteBatch.end();
 	m_spriteBatch.renderBatchs();

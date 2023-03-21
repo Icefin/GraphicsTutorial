@@ -27,6 +27,8 @@ namespace Gengine {
 
 		const float getFps() const { return (m_fps); }
 
+		InputManager inputManager;
+
 	protected :
 		bool init();
 		bool initSystems();
@@ -40,7 +42,6 @@ namespace Gengine {
 		bool m_isRunning = false;
 		float m_fps = 0.0f;
 		Window m_window;
-		InputManager m_inputManager;
 	};
 }
 
