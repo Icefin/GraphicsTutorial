@@ -1,5 +1,6 @@
 #include "GLSLProgram.h"
 #include "Errors.h"
+#include "IOManager.h"
 
 #include <vector>
 #include <fstream>
@@ -14,6 +15,16 @@ namespace Gengine {
 	}
 
 	void GLSLProgram::compileShaders(const std::string& vertexShaderFilePath, const std::string& fragmentShaderFilePath) {
+		std::string vertSource;
+		std::string fragSource;
+
+		IOManager::readFileToBuffer(vertexShaderFilePath, vertSource);
+		IOManager::readFileToBuffer(fragmentShaderFilePath, fragSource);
+		
+		compileShadersFromSource(vertSource.c_str(), fragSource.c_str());
+	}
+
+	void GLSLProgram::compileShadersFromSource(const char* vertexSource, const char* fragmentSource) {
 		//Vertex and fragment shaders are successfully compiled.
 		//Now time to link them together into a program.
 		//Get a program object.
@@ -29,8 +40,8 @@ namespace Gengine {
 			fatalError("Fragment shader failed to be created!");
 		}
 
-		compileShader(vertexShaderFilePath, m_vertexShaderID);
-		compileShader(fragmentShaderFilePath, m_fragmentShaderID);
+		compileShader(vertexSource, "Vertex Shader", m_vertexShaderID);
+		compileShader(fragmentSource, "Fragment Shader", m_fragmentShaderID);
 	}
 
 	void GLSLProgram::linkShaders() {
@@ -96,24 +107,14 @@ namespace Gengine {
 		}
 	}
 
-	void GLSLProgram::compileShader(const std::string& filePath, GLuint& id) {
-		std::ifstream vertexFile(filePath);
-		if (vertexFile.fail()) {
-			perror(filePath.c_str());
-			fatalError("Failed to open " + filePath);
+	void GLSLProgram::destroy() {
+		if (m_programID) {
+			glDeleteProgram(m_programID);
 		}
+	}
 
-		std::string fileContents = "";
-		std::string line;
-
-		while (std::getline(vertexFile, line)) {
-			fileContents += line + "\n";
-		}
-
-		vertexFile.close();
-
-		const char* contentsPtr = fileContents.c_str();
-		glShaderSource(id, 1, &contentsPtr, nullptr);
+	void GLSLProgram::compileShader(const char* source, const std::string& name, GLuint& id) {
+		glShaderSource(id, 1, &source, nullptr);
 
 		glCompileShader(id);
 
@@ -133,7 +134,7 @@ namespace Gengine {
 			glDeleteShader(id);
 
 			std::printf("%s\n", &(errorLog[0]));
-			fatalError("Shader " + filePath + " failed to compile");
+			fatalError("Shader " + name + " failed to compile");
 		}
 	}
 }

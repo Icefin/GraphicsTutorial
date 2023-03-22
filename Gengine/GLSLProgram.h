@@ -10,6 +10,7 @@ namespace Gengine {
 		~GLSLProgram();
 
 		void compileShaders(const std::string& vertexShaderFilePath, const std::string& fragmentShaderFilePath);
+		void compileShadersFromSource(const char* vertexSource, const char* fragmentSource);
 		void linkShaders();
 		void addAttribute(const std::string& attributeName);
 
@@ -18,8 +19,10 @@ namespace Gengine {
 		void use();
 		void unuse();
 
+		void destroy();
+
 	private:
-		void compileShader(const std::string& filePath, GLuint& id);
+		void compileShader(const char* source, const std::string& name, GLuint& id);
 
 		int m_numAttributes;
 

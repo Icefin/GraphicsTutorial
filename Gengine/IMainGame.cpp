@@ -25,10 +25,12 @@ namespace Gengine {
 
 			inputManager.update();
 			update();
-			draw();
+			if (m_isRunning) {
+				draw();
 
-			m_fps = limiter.end();
-			m_window.swapBuffer();
+				m_fps = limiter.end();
+				m_window.swapBuffer();
+			}
 		}
 	}
 

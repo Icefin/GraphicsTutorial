@@ -9,6 +9,7 @@
 #include <Gengine/Camera2D.h>
 #include <Gengine/GLTexture.h>
 #include <Gengine/Window.h>
+#include <Gengine/DebugRenderer.h>
 
 #include <vector>
 
@@ -34,6 +35,9 @@ private :
 	Gengine::SpriteBatch m_spriteBatch;
 	Gengine::GLTexture m_texture;
 	Gengine::Window* m_window;
+	Gengine::DebugRenderer m_debugRenderer;
+
+	bool m_debugMode = true;
 
 	std::unique_ptr<b2World> m_world;
 	std::vector<Box> m_boxes;
