@@ -1,23 +1,43 @@
 #pragma once
 
-#include "Box.h"
+#include "Capsule.h"
 #include <Gengine/SpriteBatch.h>
 #include <Gengine/GLTexture.h>
 #include <Gengine/InputManager.h>
+#include <Gengine/DebugRenderer.h>
+#include <Gengine/TileSheet.h>
+
+enum class PlayerState {
+	STANDING,
+	RUNNING,
+	PUNCHING,
+	JUMPING
+};
 
 class Player
 {
 public :
-	Player();
-	~Player();
-
-	void init(b2World* world, const glm::vec2& position, const glm::vec2& dimensions, Gengine::ColorRGBA8 color);
+	void init(b2World* world,
+		const glm::vec2& position,
+		const glm::vec2& drawDims,
+		const glm::vec2& collisionsDims,
+		Gengine::ColorRGBA8 color);
 	void draw(Gengine::SpriteBatch& spriteBatch);
+	void drawDebug(Gengine::DebugRenderer& debugRenderer);
 	void update(Gengine::InputManager& inputManager);
 
-	const Box& getBox() const { return (m_collisionBox); }
+	const Capsule& getCapsule() const { return (m_capsule); }
 
 private :
-	Box m_collisionBox;
+	glm::vec2 m_drawDims;
+	Gengine::TileSheet m_texture;
+	Gengine::ColorRGBA8 m_color;
+	Capsule m_capsule;
+
+	PlayerState m_state = PlayerState::STANDING;
+	bool m_onGround = false;
+	bool m_isPunching = false;
+	int	m_direction = 1;
+	float m_animTime = 0.0f;
 };
 

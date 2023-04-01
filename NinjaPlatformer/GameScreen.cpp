@@ -44,7 +44,7 @@ void GameScreen::onEntry() {
 	std::uniform_real_distribution<float> yPos(-10.0f, 15.0f);
 	std::uniform_real_distribution<float> side(0.5f, 2.5f);
 	std::uniform_int_distribution<int> color(0, 255);
-	const int NUM_BOXES = 50;
+	const int NUM_BOXES = 10;
 
 	for (int i = 0; i < NUM_BOXES; i++) {
 		Box newBox;
@@ -73,7 +73,7 @@ void GameScreen::onEntry() {
 	m_camera.setScale(32.0f);
 
 	//Initialize Player
-	m_player.init(m_world.get(), glm::vec2(0.0f, 30.0f), glm::vec2(1.0f, 2.0f), Gengine::ColorRGBA8(255, 255, 255, 255));
+	m_player.init(m_world.get(), glm::vec2(0.0f, 30.0f), glm::vec2(2.0f), glm::vec2(1.0f, 1.8f), Gengine::ColorRGBA8(255, 255, 255, 255));
 }
 
 void GameScreen::onExit() {
@@ -129,12 +129,7 @@ void GameScreen::draw() {
 			destRect.w = box.getDimensions().y;
 			m_debugRenderer.drawBox(destRect, Gengine::ColorRGBA8(255, 255, 255, 255), box.getBody()->GetAngle());
 		}
-		auto player = m_player.getBox();
-		destRect.x = player.getBody()->GetPosition().x - player.getDimensions().x / 2.0f;
-		destRect.y = player.getBody()->GetPosition().y - player.getDimensions().y / 2.0f;
-		destRect.z = player.getDimensions().x;
-		destRect.w = player.getDimensions().y;
-		m_debugRenderer.drawBox(destRect, Gengine::ColorRGBA8(255, 255, 255, 255), player.getBody()->GetAngle());
+		m_player.drawDebug(m_debugRenderer);
 		m_debugRenderer.end();
 		m_debugRenderer.render(projectionMatrix, 2.0f);
 	}

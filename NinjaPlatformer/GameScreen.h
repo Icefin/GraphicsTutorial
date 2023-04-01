@@ -37,7 +37,7 @@ private :
 	Gengine::Window* m_window;
 	Gengine::DebugRenderer m_debugRenderer;
 
-	bool m_debugMode = true;
+	bool m_debugMode = false;
 
 	std::unique_ptr<b2World> m_world;
 	std::vector<Box> m_boxes;
