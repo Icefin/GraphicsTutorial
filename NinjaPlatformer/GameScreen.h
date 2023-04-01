@@ -31,6 +31,7 @@ private :
 	void checkInput();
 
 	Gengine::GLSLProgram m_textureProgram;
+	Gengine::GLSLProgram m_lightProgram;
 	Gengine::Camera2D m_camera;
 	Gengine::SpriteBatch m_spriteBatch;
 	Gengine::GLTexture m_texture;

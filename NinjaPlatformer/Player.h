@@ -27,6 +27,12 @@ public :
 	void update(Gengine::InputManager& inputManager);
 
 	const Capsule& getCapsule() const { return (m_capsule); }
+	const glm::vec2 getPosition() const {
+		glm::vec2 res;
+		res.x = m_capsule.getBody()->GetPosition().x;
+		res.y = m_capsule.getBody()->GetPosition().y;
+		return (res);
+	}
 
 private :
 	glm::vec2 m_drawDims;

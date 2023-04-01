@@ -1,4 +1,5 @@
 #include "GameScreen.h"
+#include "Light.h"
 #include <Gengine/IMainGame.h>
 #include <Gengine/ResourceManager.h>
 #include <SDL/SDL.h>
@@ -62,11 +63,18 @@ void GameScreen::onEntry() {
 	m_spriteBatch.init();
 
 	//Initialize Shader
+	//Compile texture shader
 	m_textureProgram.compileShaders("Shaders/textureShading.vert", "Shaders/textureShading.frag");
 	m_textureProgram.addAttribute("vertexPosition");
 	m_textureProgram.addAttribute("vertexColor");
 	m_textureProgram.addAttribute("vertexUV");
 	m_textureProgram.linkShaders();
+	//Compile light shader
+	m_lightProgram.compileShaders("Shaders/lightShading.vert", "Shaders/lightShading.frag");
+	m_lightProgram.addAttribute("vertexPosition");
+	m_lightProgram.addAttribute("vertexColor");
+	m_lightProgram.addAttribute("vertexUV");
+	m_lightProgram.linkShaders();
 
 	//Initialize Camera
 	m_camera.init(m_window->getScreenWidth(), m_window->getScreenHeight());
@@ -133,6 +141,38 @@ void GameScreen::draw() {
 		m_debugRenderer.end();
 		m_debugRenderer.render(projectionMatrix, 2.0f);
 	}
+
+	//Lighting test
+	Light playerLight;
+	playerLight.color = Gengine::ColorRGBA8(255, 255, 255, 255);
+	playerLight.position = m_player.getPosition();
+	playerLight.size = 10.0f;
+
+	Light mouseLight;
+	mouseLight.color = Gengine::ColorRGBA8(255, 0, 255, 255);
+	mouseLight.position = m_camera.convertScreenToWorld(m_game->inputManager.getMouseCoords());
+	mouseLight.size = 15.0f;
+
+	m_lightProgram.use();
+
+	pUniform = m_textureProgram.getUniformLocation("P");
+	glUniformMatrix4fv(pUniform, 1, GL_FALSE, &projectionMatrix[0][0]);
+	
+	//Additive blending
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+
+	m_spriteBatch.begin();
+
+	playerLight.draw(m_spriteBatch);
+	mouseLight.draw(m_spriteBatch);
+
+	m_spriteBatch.end();
+	m_spriteBatch.renderBatchs();
+
+	m_lightProgram.unuse();
+
+	//Reset to regular alpha blending
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
 int GameScreen::getNextScreenIndex() const {
