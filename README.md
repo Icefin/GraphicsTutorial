@@ -1,23 +1,38 @@
 # GraphicsTutorial
 
-Simple Shader Test</br>
-//ADD COMMENTS
+## 2D Game Engine</br>
+- Introduce MainClasses Here...</br>
+
 
 #
-Game Engine</br>
-//ADD COMMENTS
+## Zombie Game</br>
+- File based Map Setting</br>
+- Class Inheritance : Agent <- Human <- Player</br>
+- Polymorphism and Virtual Functions</br>
+- Keyboard Input Moving, Mouse Input Shooting</br>
+- Collision Detection w/ AABB</br>
+- Optimize Camera Culling 2D</br>
+- SDL_ttf UI</br>
+
+//play video comes here</br>
 
 #
-Zombie Game</br>
-//ADD COMMENTS
+## Ball Graphics</br>
+- Optimize Spatial Partitioning</br>
+- Use Multiple Renderer</br>
+- Variadic Macro Function</br>
+- Physics quantity based state update</br>
+
+//play video comes here</br>
 
 #
-Ball Graphics</br>
-//ADD COMMENTS
+## Ninja Platformer</br>
+- Box2D Physics 101</br>
+- Box Collider && Capsule Collider</br>
+- 2D Animation w/ sprite and uvRect</br>
+- Basic 2D Lighting</br>
 
-#
-Ninja Platformer</br>
-//ADD COMMENTS
+//play video comes here</br>
 
 #
 TODO : </br>
