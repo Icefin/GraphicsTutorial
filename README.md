@@ -1,29 +1,58 @@
 # GraphicsTutorial
+This is a personal project reference to https://www.youtube.com/@makinggameswithben/featured</br>
 
 ## 2D Game Engine</br>
-- Introduce MainClasses Here...</br>
+### Classes
+- IOManager : Read File
+- GLSLProgram : Compile and Link Shaders
+  - Use IOManager to read vertexShader and fragmentShader
+  - addAttribute(), getUniformLocation()
+- TextureCache
+- ResourceManager
+- ImageLoader
+- InputManager
 
+- Sprite
+- SpriteBatch : Draw groups of sprites onto the screen
+- SpriteFont
+
+- ScreenList
+
+- Camera2D : Play as eyes of player
+  - Update with Homogeneous Camera Matrix
+  - Convert Screen Coordinate to World Coordinate
+  - Optimization with Camera Culling (Ignore out of view)
+
+- Window : Create Program Window
+  - Open an SDL Window : SDL_CreateWindow
+  - Contain screenWidth, screenHeight
+- Timing : Set Max FPS and Calculate FPS
+
+- ParticleBatch2D
+- ParticleEngine2D
+
+### Interfaces
+- IMainGame
+- IGameScreen
 
 #
 ## Zombie Game</br>
-- File based Map Setting</br>
+- Map Setting with Level.txt by using File I/O</br>
 - Class Inheritance : Agent <- Human <- Player</br>
-- Polymorphism and Virtual Functions</br>
-- Keyboard Input Moving, Mouse Input Shooting</br>
-- Collision Detection w/ AABB</br>
-- Optimize Camera Culling 2D</br>
-- SDL_ttf UI</br>
+- Moving(SDL_A, S ,D, W), Change Weapon(SDL_1, 2, 3), Shoot toward Mouse Coordinate</br>
+- Collision Detection with AABB and Circle Radius</br>
+- Display Text UI by using SDL_ttf</br>
+- Particle Effect with Random Direction Vector and Life Time
 
-//play video comes here</br>
+https://user-images.githubusercontent.com/76864202/231960375-ca9ae5c4-047d-4ced-b9cc-98f05126f8c4.mp4
 
 #
 ## Ball Graphics</br>
-- Optimize Spatial Partitioning</br>
-- Use Multiple Renderer</br>
-- Variadic Macro Function</br>
-- Physics quantity based state update</br>
+- Use Simple Physics : Billiards Collision, Position-Velocity-Acceleration Relation</br>
+- Multiple Renderer : Render Mode with Transition, Momentum, Velocity</br>
+- Optimization with Spatial Partitioning</br>
 
-//play video comes here</br>
+https://user-images.githubusercontent.com/76864202/231959477-14b39608-62eb-4864-a790-1f4133ca3a98.mp4
 
 #
 ## Ninja Platformer</br>
