@@ -3,11 +3,14 @@ This is a personal project reference to https://www.youtube.com/@makinggameswith
 
 ## 2D Game Engine</br>
 ### Classes
-- IOManager : Read File
+- IOManager : Read File and Contain to Buffer
+  - readFileToBuffer(string path, string& buffer)
 - GLSLProgram : Compile and Link Shaders
   - Use IOManager to read vertexShader and fragmentShader
+  - Compile Vert, Frag Shader & Link Shaders to Program
+  - Use Shaders with use() & Unuse Shaders with unuse()
   - Add Attribute to Program with addAttribute()
-  - Get Uniform from program with getUniformLocation()
+  - Get Uniform from Program with getUniformLocation()
 - ImageLoader : Load PNG with IO -> Decode & Convert to GLTexture
 - GLTexture : Set Texture size and ID
 - TextureCache : Contain Texture Cache
