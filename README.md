@@ -8,15 +8,17 @@ This is a personal project reference to https://www.youtube.com/@makinggameswith
   - Use IOManager to read vertexShader and fragmentShader
   - Add Attribute to Program with addAttribute()
   - Get Uniform from program with getUniformLocation()
-- ImageLoader : Get Texture from texturePath
+- ImageLoader : Load PNG with IO -> Decode & Convert to GLTexture
+- GLTexture : Set Texture size and ID
 - TextureCache : Contain Texture Cache
   - Get New Texture from ImageLoader with texturePath
   - Get Used Texture from textureMap (id - Texture) 
 - ResourceManager : Wrapping Classes and Functions related to Resources
-- GLTexture : Set Texture size and ID</br>
+  - Get Texture using TextureCache
 - Sprite : Set Entity and Texture</br>
     <img src="https://user-images.githubusercontent.com/76864202/232026064-4a9cb9c0-a781-4560-93e3-d891ba190c47.png" width="400" height="100">
 - SpriteBatch : Draw groups of sprites onto the screen
+  - begin() -> Objects call draw for batch -> end() -> renderBatches()
 - Camera2D : Play as eyes of player
   - Update with Homogeneous Camera Matrix
   - Convert Screen Coordinate to World Coordinate
